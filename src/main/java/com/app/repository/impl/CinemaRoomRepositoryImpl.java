@@ -1,8 +1,8 @@
 package com.app.repository.impl;
 
 import com.app.connection.DbConnection;
-import com.app.persistence.model.Cinema;
-import com.app.persistence.model.CinemaRoom;
+import com.app.model.Cinema;
+import com.app.model.CinemaRoom;
 import com.app.repository.CinemaRoomRepository;
 import com.app.repository.generic.AbstractCrudRepository;
 import org.springframework.stereotype.Repository;

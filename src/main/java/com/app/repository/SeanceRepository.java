@@ -1,6 +1,6 @@
 package com.app.repository;
 
-import com.app.persistence.model.*;
+import com.app.model.*;
 import com.app.repository.generic.CrudRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,6 +1,6 @@
 package com.app.service;
 
-import com.app.persistence.model.Cinema;
+import com.app.model.Cinema;
 import com.app.repository.CinemaRepository;
 import com.app.repository.CinemaRoomRepository;
 import com.app.repository.SeanceRepository;

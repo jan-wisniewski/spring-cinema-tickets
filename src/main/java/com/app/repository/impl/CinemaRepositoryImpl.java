@@ -1,7 +1,7 @@
 package com.app.repository.impl;
 
 import com.app.connection.DbConnection;
-import com.app.persistence.model.Cinema;
+import com.app.model.Cinema;
 import com.app.repository.CinemaRepository;
 import com.app.repository.generic.AbstractCrudRepository;
 import org.springframework.stereotype.Component;

@@ -1,6 +1,6 @@
 package com.app.repository;
 
-import com.app.persistence.model.Cinema;
+import com.app.model.Cinema;
 import com.app.repository.generic.CrudRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;

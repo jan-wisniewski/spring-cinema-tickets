@@ -2,7 +2,7 @@ package com.app.repository.impl;
 
 
 import com.app.connection.DbConnection;
-import com.app.persistence.model.*;
+import com.app.model.*;
 import com.app.repository.SeanceRepository;
 import com.app.repository.generic.AbstractCrudRepository;
 import org.springframework.stereotype.Repository;
