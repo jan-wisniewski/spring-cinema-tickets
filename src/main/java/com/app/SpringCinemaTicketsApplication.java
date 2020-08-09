@@ -8,10 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SpringCinemaTicketsApplication {
 
     public static void main(String[] args) {
-
-        DbConnection db = new DbConnection();
+        var db = new DbConnection();
         db.setUpTables();
-
         SpringApplication.run(SpringCinemaTicketsApplication.class, args);
     }
 
