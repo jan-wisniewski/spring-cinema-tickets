@@ -1,0 +1,11 @@
+body {
+    position: relative;
+}
+
+#container {padding-top:50px; color: #fff; background-color: #1E88E5;}
+
+a{
+    margin-left: 20px;
+    color: white;
+}
+
