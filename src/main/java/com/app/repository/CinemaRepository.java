@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-@Component
 @Repository
 public interface CinemaRepository extends CrudRepository<Cinema, Integer> {
     Optional<Cinema> findByName(String name);

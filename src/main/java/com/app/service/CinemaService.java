@@ -4,22 +4,18 @@ import com.app.model.Cinema;
 import com.app.repository.CinemaRepository;
 import com.app.repository.CinemaRoomRepository;
 import com.app.repository.SeanceRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @Service
 public class CinemaService {
 
     private final CinemaRepository cinemaRepository;
     private final SeanceRepository seanceRepository;
     private final CinemaRoomRepository cinemaRoomRepository;
-
-    public CinemaService(CinemaRepository cinemaRepository, SeanceRepository seanceRepository, CinemaRoomRepository cinemaRoomRepository) {
-        this.cinemaRepository = cinemaRepository;
-        this.seanceRepository = seanceRepository;
-        this.cinemaRoomRepository = cinemaRoomRepository;
-    }
 
     public Cinema getById(Integer id){
         return cinemaRepository.findById(id).orElseThrow();

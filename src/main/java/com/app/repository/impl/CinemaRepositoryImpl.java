@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-@Component
 public class CinemaRepositoryImpl extends AbstractCrudRepository<Cinema, Integer> implements CinemaRepository {
 
     private final DbConnection dbConnection;
