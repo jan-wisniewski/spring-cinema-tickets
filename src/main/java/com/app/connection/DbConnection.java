@@ -11,14 +11,9 @@ public class DbConnection {
     private final Jdbi jdbi;
 
     public DbConnection() {
-/*        this.username = "root";
+       this.username = "root";
         this.password = "root";
         this.url = "jdbc:mysql://localhost:3306/cinema_pw?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Europe/Warsaw";
-        this.jdbi = Jdbi.create(url, username, password);*/
-
-        this.username = "bymhutibhublsp";
-        this.password = "53a3e311ca5e27c843e6b7037c75710097e7d71351066c541792328fade14a18";
-        this.url = "jdbc:postgresql://ec2-54-247-118-139.eu-west-1.compute.amazonaws.com:5432/cinema_pw?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Europe/Warsaw";
         this.jdbi = Jdbi.create(url, username, password);
     }
 
