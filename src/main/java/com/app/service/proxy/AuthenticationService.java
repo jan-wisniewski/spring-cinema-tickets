@@ -6,9 +6,12 @@ import com.app.exception.AuthenticationException;
 import com.app.model.User;
 import com.app.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.Objects;
 
+@Service
 @RequiredArgsConstructor
 public class AuthenticationService {
     private final UserRepository userRepository;

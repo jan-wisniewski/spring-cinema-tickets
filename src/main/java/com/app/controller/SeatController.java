@@ -18,7 +18,7 @@ import java.util.List;
 public class SeatController {
     private final SeatService seatService;
 
-    @GetMapping("/show/{id}")
+    @GetMapping("/{id}")
     public Seat findById(@PathVariable Integer id) {
         return seatService.getSeatById(id);
     }

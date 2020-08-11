@@ -1,8 +1,12 @@
 package com.app.controller;
 
+import com.app.dto.AuthenticationDto;
+import com.app.dto.CreateUserDto;
 import com.app.model.User;
 import com.app.service.UserService;
+import com.app.service.proxy.AuthenticationService;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,17 +19,16 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
     private final UserService userService;
+    private final AuthenticationService authenticationService;
 
-/*    @GetMapping("/show/{id}")
-    public User findById(@PathVariable Integer id) {
-        return userService.findById(id);
-    }*/
-
-    @GetMapping("/show/{id}")
+    @GetMapping("/{id}")
     public String findById(@PathVariable Integer id, Model model) {
+        if (authenticationService.isAdmin()){
+            return "denied";
+        }
         User user = userService.findById(id);
-        model.addAttribute("user",user);
-        model.addAttribute("TEST","TEST");
+        model.addAttribute("user", user);
+        model.addAttribute("TEST", "TEST");
         return "user";
     }
 

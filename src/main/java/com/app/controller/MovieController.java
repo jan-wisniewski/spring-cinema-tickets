@@ -22,7 +22,7 @@ public class MovieController {
         return movieService.deleteMovie(id);
     }
 
-    @GetMapping("/show/{id}")
+    @GetMapping("/{id}")
     public Movie getById(@PathVariable Integer id) {
         return movieService.findById(id);
     }

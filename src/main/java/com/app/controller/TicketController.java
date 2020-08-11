@@ -18,7 +18,7 @@ import java.util.List;
 public class TicketController {
     private final TicketService ticketService;
 
-    @GetMapping("/show/{id}")
+    @GetMapping("/{id}")
     public Ticket findById(@PathVariable Integer id) {
         return ticketService.getById(id);
     }
