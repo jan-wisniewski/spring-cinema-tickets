@@ -1,6 +1,6 @@
 package com.app.repository.impl;
 
-import com.app.connection.DbConnection;
+import com.app.config.connection.DbConnection;
 import com.app.model.Cinema;
 import com.app.model.CinemaRoom;
 import com.app.repository.CinemaRoomRepository;

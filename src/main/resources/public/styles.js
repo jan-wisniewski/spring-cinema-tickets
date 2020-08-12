@@ -486,8 +486,8 @@ module.exports = content.locals || {};
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\PWproject\spring-cinema-tickets\src\main\resources\frontend\angular-app\node_modules\bootstrap\dist\css\bootstrap.min.css */"./node_modules/bootstrap/dist/css/bootstrap.min.css");
-module.exports = __webpack_require__(/*! D:\PWproject\spring-cinema-tickets\src\main\resources\frontend\angular-app\src\styles.css */"./src/styles.css");
+__webpack_require__(/*! C:\Users\janek\IdeaProjects\Studia\heroku\spring-cinema-tickets\src\main\resources\frontend\angular-app\node_modules\bootstrap\dist\css\bootstrap.min.css */"./node_modules/bootstrap/dist/css/bootstrap.min.css");
+module.exports = __webpack_require__(/*! C:\Users\janek\IdeaProjects\Studia\heroku\spring-cinema-tickets\src\main\resources\frontend\angular-app\src\styles.css */"./src/styles.css");
 
 
 /***/ })

@@ -42,12 +42,17 @@
 </head>
 <body>
 
-<h2 style="text-align:center">Add new city</h2>
+<h2 style="text-align:center">Register</h2>
 
 <div class="card">
-    <form th:action="@{/add}">
-        <p>City name: <input type="text"> </p>
-        <p><input type="button" value="Add city"></p>
+    <form th:action="@{/register}" method="post">
+        <p>Name: <input type="text" name="name"> </p>
+        <p>Surname: <input type="text" name="surname"> </p>
+        <p>Username: <input type="text" name="username"> </p>
+        <p>E-mail: <input type="text" name="email"> </p>
+        <p>Password: <input type="password" name="password"> </p>
+        <p>Repeat password: <input type="password" name="repeatedPassword"> </p>
+        <p><input type="submit" value="Register"></p>
     </form>
 </div>
 

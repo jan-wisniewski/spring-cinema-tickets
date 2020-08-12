@@ -1,6 +1,6 @@
 package com.app.repository.impl;
 
-import com.app.connection.DbConnection;
+import com.app.config.connection.DbConnection;
 import com.app.model.Reservation;
 import com.app.model.view.ReservationWithUser;
 import com.app.repository.ReservationRepository;

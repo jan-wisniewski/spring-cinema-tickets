@@ -8,6 +8,7 @@ import com.app.model.User;
 import com.app.repository.UserRepository;
 import com.app.validator.CreateUserDtoValidator;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,6 +20,7 @@ import java.util.stream.Collectors;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     public User findById (Integer userId){
         return userRepository.findById(userId).orElseThrow(() -> new UserServiceException("FAILED"));
@@ -47,6 +49,7 @@ public class UserService {
             throw new UserServiceException("create user validation errors: " + errorsMessage);
         }
         var user = Mapper.fromCreateUserDtoToUser(userDto);
+        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         user.setRole(Role.USER);
         if (userRepository.findByUsername(user.getUsername()).isPresent()){
             throw new UserServiceException("user with this username already exists");

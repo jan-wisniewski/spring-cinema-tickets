@@ -1,12 +1,24 @@
 package com.app.validator;
 
+import com.app.config.WebSecurityConfig;
 import com.app.dto.CreateUserDto;
 import com.app.validator.validator.Validator;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+@Component
 public class CreateUserDtoValidator  implements Validator<CreateUserDto> {
+
+    private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @Override
     public Map<String, String> validate(CreateUserDto item) {
@@ -39,6 +51,9 @@ public class CreateUserDtoValidator  implements Validator<CreateUserDto> {
     }
 
     private boolean isMatchingPassword (CreateUserDto userDto){
+        System.out.println(userDto.getRepeatedPassword());
+        System.out.println(userDto.getPassword());
         return userDto.getPassword().equals(userDto.getRepeatedPassword());
+       // return userDto.getPassword().equals(userDto.getRepeatedPassword());
     }
 }

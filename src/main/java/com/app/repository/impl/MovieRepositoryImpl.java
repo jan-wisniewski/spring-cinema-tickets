@@ -1,6 +1,6 @@
 package com.app.repository.impl;
 
-import com.app.connection.DbConnection;
+import com.app.config.connection.DbConnection;
 import com.app.model.Movie;
 import com.app.repository.MovieRepository;
 import com.app.repository.generic.AbstractCrudRepository;

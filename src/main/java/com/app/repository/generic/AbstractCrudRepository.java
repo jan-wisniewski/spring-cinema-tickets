@@ -1,6 +1,6 @@
 package com.app.repository.generic;
 
-import com.app.connection.DbConnection;
+import com.app.config.connection.DbConnection;
 import com.app.enums.Genre;
 import com.app.enums.Role;
 import com.app.enums.SeatState;
