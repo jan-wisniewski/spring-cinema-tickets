@@ -4,6 +4,7 @@ import org.jdbi.v3.core.Jdbi;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
+@Configuration
 public class DbConnection {
     private final String username;
     private final String password;
@@ -11,9 +12,18 @@ public class DbConnection {
     private final Jdbi jdbi;
 
     public DbConnection() {
-       this.username = "root";
+/*       this.username = "root";
         this.password = "root";
         this.url = "jdbc:mysql://localhost:3306/cinema_pw?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Europe/Warsaw";
+        this.jdbi = Jdbi.create(url, username, password);*/
+
+        String username = "pw_student";
+        String password = "yLr2IT4g3H";
+        String dbUrl = "jdbc:mysql://db4free.net:3306/cinema_app_db?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Europe/Warsaw";
+
+        this.username = username;
+        this.password = password;
+        this.url = dbUrl;
         this.jdbi = Jdbi.create(url, username, password);
     }
 
