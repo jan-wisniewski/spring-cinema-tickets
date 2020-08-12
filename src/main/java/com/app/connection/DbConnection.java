@@ -25,6 +25,7 @@ public class DbConnection {
         this.password = password;
         this.url = dbUrl;
         this.jdbi = Jdbi.create(url, username, password);
+        setUpTables();
     }
 
     public Jdbi getJdbi() {
