@@ -17,9 +17,9 @@ public class DbConnection {
         this.url = "jdbc:mysql://localhost:3306/cinema_pw?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Europe/Warsaw";
         this.jdbi = Jdbi.create(url, username, password);*/
 
-        String username = "pw_student";
-        String password = "yLr2IT4g3H";
-        String dbUrl = "jdbc:mysql://db4free.net:3306/cinema_app_db?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Europe/Warsaw";
+        String username = "aNmWxkdtov";
+        String password = "yc3O2uaXh9";
+        String dbUrl = "jdbc:mysql://remotemysql.com:3306/aNmWxkdtov?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Europe/Warsaw";
 
         this.username = username;
         this.password = password;
