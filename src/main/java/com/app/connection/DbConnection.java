@@ -1,9 +1,9 @@
 package com.app.connection;
 
 import org.jdbi.v3.core.Jdbi;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
-@Component
 public class DbConnection {
     private final String username;
     private final String password;

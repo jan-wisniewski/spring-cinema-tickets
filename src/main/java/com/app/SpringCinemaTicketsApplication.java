@@ -16,7 +16,9 @@ public class SpringCinemaTicketsApplication {
     public static void main(String[] args) throws URISyntaxException, SQLException {
 /*        var db = new DbConnection();
         db.setUpTables();*/
+        System.out.println("--------------------");
         getConnection();
+        System.out.println("--------------------");
         SpringApplication.run(SpringCinemaTicketsApplication.class, args);
     }
 
