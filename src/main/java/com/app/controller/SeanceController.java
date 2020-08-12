@@ -16,7 +16,7 @@ import java.util.List;
 public class SeanceController {
     private final SeanceService seanceService;
 
-    @GetMapping("/show/{id}")
+    @GetMapping("/{id}")
     public Seance findById (@PathVariable Integer id){
         return seanceService.findById(id);
     }

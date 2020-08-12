@@ -16,7 +16,7 @@ import java.util.List;
 public class ReservationController {
     private final ReservationService reservationService;
 
-    @GetMapping("/show/{id}")
+    @GetMapping("/{id}")
     public Reservation findById (@PathVariable Integer id){
         return reservationService.getById(id);
     }

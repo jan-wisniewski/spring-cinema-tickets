@@ -21,7 +21,7 @@ public class UserController {
         return userService.findById(id);
     }*/
 
-    @GetMapping("/show/{id}")
+    @GetMapping("/{id}")
     public String findById(@PathVariable Integer id, Model model) {
         User user = userService.findById(id);
         model.addAttribute("user",user);

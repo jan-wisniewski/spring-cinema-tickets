@@ -20,7 +20,7 @@ public class CityController {
         return cityService.deleteCity(id);
     }
 
-    @GetMapping("/show/{id}")
+    @GetMapping("/{id}")
     public City showById (@PathVariable Integer id){
         return cityService.findCityById(id);
     }

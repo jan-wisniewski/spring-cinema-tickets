@@ -22,7 +22,7 @@ public class CinemaRoomController {
         return cinemaRoomService.deleteCinemaRoom(id);
     }
 
-    @GetMapping("/show/{id}")
+    @GetMapping("/{id}")
     public CinemaRoom getById(@PathVariable Integer id){
         return cinemaRoomService.findById(id);
     }
