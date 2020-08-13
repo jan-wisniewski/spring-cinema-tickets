@@ -1,15 +1,13 @@
 <!doctype html>
 <html xmlns:th="http://thymeleaf.org"
       xmlns="http://www.w3.org/1999/html">
+
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/index.css">
+    <link rel="stylesheet" href="index.css">
     <title>Cinema project</title>
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
@@ -23,8 +21,8 @@
             <form th:action="@{/login}">
                 <p class="text-white">Username: <input type="text"></p>
                 <p class="text-white">Password: <input type="text"></p>
-                <a href="/register.html" class="w3-bar-item w3-button text-white">Not registered?</a>
-                <p><input type="button" class="btn btn-info" value="Log in"></p>
+                <label class="text-white"> Not registered?  <input type="button" onclick="openRegForm()" class="btn btn-primary" id="registerBtn" value="Register"></input></label>
+                <p><input type="submit" class="btn btn-info" value="Log in"></p>
             </form>
         </div>
     </div>
@@ -42,39 +40,68 @@
         </button></div>
     </nav>
 </div>
-<div class="container" style="margin-top:50px">
-    Content
-<!--    <div><nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:250px" id="mySidebar">-->
-        <div class="w3-container w3-display-container w3-padding-16">
-            <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
-            <h3 class="w3-wide"><b>LOGO</b></h3>
-        </div>
-        <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
-            <a href="#" class="w3-bar-item w3-button">Shirts</a>
-            <a href="#" class="w3-bar-item w3-button">Dresses</a>
-            <a onclick="myAccFunc()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align" id="myBtn">
-                Jeans <i class="fa fa-caret-down"></i>
-            </a>
-            <div id="demoAcc" class="w3-bar-block w3-hide w3-padding-large w3-medium">
-                <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Skinny</a>
-                <a href="#" class="w3-bar-item w3-button">Relaxed</a>
-                <a href="#" class="w3-bar-item w3-button">Bootcut</a>
-                <a href="#" class="w3-bar-item w3-button">Straight</a>
-            </div>
-            <a href="#" class="w3-bar-item w3-button">Jackets</a>
-            <a href="#" class="w3-bar-item w3-button">Gymwear</a>
-            <a href="#" class="w3-bar-item w3-button">Blazers</a>
-            <a href="#" class="w3-bar-item w3-button">Shoes</a>
-        </div>
-        <a href="#footer" class="w3-bar-item w3-button w3-padding">Contact</a>
-        <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding" onclick="document.getElementById('newsletter').style.display='block'">Newsletter</a>
-        <a href="#footer"  class="w3-bar-item w3-button w3-padding">Subscribe</a>
-<!--    </nav>-->
-<!--    </div>-->
+<div class="container-fluid">
+    ...
 </div>
 
+<div class="form-popup" id="registrationForm">
+    <form th:action="@{/register}" method="post" class="form-group">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input class="form-control" type="text" name="name" id="name" placeholder="Enter name">
+        </div>
+        <div class="form-group">
+            <label for="surname">Surname</label>
+            <input class="form-control" type="text" name="surname" id="surname" placeholder="Enter surname">
+        </div>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input class="form-control" type="text" name="username" id="username" placeholder="Enter username">
+        </div>
+        <div class="form-group">
+            <label for="username">Email</label>
+            <input class="form-control" type="email" name="email" id="email" placeholder="name@example.com">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input class="form-control" type="password" name="password" id="password" placeholder="Password">
+        </div>
+        <div class="form-group">
+            <label for="repeatedPassword">Retype password</label>
+            <input class="form-control" type="password" name="repeatedPassword" id="repeatedPassword" placeholder="Retype password">
+        </div>
 
+        <input type="submit" class="btn btn-primary" value="Register">
+        <button type="button" class="btn cancel btn-secondary">Close</button>
+    </form>
+</div>
 
+    <script>
+        var modal = document.getElementById("registrationForm");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("registerBtn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("cancel")[0];
+
+        // When the user clicks the button, open the modal
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+</script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
