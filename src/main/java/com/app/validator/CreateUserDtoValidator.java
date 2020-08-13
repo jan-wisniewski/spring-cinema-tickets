@@ -54,6 +54,5 @@ public class CreateUserDtoValidator  implements Validator<CreateUserDto> {
         System.out.println(userDto.getRepeatedPassword());
         System.out.println(userDto.getPassword());
         return userDto.getPassword().equals(userDto.getRepeatedPassword());
-       // return userDto.getPassword().equals(userDto.getRepeatedPassword());
     }
 }

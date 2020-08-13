@@ -23,6 +23,7 @@ public class AuthController {
 
     @GetMapping("/sign-up")
     public String register(Model model){
+        System.out.println("INSIDE----------------------------------");
         model.addAttribute("userDto",new CreateUserDto());
         return "register";
     }
