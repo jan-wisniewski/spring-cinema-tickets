@@ -11,11 +11,12 @@ public class DbConnection {
     private final Jdbi jdbi;
 
     public DbConnection() {
-/*        this.username = "root";
+   this.username = "root";
         this.password = "root";
         this.url = "jdbc:mysql://localhost:3306/cinema_pw?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Europe/Warsaw";
-        this.jdbi = Jdbi.create(url, username, password);*/
+        this.jdbi = Jdbi.create(url, username, password);
 
+/*
 
         String username = "aNmWxkdtov";
         String password = "yc3O2uaXh9";
@@ -24,6 +25,7 @@ public class DbConnection {
         this.password = password;
         this.url = dbUrl;
         this.jdbi = Jdbi.create(url, username, password);
+*/
 
         setUpTables();
     }

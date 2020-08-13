@@ -42,16 +42,13 @@
 </head>
 <body>
 
-<!-- <h2 style="text-align:center">User Profile Card</h2> -->
+<!-- <h2 style="text-align:center">Cinema Card</h2> -->
 
 <div class="card">
-    <img src="../static/images/user_icon.png" th:src="@{/images/user_icon.png}" style="width:150px">
+    <img src="../static/images/cinema_icon.png" th:src="@{/images/cinema_icon.png}" style="width:150px">
     <p>
-        <p th:text="${user.getName()+ ' '+user.getSurname()}"></p>
-        <p th:text="${user.getUsername()}"></p>
-    <p class="title"><p th:text="${user.getEmail()}"></p>
-    <p><p th:text="${user.getRole()}"></p></p>
-   <!-- <p><button>Contact</button></p> -->
+    <p th:text="${cinema.getName()}"></p>
+    <p class="title"><p th:text="${city.getName()}"></p>
 </div>
 
 </body>
