@@ -2,10 +2,12 @@ package com.app.validator;
 
 import com.app.dto.CreateUserDto;
 import com.app.validator.validator.Validator;
+import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Component
 public class CreateUserDtoValidator  implements Validator<CreateUserDto> {
 
     @Override

@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
-//@RestController
+//@Controller
+@RestController
 @RequiredArgsConstructor
 @RequestMapping("/user")
 public class UserController {
@@ -24,8 +24,8 @@ public class UserController {
     @GetMapping("/{id}")
     public String findById(@PathVariable Integer id, Model model) {
         User user = userService.findById(id);
-        model.addAttribute("user",user);
-        model.addAttribute("TEST","TEST");
+        model.addAttribute("user", user);
+        model.addAttribute("TEST", "TEST");
         return "user";
     }
 

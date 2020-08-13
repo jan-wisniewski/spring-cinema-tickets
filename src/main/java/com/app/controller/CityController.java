@@ -30,14 +30,4 @@ public class CityController {
         return cityService.getAll();
     }
 
-    @GetMapping("/add")
-    public String addCity (){
-        return "addcity";
-    }
-
-/*    @PostMapping("/add")
-    public String add(){
-
-    }*/
-
 }

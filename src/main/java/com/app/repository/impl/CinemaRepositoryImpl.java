@@ -1,10 +1,9 @@
 package com.app.repository.impl;
 
-import com.app.connection.DbConnection;
+import com.app.config.connection.DbConnection;
 import com.app.model.Cinema;
 import com.app.repository.CinemaRepository;
 import com.app.repository.generic.AbstractCrudRepository;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;

@@ -1,14 +1,16 @@
 package com.app.repository.impl;
 
-import com.app.connection.DbConnection;
+import com.app.config.connection.DbConnection;
 import com.app.model.User;
 import com.app.repository.UserRepository;
 import com.app.repository.generic.AbstractCrudRepository;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-@Repository
+@Component
 public class UserRepositoryImpl extends AbstractCrudRepository<User, Integer> implements UserRepository {
 
     private final DbConnection dbConnection;
