@@ -103,7 +103,6 @@
             <version>2.3.2.RELEASE</version>
         </dependency>
     </dependencies>
-
     <build>
         <finalName>app</finalName>
         <plugins>
