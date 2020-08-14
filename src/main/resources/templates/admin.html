@@ -1,0 +1,93 @@
+﻿<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/header :: navbar"></div>
+<body>
+<div class="hero user-hero">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="hero-ct">
+                    <h1>Administration Panel</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-single">
+    <div class="container">
+        <div class="row ipad-width">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="user-information">
+                    <div class="user-fav">
+                        <p>Database services</p>
+                        <ul>
+                            <li><a href="">Cinemas</a></li>
+                            <li><a href="">Cinemas Rooms</a></li>
+                            <li><a href="">Cities</a></li>
+                            <li><a href="">Movies</a></li>
+                            <li><a href="">Seances</a></li>
+                            <li><a href="">Seats</a></li>
+                            <li><a href="">Users</a></li>
+                        </ul>
+                    </div>
+                    <div class="user-fav">
+                        <p>Others</p>
+                        <ul>
+                            <li><a href="#">Log out</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-12 col-xs-12" style="padding-top: -200px">
+                <div class="form-style-1 user-pro" action="#">
+                    <form action="#" class="user">
+                        <h4>01. Profile details</h4>
+                        <div class="row">
+                            <div class="col-md-6 form-it">
+                                <label>Username</label>
+                                <input type="text" placeholder="edwardkennedy">
+                            </div>
+                            <div class="col-md-6 form-it">
+                                <label>Email Address</label>
+                                <input type="text" placeholder="edward@kennedy.com">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-it">
+                                <label>First Name</label>
+                                <input type="text" placeholder="Edward ">
+                            </div>
+                            <div class="col-md-6 form-it">
+                                <label>Last Name</label>
+                                <input type="text" placeholder="Kennedy">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-it">
+                                <label>Country</label>
+                                <select>
+                                    <option value="united">United States</option>
+                                    <option value="saab">Others</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 form-it">
+                                <label>State</label>
+                                <select>
+                                    <option value="united">New York</option>
+                                    <option value="saab">Others</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <input class="submit" type="submit" value="save">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="fragments/footer :: footer"></div>

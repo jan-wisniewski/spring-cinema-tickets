@@ -52,10 +52,4 @@ public class CinemaController {
         model.addAttribute("cinemas", cinemas);
         return "cinemas";
     }
-
-    @GetMapping("/delete/{id}")
-    public Integer deleteById(@PathVariable Integer id) {
-        return cinemaService.deleteCinema(id);
-    }
-
 }
