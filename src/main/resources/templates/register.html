@@ -1,59 +1,35 @@
-<html xmlns:th="http://thymeleaf.org"
-      xmlns="http://www.w3.org/1999/html">
-<head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <style>
-        .card {
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-            max-width: 300px;
-            margin: auto;
-            text-align: center;
-            font-family: arial;
-        }
-
-        .title {
-            color: grey;
-            font-size: 18px;
-        }
-
-        button {
-            border: none;
-            outline: 0;
-            display: inline-block;
-            padding: 8px;
-            color: white;
-            background-color: #000;
-            text-align: center;
-            cursor: pointer;
-            width: 100%;
-            font-size: 18px;
-        }
-
-        a {
-            text-decoration: none;
-            font-size: 22px;
-            color: black;
-        }
-
-        button:hover, a:hover {
-            opacity: 0.7;
-        }
-    </style>
-</head>
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/header :: navbar"></div>
 <body>
-
-<h2 style="text-align:center">Register</h2>
-
-<div class="card">
-    <form th:action="@{/register}" method="post">
-        <p>Name: <input type="text" name="name"> </p>
-        <p>Surname: <input type="text" name="surname"> </p>
-        <p>Username: <input type="text" name="username"> </p>
-        <p>E-mail: <input type="text" name="email"> </p>
-        <p>Password: <input type="password" name="password"> </p>
-        <p>Repeat password: <input type="password" name="repeatedPassword"> </p>
-        <p><input type="submit" value="Register"></p>
-    </form>
+<div class="hero user-hero">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="hero-ct">
+                    <h1>Register</h1>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
-</body>
+<div class="page-single">
+    <div class="container">
+        <div class="row ipad-width2">
+            <div class="col-md-8 col-sm-12 col-xs-12">
+                <div class="form-style-1 user-pro">
+                    <form th:action="@{/register}" method="post">
+                        <p>Name: <input type="text" name="name" pattern="[A-Z][a-z]+" required="required"> </p>
+                        <p>Surname: <input type="text" name="surname" pattern="[A-Z][a-z]+" required="required"> </p>
+                        <p>Username: <input type="text" name="username" required="required"> </p>
+                        <p>E-mail: <input type="text" name="email" pattern="([A-Za-z0-9]\.?)+@[A-Za-z0-9]+\.[a-z]+" required="required"> </p>
+                        <p>Password: <input type="password" name="password" required="required"> </p>
+                        <p>Repeat password: <input type="password" name="repeatedPassword" required="required"> </p>
+                        <button type="submit">Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="fragments/footer :: footer"></div>

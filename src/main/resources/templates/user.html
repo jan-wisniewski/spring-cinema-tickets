@@ -1,57 +1,43 @@
-<html xmlns:th="http://thymeleaf.org"
-      xmlns="http://www.w3.org/1999/html">
-<head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <style>
-        .card {
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-            max-width: 300px;
-            margin: auto;
-            text-align: center;
-            font-family: arial;
-        }
-
-        .title {
-            color: grey;
-            font-size: 18px;
-        }
-
-        button {
-            border: none;
-            outline: 0;
-            display: inline-block;
-            padding: 8px;
-            color: white;
-            background-color: #000;
-            text-align: center;
-            cursor: pointer;
-            width: 100%;
-            font-size: 18px;
-        }
-
-        a {
-            text-decoration: none;
-            font-size: 22px;
-            color: black;
-        }
-
-        button:hover, a:hover {
-            opacity: 0.7;
-        }
-    </style>
-</head>
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/header :: navbar"></div>
 <body>
-
-<!-- <h2 style="text-align:center">User Profile Card</h2> -->
-
-<div class="card">
-    <img src="../static/images/user_icon.png" th:src="@{/images/user_icon.png}" style="width:150px">
-    <p>
-        <p th:text="${user.getName()+ ' '+user.getSurname()}"></p>
-        <p th:text="${user.getUsername()}"></p>
-    <p class="title"><p th:text="${user.getEmail()}"></p>
-    <p><p th:text="${user.getRole()}"></p></p>
-   <!-- <p><button>Contact</button></p> -->
+<div class="hero user-hero">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="hero-ct">
+                    <h1 th:text="${user.getName()+ ' '+user.getSurname()}"></h1>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
-</body>
+<div class="page-single">
+    <div class="container">
+        <div class="row ipad-width">
+            <div class="col-md-3 col-sm-12 col-xs-12">
+                <div class="user-information">
+                    <div class="user-img">
+                        <img src="../static/images/user_icon.png" th:src="@{/assets/images/icons/user_icon.png}"
+                             style="width:150px">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9 col-sm-12 col-xs-12">
+                <div class="form-style-1 user-pro">
+                        <h4>User information</h4>
+                        <div class="row">
+                            <div class="col-md-6 form-it"><label>Name</label><p th:text="${user.getName()}"/></div>
+                            <div class="col-md-6 form-it"><label>Username</label><p th:text="${user.getUsername()}"/></div>
+                            <div class="col-md-6 form-it"><label>Surname</label><p th:text="${user.getSurname()}"/></div>
+                            <div class="col-md-6 form-it"><label>Role</label><p th:text="${user.getRole()}"/></div>
+                            <div class="col-md-6 form-it"><label>E-mail</label><p th:text="${user.getEmail()}"/></div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="fragments/footer :: footer"></div>

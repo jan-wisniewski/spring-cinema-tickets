@@ -1,109 +1,23 @@
-<!doctype html>
-<html xmlns:th="http://thymeleaf.org"
-      xmlns="http://www.w3.org/1999/html">
-
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="index.css">
-    <title>Cinema project</title>
-</head>
-<body data-spy="scroll" data-target=".navbar" data-offset="50">
-<div class="logo-container">
-    <img src="https://upload.wikimedia.org/wikipedia/en/2/20/Artist_Growth_Wide_Logo.png" style="max-width:100%; border: black">
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/header :: navbar"></div>
+<body>
+<div class="user-hero">
 
 </div>
-<div class="pos-f-t">
-    <div align="right" class="collapse" id="navbarToggleExternalContent">
-        <div class="bg-dark p-4" >
-            <form th:action="@{/login}">
-                <p class="text-white">Username: <input type="text"></p>
-                <p class="text-white">Password: <input type="text"></p>
-                <label class="text-white"> Not registered?  <input type="button" onclick="openRegForm()" class="btn btn-primary" id="registerBtn" value="Register"></label>
-                <p><input type="submit" class="btn btn-info" value="Log in"></p>
-            </form>
+<div class="page-single movie_list">
+    <div class="container">
+        <div class="row ipad-width2">
+            <div class="col-md-8 col-sm-12 col-xs-12">
+                <span style="color: #f0f8ff; ">
+                <h1> profil kina -> /cinema/id<br>
+                    profil usera -> /user/id<br>
+                    rejestracja -> /sign-up<br>
+                    seanse -> /seances/all
+
+                </h1></span>
+            </div>
         </div>
     </div>
-    <nav class="navbar navbar-dark bg-dark navbar-fixed-top" >
-        <div class="">
-            <a class="active text-white" href="#home">Home</a>
-            <a class="text-white" href="#news">News</a>
-            <a class="text-white" href="#contact">Contact</a>
-            <a class="text-white" href="#about">About</a>
-        </div>
-        <div class="">
-            <label class="text-white">Log in</label>
-            <button class="navbar-toggler" align="right" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation" >
-                <span class="navbar-toggler-icon" align="right"></span>
-            </button></div>
-    </nav>
 </div>
-<div class="container-fluid">
-    ...
-</div>
-
-<div class="form-popup" id="registrationForm">
-    <form th:action="@{/register}" method="post" class="form-group">
-        <div class="form-group">
-            <label for="name">Name</label>
-            <input class="form-control" type="text" name="name" id="name" placeholder="Enter name">
-        </div>
-        <div class="form-group">
-            <label for="surname">Surname</label>
-            <input class="form-control" type="text" name="surname" id="surname" placeholder="Enter surname">
-        </div>
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input class="form-control" type="text" name="username" id="username" placeholder="Enter username">
-        </div>
-        <div class="form-group">
-            <label for="username">Email</label>
-            <input class="form-control" type="email" name="email" id="email" placeholder="name@example.com">
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input class="form-control" type="password" name="password" id="password" placeholder="Password">
-        </div>
-        <div class="form-group">
-            <label for="repeatedPassword">Retype password</label>
-            <input class="form-control" type="password" name="repeatedPassword" id="repeatedPassword" placeholder="Retype password">
-        </div>
-
-        <input type="submit" class="btn btn-primary" value="Register">
-        <button type="button" class="btn cancel btn-secondary">Close</button>
-    </form>
-</div>
-
-<script>
-    var modal = document.getElementById("registrationForm");
-
-    // Get the button that opens the modal
-    var btn = document.getElementById("registerBtn");
-
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("cancel")[0];
-
-    // When the user clicks the button, open the modal
-    btn.onclick = function() {
-        modal.style.display = "block";
-    }
-
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-</script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-</body>
-</html>
+<div th:replace="fragments/footer :: footer"></div>

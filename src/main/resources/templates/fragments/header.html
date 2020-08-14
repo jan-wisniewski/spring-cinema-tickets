@@ -1,0 +1,40 @@
+<div th:fragment="navbar">
+<head>
+    <title>Cinema App</title>
+    <link rel="stylesheet" type="text/css" src="../static/assets/css/style.css" th:href="@{/assets/css/style.css}"/>
+    <link rel="stylesheet" type="text/css" src="../static/assets/css/plugins.css" th:href="@{/assets/css/plugins.css}"/>
+</head>
+<body>
+<header class="ht-header">
+    <div class="container">
+        <nav class="navbar navbar-default navbar-custom">
+            <div class="navbar-header logo">
+                <a href="index-2.html">
+                    <img class="logo" src="../../static/assets/images/logo1.png" th:src="@{/assets/images/logo1.png}"
+                         width="119" height="58"></a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse flex-parent" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav flex-child-menu menu-left">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li class="dropdown first"><a class="btn btn-default dropdown-toggle lv1" >cinemas</a></li>
+                    <li class="dropdown first"><a class="btn btn-default dropdown-toggle lv1" >movies</a></li>
+                    <li class="dropdown first"><a class="btn btn-default dropdown-toggle lv1" >cinema rooms</a></li>
+                    <li class="dropdown first"><a class="btn btn-default dropdown-toggle lv1" >cities</a></li>
+                </ul>
+                <ul class="nav navbar-nav flex-child-menu menu-right">
+                    <li><a href="#">Statistics</a></li>
+                    <li class="loginLink"><a href="#">LOG In</a></li>
+                    <li class="btn signupLink"><a href="#">sign up</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="top-search">
+            <input type="text" placeholder="Search for a movie, TV Show or celebrity that you are looking for">
+        </div>
+    </div>
+</header>
+</body></div>
+<!-- END | Header -->
