@@ -1,11 +1,15 @@
 package com.app.controller;
 
+import com.app.model.Cinema;
 import com.app.service.*;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin")
@@ -29,6 +33,12 @@ public class AdminController {
 
 
     //--------------[CINEMA]-----------------------------------
+
+    @GetMapping("/cinema")
+    public String cinemas(Model model) {
+        model.addAttribute("cinemas",cinemaService.getAll());
+        return "admin_cinemas";
+    }
 
     @GetMapping("/cinema/delete/{id}")
     public Integer deleteCinema(@PathVariable Integer id) {

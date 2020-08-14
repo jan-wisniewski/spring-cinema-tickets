@@ -1,9 +1,7 @@
 package com.app.controller;
 
 import com.app.model.Cinema;
-import com.app.model.Seance;
 import com.app.model.thymeleaf.CinemaWithObj;
-import com.app.model.thymeleaf.SeanceWithObj;
 import com.app.service.CinemaService;
 import com.app.service.CityService;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +47,6 @@ public class CinemaController {
 
         }
         model.addAttribute("cinemas", cinemas);
-        return "cinemas";
+        return "admin_cinemas";
     }
 }
