@@ -47,6 +47,6 @@ public class CinemaController {
 
         }
         model.addAttribute("cinemas", cinemas);
-        return "admin_cinemas";
+        return "cinemas";
     }
 }
