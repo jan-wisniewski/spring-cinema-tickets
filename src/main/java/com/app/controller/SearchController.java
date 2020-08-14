@@ -1,12 +1,11 @@
 package com.app.controller;
 
+import com.app.model.Cinema;
 import com.app.model.CinemaRoom;
 import com.app.model.Movie;
 import com.app.model.Seance;
 import com.app.model.thymeleaf.SeanceWithObj;
-import com.app.service.CinemaRoomService;
-import com.app.service.MovieService;
-import com.app.service.SeanceService;
+import com.app.service.*;
 import lombok.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +17,8 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/search")
@@ -27,13 +28,26 @@ public class SearchController {
     private SeanceService seanceService;
     private final MovieService movieService;
     private final CinemaRoomService cinemaRoomService;
+    private final CinemaService cinemaService;
+    private final CityService cityService;
+
+    @GetMapping("/city/{id}/cinema")
+    public String showCinemasWithCityId(@PathVariable Integer id, Model model) {
+        Set<Cinema> cinema = cinemaRoomService.getCinemaRoomListByCityId(id)
+                .stream()
+                .map(cr -> cinemaService.getById(cr.getCinemaId()))
+                .collect(Collectors.toSet());
+        model.addAttribute("cinemas",cinema);
+        model.addAttribute("city",cityService.findCityById(id));
+        return "city";
+    }
 
     @GetMapping("/{phrase}")
     public String search(Model model, @PathVariable String phrase) {
         List<SeanceWithObj> seances = new ArrayList<>();
         System.out.println(phrase);
         System.out.println(seanceService.findByPhrase(phrase));
-        for (Seance s : seanceService.findByPhrase(phrase)){
+        for (Seance s : seanceService.findByPhrase(phrase)) {
             seances.add(
                     SeanceWithObj
                             .builder()
@@ -45,7 +59,7 @@ public class SearchController {
                             .build()
             );
         }
-        model.addAttribute("seances",seances);
+        model.addAttribute("seances", seances);
         System.out.println(seances);
         return "search";
     }
