@@ -7,26 +7,28 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="hero-ct">
-                    <h1>Cinemas in <span th:text="${city.getName()}"/></h1>
+                    <h1>Seances in cinema: <span th:text="${cinema.getName()}"/></h1>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div class="page-single">
+<div class="page-single movie_list">
     <div class="container">
         <div class="row ipad-width2">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="form-style-1 user-information">
-                    <tr th:each="cinema: ${cinemas}">
+                    <tr th:each="seance: ${seances}">
 
                         <div class="movie-item-style-2">
                             <img src="../static/images/uploads/mv-it2.jpg" th:src="@{/assets/images/uploads/mv-it2.jpg}">
                             <div class="mv-item-infor">
-                                <h6><a href=""><span th:text="${cinema.getName()}"></span></a></h6>
+                                <h6><span th:text="${seance.getMovie()?.getTitle()}"></span></h6>
+                                <h6><span th:text="${seance.getMovie()?.getGenre()}"></span></h6>
                                 <p class="describe">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque pulvinar lectus id egestas fermentum. Suspendisse at ultrices odio. Fusce vel ullamcorper ligula. Etiam vitae risus tincidunt, dapibus orci ac, mollis nulla. Pellentesque bibendum risus id lectus hendrerit, vitae sollicitudin purus dapibus. Ut id orci vitae eros scelerisque laoreet in viverra nibh. Quisque vitae scelerisque leo. In id fermentum justo, in bibendum lorem. Praesent elit nibh, viverra ac iaculis vitae, laoreet sed magna. Vestibulum nec justo tellus.</p>
-                                <p class="rate"><button type="submit" th:href="@{search/cinema/{id}/seance(id=${city.getId()})}">Show seances in this cinema</button></p>
-                                <a th:href="@{search/cinema/{id}/seance(id=${city.getId()})}">Show seances in this cinema</a>
+                                <p>PRICE: <span th:text="${seance.getPrice()}"></span>$</p>
+                                <p>DATE: <span th:text="${seance.getDateTime()}"></span></p>
+                                <p class="rate"><button type="submit">Buy ticket!</button></p>
                             </div>
 
                         </div>
@@ -36,5 +38,6 @@
             </div>
         </div>
     </div>
+
+    <div th:replace="fragments/footer :: footer"></div>
 </div>
-<div th:replace="fragments/footer :: footer"></div>

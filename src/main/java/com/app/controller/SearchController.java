@@ -31,14 +31,39 @@ public class SearchController {
     private final CinemaService cinemaService;
     private final CityService cityService;
 
+    @GetMapping("/cinema/{id}/seance")
+    public String showSeancesInCinema(@PathVariable Integer id, Model model) {
+        List<SeanceWithObj> seanceWithObjs = new ArrayList<>();
+        System.out.println(cinemaRoomService.getCinemaRoomListByCinemaId(id));
+        System.out.println("------------------------------------");
+        seanceService.getSeancesListByCinemaRooms(cinemaRoomService.getCinemaRoomListByCinemaId(id))
+                .forEach(seance -> {
+                    seanceWithObjs.add(
+                            SeanceWithObj.builder()
+                                    .cinemaRoom(cinemaRoomService.findById(seance.getCinemaRoomId()))
+                                    .dateTime(seance.getDateTime())
+                                    .movie(movieService.findById(seance.getMovieId()))
+                                    .price(seance.getPrice())
+                                    .id(seance.getId())
+                                    .build()
+                    );
+                });
+        model.addAttribute("seances", seanceWithObjs);
+        model.addAttribute("cinema", cinemaService.getById(id));
+        System.out.println(seanceWithObjs);
+        System.out.println("------------");
+        System.out.println(cinemaService.getById(id));
+        return "seancesInCinema";
+    }
+
     @GetMapping("/city/{id}/cinema")
     public String showCinemasWithCityId(@PathVariable Integer id, Model model) {
         Set<Cinema> cinema = cinemaRoomService.getCinemaRoomListByCityId(id)
                 .stream()
                 .map(cr -> cinemaService.getById(cr.getCinemaId()))
                 .collect(Collectors.toSet());
-        model.addAttribute("cinemas",cinema);
-        model.addAttribute("city",cityService.findCityById(id));
+        model.addAttribute("cinemas", cinema);
+        model.addAttribute("city", cityService.findCityById(id));
         return "city";
     }
 

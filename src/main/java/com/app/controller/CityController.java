@@ -38,8 +38,6 @@ public class CityController {
                     .id(c.getId())
                     .name(c.getName())
                     .build());
-
-
         }
         model.addAttribute("cities", cities);
         return "cities";
