@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/header :: navbar"></div>
+<body>
+<div class="hero user-hero">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="hero-ct">
+                    <h1>Cinemas</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page-single movie_list">
+    <div class="container">
+        <div class="row ipad-width2">
+            <div class="col-md-8 col-sm-12 col-xs-12">
+                <tr th:each="cinema: ${cinemas}">
+
+                    <div class="movie-item-style-2">
+                        <a th:href="@{/cinema/{id}(id=${cinema.getId()})}" >
+                        <img src="../static/images/uploads/mv-it2.jpg" th:src="@{/assets/images/uploads/mv-it2.jpg}">
+                        <div class="mv-item-infor">
+                            <h6><span th:text="${cinema.city?.getName()}"></span></h6>
+<!--&lt;!&ndash;                            -->
+                            <p>Cinema name: <span th:text="${cinema.getName()}"></span></p>
+                        </div></a>
+                        </div>
+
+                    </div>
+
+                </tr>
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="fragments/footer :: footer"></div>
+</div>
