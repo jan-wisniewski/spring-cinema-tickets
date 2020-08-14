@@ -1,52 +1,57 @@
-.btn {
-    padding: 10px;
-}
-.form-popup {
-    border:grey 1px solid;
+/*.btn {*/
+/*    padding: 10px;*/
+/*}*/
+/*#mainContainer{*/
+/*    width: auto; !* Full width *!*/
+/*    height: auto; !* Full height *!*/
+/*    position: fixed;*/
+/*}*/
+/*.form-popup {*/
+/*    border:grey 1px solid;*/
 
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index:41;
-    top:100px;
-    left: 45%;
-    width: auto; /* Full width */
-    height: auto; /* Full height */
-    margin: auto;
-    padding: 10px;
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: lightgrey; /* Black w/ opacity */
-    -webkit-animation-name: fadeIn; /* Fade in the background */
-    -webkit-animation-duration: 0.4s;
-    animation-name: fadeIn;
-    animation-duration: 0.4s
-}
+/*    display: none; !* Hidden by default *!*/
+/*    position: fixed; !* Stay in place *!*/
+/*    z-index:41;*/
+/*    top:100px;*/
+/*    left: 45%;*/
+/*    width: auto; !* Full width *!*/
+/*    height: auto; !* Full height *!*/
+/*    margin: auto;*/
+/*    padding: 10px;*/
+/*    overflow: auto; !* Enable scroll if needed *!*/
+/*    background-color: rgb(0,0,0); !* Fallback color *!*/
+/*    background-color: lightgrey; !* Black w/ opacity *!*/
+/*    -webkit-animation-name: fadeIn; !* Fade in the background *!*/
+/*    -webkit-animation-duration: 0.4s;*/
+/*    animation-name: fadeIn;*/
+/*    animation-duration: 0.4s*/
+/*}*/
 
-.form-group{
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    max-width: 300px;
-    margin: auto;
-    background: white;
-    padding: 10px;
-    font-family: arial;
-}
+/*.form-group{*/
+/*    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);*/
+/*    max-width: 300px;*/
+/*    margin: auto;*/
+/*    background: white;*/
+/*    padding: 10px;*/
+/*    font-family: arial;*/
+/*}*/
 
-@-webkit-keyframes slideIn {
-    from {bottom: -300px; opacity: 0}
-    to {bottom: 0; opacity: 1}
-}
+/*@-webkit-keyframes slideIn {*/
+/*    from {bottom: -300px; opacity: 0}*/
+/*    to {bottom: 0; opacity: 1}*/
+/*}*/
 
-@keyframes slideIn {
-    from {bottom: -300px; opacity: 0}
-    to {bottom: 0; opacity: 1}
-}
+/*@keyframes slideIn {*/
+/*    from {bottom: -300px; opacity: 0}*/
+/*    to {bottom: 0; opacity: 1}*/
+/*}*/
 
-@-webkit-keyframes fadeIn {
-    from {opacity: 0}
-    to {opacity: 1}
-}
+/*@-webkit-keyframes fadeIn {*/
+/*    from {opacity: 0}*/
+/*    to {opacity: 1}*/
+/*}*/
 
-@keyframes fadeIn {
-    from {opacity: 0}
-    to {opacity: 1}
-}
+/*@keyframes fadeIn {*/
+/*    from {opacity: 0}*/
+/*    to {opacity: 1}*/
+/*}*/
