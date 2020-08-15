@@ -25,8 +25,11 @@
                             <div class="mv-item-infor">
                                 <h6><a href=""><span th:text="${cinema.getName()}"></span></a></h6>
                                 <p class="describe">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque pulvinar lectus id egestas fermentum. Suspendisse at ultrices odio. Fusce vel ullamcorper ligula. Etiam vitae risus tincidunt, dapibus orci ac, mollis nulla. Pellentesque bibendum risus id lectus hendrerit, vitae sollicitudin purus dapibus. Ut id orci vitae eros scelerisque laoreet in viverra nibh. Quisque vitae scelerisque leo. In id fermentum justo, in bibendum lorem. Praesent elit nibh, viverra ac iaculis vitae, laoreet sed magna. Vestibulum nec justo tellus.</p>
-                                <p class="rate"><button type="submit" th:href="@{search/cinema/{id}/seance(id=${city.getId()})}">Show seances in this cinema</button></p>
-                                <a th:href="@{search/cinema/{id}/seance(id=${city.getId()})}">Show seances in this cinema</a>
+                                <p class="rate">
+                                <!-- /search/cinema/id/seance -->
+                                <a href="seancesInCinema.html" th:href="@{/search/cinema/{cinemaId}/seance(cinemaId=${cinema.getId()})}">Show seances in this cinema</a>
+
+
                             </div>
 
                         </div>

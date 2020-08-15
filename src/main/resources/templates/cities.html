@@ -22,7 +22,10 @@
 
                         <div class="movie-item-style-2">
                                 <div class="mv-item-infor">
-                                    <p> <a href=""><span th:text="${city.getName()}"></span></p>
+                                    <!-- /search/city/id/cinema -->
+                                    <p> <a href="cinemas.html" th:href="@{/search/city/{cityId}/cinema(cityId=${city.getId()})}">
+                                        <span th:text="${city.getName()}"></span>
+                                    </a></p>
                                 </div>
                             </a>
                         </div>
