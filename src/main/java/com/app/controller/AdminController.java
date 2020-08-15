@@ -1,5 +1,6 @@
 package com.app.controller;
 
+import com.app.dto.CreateCinemaDto;
 import com.app.dto.CreateCityDto;
 import com.app.model.Cinema;
 import com.app.model.City;
@@ -51,12 +52,22 @@ public class AdminController {
                                 .build())
                         .collect(Collectors.toList());
         model.addAttribute("cinemas", cinemaWithObjs);
+        model.addAttribute("newCinema", new Cinema());
+        List<City> cities = cityService.getAll();
+        model.addAttribute("getAllCities", cities);
         return "admin_cinemas";
     }
 
     @GetMapping("/cinema/delete/{id}")
     public String deleteCinema(@PathVariable Integer id, Model model) {
         model.addAttribute("status",(cinemaService.deleteCinema(id)==1) ? "Cinema deleted!" : "Cant' delete cinema. You can't have any active seances!");
+        return "admin_operation";
+    }
+
+    @PostMapping("cinema/add")
+    public String deleteCinema(@ModelAttribute Cinema cinema, Model model) {
+        model.addAttribute("status",(cinemaService.addCinema(new CreateCinemaDto(cinema.getName(), cinema.getCityId()))==1) ? "Cinema added!" : "Cant' add Cinema. Duplicate name");
+        System.out.println(cinema.toString());
         return "admin_operation";
     }
 

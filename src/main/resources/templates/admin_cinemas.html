@@ -23,18 +23,38 @@
 
                         <div class="movie-item-style-2">
                             <div class="mv-item-infor">
-                                <h6><span th:text="${cinema.getName()}"></span> (ID: <span th:text="${cinema.getId()}"></span>), <span th:text="${cinema.city?.getName()}"></span></h6>-->
+                                <h6><span th:text="${cinema.getName()}"></span> (ID: <span
+                                        th:text="${cinema.getId()}"></span>), <span
+                                        th:text="${cinema.city?.getName()}"></span></h6>-->
                                 <!-- admin/cinema/delete/id -->
 
                                 <p> EDIT |
-                                    <a href="admin_cinemas.html" th:href="@{/admin/cinema/delete/{cinemaId}(cinemaId=${cinema.getId()})}">Delete</a>
+                                    <a href="admin_cinemas.html"
+                                       th:href="@{/admin/cinema/delete/{cinemaId}(cinemaId=${cinema.getId()})}">Delete</a>
                                 </p>
                             </div>
                         </div>
 
-                </div>
+
+
+
 
                 </tr>
+                <form th:action="@{cinema/add}" th:object="${newCinema}" method="post">
+                    <p>Add a new Cinema: <input type="text" th:field="*{name}"
+                                                placeholder="Enter name of new city"></p>
+                    <select class="form-control" id="testOrder"  th:field="*{cityId}"  name="testOrder" >
+                        <option value="">Select City location</option>
+                        <option th:each="city : ${getAllCities}"
+                                th:text="${city.getName()}"
+                                th:value="${city.getId()}"></option>
+                    </select>
+
+                    <p><input th:href="admin_cinemas.html" type="submit" value="Add new city"></p>
+
+
+                </form>
+                </div>
             </div>
         </div>
     </div>

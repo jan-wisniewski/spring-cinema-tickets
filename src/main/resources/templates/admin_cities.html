@@ -33,7 +33,7 @@
                     </tr>
                     <form th:action="@{city/add}" th:object="${newCity}" method="post">
                         <p>Add a new city: <input type="text" th:field="*{name}" placeholder="Enter name of new city"></p>
-                        <p> <input href="admin_cities.html" type="submit" value="Add new city"></p>
+                        <p> <input th:href="admin_cities.html" type="submit" value="Add new city"></p>
 
                     </form>
                 </div>
