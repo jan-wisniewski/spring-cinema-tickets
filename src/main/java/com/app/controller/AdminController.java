@@ -2,6 +2,7 @@ package com.app.controller;
 
 import com.app.model.Cinema;
 import com.app.model.thymeleaf.CinemaWithObj;
+import com.app.model.thymeleaf.CityWithObj;
 import com.app.service.*;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -55,7 +56,7 @@ public class AdminController {
 
     @GetMapping("/cinema/delete/{id}")
     public String deleteCinema(@PathVariable Integer id, Model model) {
-        model.addAttribute("status",(cinemaService.deleteCinema(id)==1) ? "Cinema deleted!" : "Cant' delete cinema");
+        model.addAttribute("status",(cinemaService.deleteCinema(id)==1) ? "Cinema deleted!" : "Cant' delete cinema. You can't have any active seances!");
         return "admin_operation";
     }
 
@@ -68,9 +69,27 @@ public class AdminController {
 
     //--------------[CITY]-----------------------------------
 
+
+    @GetMapping("/city")
+    public String cities(Model model) {
+        List<CityWithObj> cityWithObjs =
+                cityService
+                        .getAll()
+                        .stream()
+                        .map(city -> CityWithObj
+                                .builder()
+                                .id(city.getId())
+                                .name(city.getName())
+                                .build())
+                        .collect(Collectors.toList());
+        model.addAttribute("cities", cityWithObjs);
+        return "admin_cities";
+    }
+
     @GetMapping("/city/delete/{id}")
-    public Integer deleteCity(@PathVariable Integer id) {
-        return cityService.deleteCity(id);
+    public String deleteCity(@PathVariable Integer id, Model model) {
+        model.addAttribute("status",(cityService.deleteCity(id)==1) ? "City deleted!" : "Cant' delete city. You need to remove all cinemas first");
+        return "admin_operation";
     }
 
     //--------------[Movie]-----------------------------------

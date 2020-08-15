@@ -4,6 +4,7 @@ import com.app.dto.CreateCityDto;
 import com.app.exception.AdminServiceException;
 import com.app.exception.CityServiceException;
 import com.app.model.City;
+import com.app.repository.CinemaRepository;
 import com.app.repository.CityRepository;
 import com.app.repository.SeanceRepository;
 import com.app.validator.CreateCityDtoValidator;
@@ -18,7 +19,7 @@ import java.util.stream.Collectors;
 @Service
 public class CityService {
     private final CityRepository cityRepository;
-    private final SeanceRepository seanceRepository;
+    private final CinemaRepository cinemaRepository;
 
     public Optional<City> editCity(City city) {
         return cityRepository.update(city);
@@ -26,8 +27,8 @@ public class CityService {
 
     public Integer deleteCity(Integer id) {
         City city = cityRepository.findById(id).orElseThrow();
-        if (!seanceRepository.findByCity(city).isEmpty()) {
-            System.out.println("Can't delete city! At cinema in this city movie will be displayed");
+        if (!cinemaRepository.findByCityId(city.getId()).isEmpty()) {
+            System.out.println("Can't delete city! You need to remove all cinemas first!");
             return 0;
         }
         return (cityRepository.deleteById(city.getId())) ? 1 : 0;
