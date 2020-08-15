@@ -40,7 +40,6 @@ public class CinemaController {
                             .builder()
                             .id(c.getId())
                             .name(c.getName())
-                            .cityId(c.getCityId())
                             .city(cityService.findCityById(c.getCityId()))
                             .build()
             );

@@ -18,6 +18,5 @@ import java.time.LocalDateTime;
 public class CinemaWithObj {
     private Integer id;
     private String name;
-    private Integer cityId;
     private City city;
 }

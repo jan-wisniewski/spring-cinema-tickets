@@ -1,6 +1,7 @@
 package com.app.controller;
 
 import com.app.model.Cinema;
+import com.app.model.thymeleaf.CinemaWithObj;
 import com.app.service.*;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/admin")
@@ -36,13 +38,25 @@ public class AdminController {
 
     @GetMapping("/cinema")
     public String cinemas(Model model) {
-        model.addAttribute("cinemas",cinemaService.getAll());
+        List<CinemaWithObj> cinemaWithObjs =
+                cinemaService
+                        .getAll()
+                        .stream()
+                        .map(cinema -> CinemaWithObj
+                                .builder()
+                                .id(cinema.getId())
+                                .city(cityService.findCityById(cinema.getCityId()))
+                                .name(cinema.getName())
+                                .build())
+                        .collect(Collectors.toList());
+        model.addAttribute("cinemas", cinemaWithObjs);
         return "admin_cinemas";
     }
 
     @GetMapping("/cinema/delete/{id}")
-    public Integer deleteCinema(@PathVariable Integer id) {
-        return cinemaService.deleteCinema(id);
+    public String deleteCinema(@PathVariable Integer id, Model model) {
+        model.addAttribute("status",(cinemaService.deleteCinema(id)==1) ? "Cinema deleted!" : "Cant' delete cinema");
+        return "admin_operation";
     }
 
     //--------------[CINEMA ROOM]-----------------------------------
