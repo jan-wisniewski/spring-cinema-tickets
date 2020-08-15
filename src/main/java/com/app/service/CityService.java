@@ -66,7 +66,8 @@ public class CityService {
         }
 
         if (cityRepository.findByName(cityDto.getName()).isPresent()) {
-            throw new AdminServiceException("This city already exists in database");
+            System.out.println("This city already exists in database");
+            return 0;
         }
 
         City cityToAdd = City
@@ -74,8 +75,8 @@ public class CityService {
                 .name(cityDto.getName())
                 .build();
 
-        cityRepository.add(cityToAdd);
-        return cityRepository.findLast().orElseThrow(() -> new AdminServiceException("Failed")).getId();
+
+        return cityRepository.add(cityToAdd).isPresent() ? 1 : 0;
     }
 
 }

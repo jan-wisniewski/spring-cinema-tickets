@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="hero-ct">
-                    <h1>Admin Panel - cinemas</h1>
+                    <h1>Admin Panel - Cities</h1>
                 </div>
             </div>
         </div>
@@ -25,16 +25,19 @@
                             <div class="mv-item-infor">
                                 <h6><span th:text="${city.getName()}"></span> (ID: <span th:text="${city.getId()}"></span>)</span></h6>-->
                                 <!-- admin/cinema/delete/id -->
-
                                 <p> EDIT |
-                                    <a href="admin_cinemas.html" th:href="@{/admin/city/delete/{cityId}(cityId=${city.getId()})}">Delete</a>
+                                    <a href="admin_cities.html" th:href="@{/admin/city/delete/{cityId}(cityId=${city.getId()})}">Delete</a>
                                 </p>
                             </div>
                         </div>
+                    </tr>
+                    <form th:action="@{city/add}" th:object="${newCity}" method="post">
+                        <p>Add a new city: <input type="text" th:field="*{name}" placeholder="Enter name of new city"></p>
+                        <p> <input href="admin_cities.html" type="submit" value="Add new city"></p>
 
+                    </form>
                 </div>
 
-                </tr>
             </div>
         </div>
     </div>
