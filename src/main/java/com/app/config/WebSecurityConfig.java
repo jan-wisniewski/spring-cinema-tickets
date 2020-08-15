@@ -38,6 +38,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin").hasAuthority("ADMIN")
                 .and()
                 .formLogin()
-                .defaultSuccessUrl("/admin");
+                .defaultSuccessUrl("/");
     }
 }
