@@ -1,37 +1,44 @@
 <div th:fragment="navbar">
-<head>
-    <title>Cinema App</title>
-    <link rel="stylesheet" type="text/css" src="../static/assets/css/style.css" th:href="@{/assets/css/style.css}"/>
-    <link rel="stylesheet" type="text/css" src="../static/assets/css/plugins.css" th:href="@{/assets/css/plugins.css}"/>
-</head>
-<body>
-<header class="ht-header">
-    <div class="container">
-        <nav class="navbar navbar-default navbar-custom">
+    <head>
+        <title>Cinema App</title>
+        <link rel="stylesheet" type="text/css" src="../static/assets/css/style.css" th:href="@{/assets/css/style.css}"/>
+        <link rel="stylesheet" type="text/css" src="../static/assets/css/plugins.css"
+              th:href="@{/assets/css/plugins.css}"/>
+    </head>
+    <body>
+    <header class="ht-header">
+        <div class="container">
+            <nav class="navbar navbar-default navbar-custom">
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse flex-parent" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav flex-child-menu menu-left">
+                        <li class="hidden">
+                            <a href="#page-top"></a>
+                        </li>
+                        <li><a href="/" class="btn btn-default"><b>Home</b></a></li>
+                        <li class="dropdown first"><a class="btn btn-default dropdown-toggle lv1" href="/cinema/all">cinemas</a>
+                        </li>
+                        <li class="dropdown first"><a class="btn btn-default dropdown-toggle lv1" href="/seance/all ">Seances</a>
+                        </li>
+                        <li class="dropdown first"><a class="btn btn-default dropdown-toggle lv1" href="/city/all">cities</a>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav flex-child-menu menu-right">
+                        <li><a href="#">Statistics</a></li>
+                        <span sec:authorize="isAuthenticated()">Hello, <span sec:authentication="name"></span>! | <a href="/logout">Logout</a>
+                        </span>
+                        <span sec:authorize="!isAuthenticated()">
+                            <a href="/admin">Login</a> | <a href="/sign-up">sign up</a>
+                        </span>
 
-
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse flex-parent" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav flex-child-menu menu-left">
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
-                    <li><a href="/" class="btn btn-default"><b>Home</b></a></li>
-                    <li class="dropdown first"><a class="btn btn-default dropdown-toggle lv1" href="/cinema/all" >cinemas</a></li>
-                    <li class="dropdown first"><a class="btn btn-default dropdown-toggle lv1" href="/seance/all " >Seances</a></li>                    <li class="dropdown first"><a class="btn btn-default dropdown-toggle lv1" href="/city/all">cities</a></li>
-                </ul>
-                <ul class="nav navbar-nav flex-child-menu menu-right">
-                    <li><a href="#">Statistics</a></li>
-                    <li class="loginLink"><a href="/admin">LOG In</a></li>
-                    <li class="btn signupLink"><a href="/sign-up">sign up</a></li>
-                </ul>
+                    </ul>
+                </div>
+            </nav>
+            <div class="top-search">
+                <input type="text" placeholder="Search for a movie, TV Show or celebrity that you are looking for">
             </div>
-        </nav>
-        <div class="top-search">
-            <input type="text" placeholder="Search for a movie, TV Show or celebrity that you are looking for">
         </div>
-    </div>
-</header>
-</body></div>
+    </header>
+    </body>
+</div>
 <!-- END | Header -->
