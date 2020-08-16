@@ -68,7 +68,7 @@ public class CinemaRoomService {
             throw new AdminServiceException("Failed to create seats for cinemaRoom!");
         }
 
-        return addedCinemaRoom.getId();
+        return 1;
     }
 
     public String getNameByCinemaRoomId(Integer cinemaRoomId) {

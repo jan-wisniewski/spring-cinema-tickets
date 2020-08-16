@@ -3,6 +3,7 @@ package com.app.service;
 import com.app.dto.CreateCinemaDto;
 import com.app.dto.CreateCityDto;
 import com.app.exception.AdminServiceException;
+import com.app.exception.CityServiceException;
 import com.app.model.Cinema;
 import com.app.model.City;
 import com.app.repository.CinemaRepository;
@@ -13,6 +14,7 @@ import com.app.validator.CreateCityDtoValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,6 +32,17 @@ public class CinemaService {
 
     public List<Cinema> getAll() {
         return cinemaRepository.findAll();
+    }
+
+    public List<Cinema> getAllInCity(City city) {
+        List<Cinema> cinemas = cinemaRepository.findAll();
+        List<Cinema> result = new ArrayList<>();
+        for(Cinema c : cinemas){
+            if(c.getCityId().equals(city.getId())){
+            result.add(c);
+            }
+        }
+        return result;
     }
 
     public Integer deleteCinema(Integer id) {
@@ -67,6 +80,10 @@ public class CinemaService {
 
 
         return cinemaRepository.add(cinemaToAdd).isPresent() ? 1 : 0;
+    }
+
+    public Cinema findCinemaById(Integer cinemaId) {
+        return cinemaRepository.findById(cinemaId).orElseThrow(() -> new CityServiceException("Failed"));
     }
 
 }

@@ -24,11 +24,11 @@
                         </li>
                     </ul>
                     <ul class="nav navbar-nav flex-child-menu menu-right">
-                        <li><a href="#">Statistics</a></li>
-                        <span sec:authorize="isAuthenticated()">Hello, <span sec:authentication="name"></span>! | <a href="/logout">Logout</a>
+
+                        <span sec:authorize="isAuthenticated()">Hello, <span sec:authentication="name"></span>! | <a href="/admin/">Profile</a> | <a href="/logout">Logout</a>
                         </span>
                         <span sec:authorize="!isAuthenticated()">
-                            <a href="/login">Login</a> | <a href="/sign-up">sign up</a>
+                         <a href="/login">Login</a> | <a href="/sign-up">sign up</a>
                         </span>
 
                     </ul>

@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/header :: navbar"></div>
+<body>
+<div class="hero user-hero">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="hero-ct">
+                    <h1>Admin Panel - cinema rooms</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-single movie_list">
+    <div class="container">
+        <div class="row ipad-width2">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="form-style-1 user-information">
+                    <tr th:each="cinemaRoom: ${cinemasRooms}">
+
+                        <div class="movie-item-style-2">
+                            <div class="mv-item-infor">
+                                <h6><span th:text="${cinemaRoom.getName()}"></span> (ID: <span
+                                        th:text="${cinemaRoom.getId()}"></span>), <span
+                                        th:text="${cinemaRoom.cinema?.getName()}"></span>
+                                    <span th:text="${cinemaRoom.getRowsNumber()}"></span>x<span th:text="${cinemaRoom.getPlaces()}"></span></h6>
+
+
+                                <p> EDIT |
+                                    <a href="admin_cinemas.html"
+                                       th:href="@{/admin/cinemaRoom/delete/{cinemaRoomId}(cinemaRoomId=${cinemaRoom.getId()})}">Delete</a>
+                                </p>
+                            </div>
+                        </div>
+
+
+
+
+
+                </tr>
+                <form th:action="@{cinemaRoom/add}" th:object="${newCinemaRoom}" method="post">
+                    <p>Add a new room: <input type="text" th:field="*{name}"
+                                                placeholder="Enter name of new room"></p>
+                   <p> <select class="form-control" id="testOrder"  th:field="*{cinemaId}"  name="testOrder" >
+                        <option value="">Select Cinema</option>
+                        <option th:each="cinema : ${getAllCinemas}"
+                                th:text="${cinema.getName()}"
+                                th:value="${cinema.getId()}"></option>
+                   </select></p>
+                   <p> <input type="text" th:field="*{rowsNumber}"
+                           placeholder="Enter row number"></p>
+                   <p> <input type="text" th:field="*{places}"
+                           placeholder="Enter row seats"></p>
+
+                    <p><input th:href="admin_cinema_rooms.html" type="submit" value="Add new cinema room"></p>
+
+
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<div th:replace="fragments/footer :: footer"></div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("body").css("display", "none");
+        $("body").fadeIn(2000);
+    });
+</script>

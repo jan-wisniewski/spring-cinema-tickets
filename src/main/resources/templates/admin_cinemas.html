@@ -42,13 +42,14 @@
                 </tr>
                 <form th:action="@{cinema/add}" th:object="${newCinema}" method="post">
                     <p>Add a new Cinema: <input type="text" th:field="*{name}"
-                                                placeholder="Enter name of new city"></p>
+                                                placeholder="Enter name of new cinema"></p>
+                    <p>
                     <select class="form-control" id="testOrder"  th:field="*{cityId}"  name="testOrder" >
                         <option value="">Select City location</option>
                         <option th:each="city : ${getAllCities}"
                                 th:text="${city.getName()}"
                                 th:value="${city.getId()}"></option>
-                    </select>
+                    </select></p>
 
                     <p><input th:href="admin_cinemas.html" type="submit" value="Add new cinema"></p>
 
