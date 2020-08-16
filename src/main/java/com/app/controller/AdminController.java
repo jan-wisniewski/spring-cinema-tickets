@@ -3,18 +3,26 @@ package com.app.controller;
 import com.app.dto.CreateCinemaDto;
 import com.app.dto.CreateCinemaRoomDto;
 import com.app.dto.CreateCityDto;
+import com.app.dto.CreateMovieDto;
+import com.app.enums.Genre;
 import com.app.model.Cinema;
 import com.app.model.CinemaRoom;
 import com.app.model.City;
+import com.app.model.Movie;
 import com.app.model.thymeleaf.CinemaRoomWithObj;
 import com.app.model.thymeleaf.CinemaWithObj;
 import com.app.model.thymeleaf.CityWithObj;
+import com.app.model.thymeleaf.MovieWithObj;
 import com.app.service.*;
 import lombok.AllArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.DayOfWeek;
+import java.time.temporal.TemporalUnit;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -150,9 +158,43 @@ public class AdminController {
     }
     //--------------[Movie]-----------------------------------
 
+    @GetMapping("/movie")
+    public String movies(Model model) {
+        List<MovieWithObj> movieWithObjs =
+                movieService
+                        .getAll()
+                        .stream()
+                        .map(movie -> MovieWithObj
+                                .builder()
+                                .id(movie.getId())
+                                .title(movie.getTitle())
+                                .genre(movie.getGenre())
+                                .description(movie.getDescription())
+                                .dateFrom(movie.getDateFrom())
+                                .dateTo(movie.getDateTo())
+                                .build())
+                        .collect(Collectors.toList());
+        model.addAttribute("movies", movieWithObjs);
+        model.addAttribute("newMovie", new Movie());
+        List<Enum> genres = Arrays.asList(Genre.values());
+        model.addAttribute("getAllGenres", genres);
+        return "admin_movies";
+    }
+
     @GetMapping("/movie/delete/{id}")
-    public Integer deleteMovie(@PathVariable Integer id) {
-        return movieService.deleteMovie(id);
+    public String deleteMovie(@PathVariable Integer id, Model model) {
+
+        model.addAttribute("status",(movieService.deleteMovie(id)==1) ? "Movie deleted!" : "Cant' delete movie. You already have seances planned");
+        return "admin_operation";
+    }
+
+
+    @PostMapping("movie/add")
+    public String addMovie(@ModelAttribute Movie movie, Model model) {
+        model.addAttribute("status",(movieService.addMovie(new CreateMovieDto(movie.getTitle(), movie.getGenre(), movie.getDescription(),
+                 movie.getDateFrom(), movie.getDateTo()))==1) ? "Cinema room added!" : "Cant' add Cinema room. Duplicate name");
+        System.out.println(movie.toString());
+        return "admin_operation";
     }
 
     //--------------[SEANCE]-----------------------------------

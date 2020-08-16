@@ -38,6 +38,7 @@ public class DbConnection {
                 id integer primary key auto_increment,
                 title varchar(50) not null,
                 genre varchar(50) not null,
+                description varchar(255) not null,
                 date_from timestamp not null,
                 date_to timestamp not null
                 );

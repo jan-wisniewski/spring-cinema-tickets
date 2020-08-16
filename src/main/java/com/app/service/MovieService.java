@@ -72,6 +72,7 @@ public class MovieService {
         return movieRepository.findAll();
     }
 
+
     public Integer deleteMovie(Integer id) {
         Movie movie = movieRepository.findById(id).orElseThrow();
         if (!seanceRepository.findByMovie(movie).isEmpty()) {

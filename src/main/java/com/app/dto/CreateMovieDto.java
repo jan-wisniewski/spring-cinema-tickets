@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 public class CreateMovieDto {
     private String title;
     private Genre genre;
+    private String description;
     private LocalDateTime dateFrom;
     private LocalDateTime dateTo;
 }

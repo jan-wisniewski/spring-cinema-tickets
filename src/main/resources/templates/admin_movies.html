@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/header :: navbar"></div>
+<body>
+<div class="hero user-hero">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="hero-ct">
+                    <h1>Admin Panel - movies</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-single movie_list">
+    <div class="container">
+        <div class="row ipad-width2">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="form-style-1 user-information">
+                    <tr th:each="movie: ${movies}">
+
+                        <div class="movie-item-style-2">
+                            <div class="mv-item-infor">
+                                <h6><span
+                                        th:text="${movie.getTitle()}"></span><span th:text="${movie.getGenre()}"></span>
+                                    <p>Description: <span
+                                        th:text="${movie.getDescription()}"></span>),</p>
+                                    Play duration: <span
+                                            th:text="${movie.getDateFrom()}"></span>) - <span
+                                            th:text="${movie.getDateTo()}"></span></h6>-->
+                                <p>
+                                    <a href="admin_cinemas.html"
+                                       th:href="@{/admin/movie/delete/{movieId}(movieId=${movie.getId()})}">Delete</a>
+                                </p>
+                            </div>
+                        </div>
+                </tr>
+                <form th:action="@{movie/add}" th:object="${newMovie}" method="post">
+                    <p>Add a new Cinema: <input type="text" th:field="*{title}"
+                                                placeholder="Enter title"></p>
+                    <p>Genre:
+                    <select class="form-control" id="testOrder"  th:field="*{genre}"  name="testOrder" >
+                        <option value="">Select movie genre</option>
+                        <option th:each="genres : ${getAllGenres}"
+                                th:text="${genres.toString()}"
+                                th:value="${genres.toString()}"></option>
+                    </select></p>
+                    <p>Description: <input type="text"  th:field="*{description}" placeholder="Enter description"></p>
+                    <p>Start date: <input type="datetime-local"  th:field="*{dateFrom}" placeholder="Enter start date"></p>
+                    <p>Stop date: <input type="datetime-local" th:field="*{dateTo}" placeholder="Enter start date"></p>
+                    <p><input th:href="admin_cinemas.html" type="submit" value="Add new movie"></p>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<div th:replace="fragments/footer :: footer"></div>
