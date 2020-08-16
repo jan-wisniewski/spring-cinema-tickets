@@ -17,7 +17,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private UserDetailsServiceImpl userDetailsService;
 
     @Bean
-    public PasswordEncoder getPasswordEncoder(){
+    public PasswordEncoder getPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
@@ -36,8 +36,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.headers().disable();
         http.authorizeRequests()
                 .antMatchers("/admin").hasAuthority("ADMIN")
+                .antMatchers("/profile/**").authenticated()
                 .and()
                 .formLogin()
                 .defaultSuccessUrl("/");
+        http.logout()
+                .logoutSuccessUrl("/");
     }
 }

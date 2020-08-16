@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/header :: navbar"></div>
+<body>
+<div class="hero user-hero">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="hero-ct">
+                    <h1><span th:text="${user.getName()}">'s profile</span> </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page-single">
+    <div class="container">
+        <div class="row ipad-width2">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="form-style-1 user-information">
+                    <form th:action="@{/profile/edit}" method="post">
+                        <p>Name: <input type="text" name="name" pattern="[A-Z][a-z]+" required="required" th:value="${user.getName()}"> </p>
+                        <p>Surname: <input type="text" name="surname" pattern="[A-Z][a-z]+" required="required" th:value="${user.getSurname()}"> </p>
+                        <p>Username: <input type="text" name="username" required="required" th:value="${user.getSurname()}"> </p>
+                        <p>E-mail: <input type="text" name="email" pattern="([A-Za-z0-9]\.?)+@[A-Za-z0-9]+\.[a-z]+" required="required"> </p>
+                        <p>New Password: <input type="password" name="password" required="required"> </p>
+                        <p>Repeat new password: <input type="password" name="repeatedPassword" required="required"> </p>
+                        <input th:href="profile.html" type="submit" value="Edit profile">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="fragments/footer :: footer"></div>

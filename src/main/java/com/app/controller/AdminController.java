@@ -192,7 +192,7 @@ public class AdminController {
     @PostMapping("movie/add")
     public String addMovie(@ModelAttribute Movie movie, Model model) {
         model.addAttribute("status",(movieService.addMovie(new CreateMovieDto(movie.getTitle(), movie.getGenre(), movie.getDescription(),
-                 movie.getDateFrom(), movie.getDateTo()))==1) ? "Cinema room added!" : "Cant' add Cinema room. Duplicate name");
+                 movie.getDateFrom(), movie.getDateTo()))==1) ? "Cinema room added!" : "Cant' add Movie");
         System.out.println(movie.toString());
         return "admin_operation";
     }

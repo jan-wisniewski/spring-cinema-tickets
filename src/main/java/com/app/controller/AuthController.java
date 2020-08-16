@@ -29,5 +29,4 @@ public class AuthController {
         userService.createUser(createUserDto);
         return "register";
     }
-
 }

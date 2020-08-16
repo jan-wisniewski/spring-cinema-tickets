@@ -16,26 +16,15 @@ import java.util.List;
 public class UserController {
     private final UserService userService;
 
-/*    @GetMapping("/show/{id}")
-    public User findById(@PathVariable Integer id) {
-        return userService.findById(id);
-    }*/
-
     @GetMapping("/{id}")
     public String findById(@PathVariable Integer id, Model model) {
         model.addAttribute("user", userService.findById(id));
         return "user";
     }
 
-
     @GetMapping("/all")
     public List<User> getAll() {
         return userService.findAll();
-    }
-
-    @GetMapping("/delete/{id}")
-    public Integer deleteById(@PathVariable Integer id) {
-        return (userService.delete(id)) ? 1 : 0;
     }
 
 }
