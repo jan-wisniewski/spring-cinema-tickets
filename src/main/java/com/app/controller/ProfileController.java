@@ -1,5 +1,7 @@
 package com.app.controller;
 
+import com.app.dto.EditProfileDto;
+import com.app.mappers.Mapper;
 import com.app.model.User;
 import com.app.service.UserService;
 import lombok.AllArgsConstructor;
@@ -20,15 +22,25 @@ public class ProfileController {
 
     @RequestMapping("/edit")
     public String editProfile(Model model, Authentication authentication){
-        model.addAttribute("user",userService.findByUsername(authentication.getName()));
+        EditProfileDto editProfileDto = Mapper.fromUserToEditProfileDto(userService.findByUsername(authentication.getName()));
+        model.addAttribute("user",editProfileDto);
         return "profile";
     }
 
     @PostMapping("/edit")
-    public String editedProfile (@ModelAttribute User user, Model model){
+    public String editedProfile (@ModelAttribute EditProfileDto editProfileDto){
+        if (editProfileDto.getNewPassword().isEmpty()){
+            editProfileDto.setNewPassword(editProfileDto.getPassword());
+        }
+
+        System.out.println("---------------------------------");
+        System.out.println(editProfileDto);
+
+        System.out.println("---------------------------------");
+        User user = Mapper.fromEditProfileDtoToUser(editProfileDto);
         System.out.println(user);
+        System.out.println("---------------------------------");
         userService.edit(user);
-        model.addAttribute("user",user);
-        return "profile";
+        return "index";
     }
 }

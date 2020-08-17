@@ -72,4 +72,31 @@ public interface Mapper {
                 .title(movieDto.getTitle())
                 .build();
     }
+    static EditProfileDto fromUserToEditProfileDto (User user){
+        return EditProfileDto
+                .builder()
+                .email(user.getEmail())
+                .id(user.getId())
+                .password(user.getPassword())
+                .newPassword(user.getPassword())
+                .name(user.getName())
+                .surname(user.getSurname())
+                .username(user.getUsername())
+                .role(user.getRole())
+                .build();
+    }
+
+    static User fromEditProfileDtoToUser (EditProfileDto editProfileDto){
+        return User
+                .builder()
+                .username(editProfileDto.getUsername())
+                .surname(editProfileDto.getSurname())
+                .name(editProfileDto.getName())
+                .role(editProfileDto.getRole())
+                .password(editProfileDto.getNewPassword())
+                .email(editProfileDto.getEmail())
+                .id(editProfileDto.getId())
+                .build();
+    }
+
 }
