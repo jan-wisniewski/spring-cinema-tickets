@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="hero-ct">
-                    <h1>Seances</h1>
+                    <h1>Buy ticket for seance</h1>
                 </div>
             </div>
         </div>
@@ -18,22 +18,22 @@
         <div class="row ipad-width2">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="form-style-1 user-information">
-                <tr th:each="seance: ${seances}">
-
                     <div class="movie-item-style-2">
                         <img src="../static/images/uploads/mv-it2.jpg" th:src="@{/assets/images/uploads/mv-it2.jpg}">
                         <div class="mv-item-infor">
                             <h6><a href=""><span th:text="${seance.movie?.getTitle()}"></span></a></h6>
-                            <p class="describe">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque pulvinar lectus id egestas fermentum. Suspendisse at ultrices odio. Fusce vel ullamcorper ligula. Etiam vitae risus tincidunt, dapibus orci ac, mollis nulla. Pellentesque bibendum risus id lectus hendrerit, vitae sollicitudin purus dapibus. Ut id orci vitae eros scelerisque laoreet in viverra nibh. Quisque vitae scelerisque leo. In id fermentum justo, in bibendum lorem. Praesent elit nibh, viverra ac iaculis vitae, laoreet sed magna. Vestibulum nec justo tellus.</p>
+
+                            <tr th:each="ticket : ${allTickets}">
+                            <td th:text="${ticket.getSeatId()}">AAA</td>
+                            </tr>
+
+                            <!-- <p class="describe"><span th:text="${seance.getMovie().getDescription()}"></span></p> -->
                             <p>PRICE: <span th:text="${seance.getPrice()}"></span>$</p>
                             <p>DATE: <span th:text="${seance.getDateTime()}"></span></p>
-                            <a href="buyticket.html" th:href="@{/ticket/seance/{seanceId}(seanceId=${seance.getId()})}"><input type="submit" value="Buy ticket"></a>
+                            <input type="submit" value="SDADS"></p>
                         </div>
-
                     </div>
-
-                </tr>
-            </div>
+                </div>
             </div>
         </div>
     </div>

@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface TicketRepository extends CrudRepository<Ticket, Integer> {
     boolean isPlaceAvailable(Ticket ticket);
-    List<Ticket> findBySeance (Seance seance);
+    List<Ticket> findBySeanceId (Integer id);
 }

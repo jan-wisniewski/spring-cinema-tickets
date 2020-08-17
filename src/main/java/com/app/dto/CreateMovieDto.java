@@ -16,6 +16,6 @@ public class CreateMovieDto {
     private String title;
     private Genre genre;
     private String description;
-    private LocalDateTime dateFrom;
-    private LocalDateTime dateTo;
+    private String dateFrom;
+    private String dateTo;
 }

@@ -52,4 +52,9 @@ public class SeatSeanceService {
     public Integer clearReservedSeats() {
         return seatsSeancesRepository.clearSeatSeances();
     }
+
+    public List<SeatsSeance> findAllBySeanceId (Integer id){
+        return seatsSeancesRepository.findBySeanceId(id);
+    }
+
 }

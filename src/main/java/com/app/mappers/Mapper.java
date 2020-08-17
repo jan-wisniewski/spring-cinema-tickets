@@ -3,6 +3,9 @@ package com.app.mappers;
 import com.app.model.*;
 import com.app.dto.*;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public interface Mapper {
     static User fromCreateUserDtoToUser(CreateUserDto userDto) {
         return User
@@ -56,7 +59,7 @@ public interface Mapper {
     static Seance fromSeanceDtoToSeance(CreateSeanceDto seanceDto) {
         return Seance
                 .builder()
-                .dateTime(seanceDto.getDateTime())
+                .dateTime(LocalDateTime.parse(seanceDto.getDateTime()))
                 .movieId(seanceDto.getMovieId())
                 .cinemaRoomId(seanceDto.getCinemaRoomId())
                 .price(seanceDto.getPrice())
@@ -67,8 +70,8 @@ public interface Mapper {
         return Movie
                 .builder()
                 .genre(movieDto.getGenre())
-                .dateFrom(movieDto.getDateFrom())
-                .dateTo(movieDto.getDateTo())
+                .dateFrom(LocalDateTime.parse(movieDto.getDateFrom()))
+                .dateTo(LocalDateTime.parse(movieDto.getDateTo()))
                 .title(movieDto.getTitle())
                 .build();
     }

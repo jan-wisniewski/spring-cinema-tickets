@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/header :: navbar"></div>
+<body>
+<div class="hero user-hero">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="hero-ct">
+                    <h1>Admin Panel - seances</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-single movie_list">
+    <div class="container">
+        <div class="row ipad-width2">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="form-style-1 user-information">
+                    <tr th:each="seance: ${seances}">
+
+                        <div class="movie-item-style-2">
+                            <div class="mv-item-infor">
+                                <h6><span
+                                        th:text="${seance.getMovie()?.getTitle()}"></span> - <span th:text="${seance.getCinemaRoom()?.getName()}"></span>,
+                                    <span th:text="${seance.getDateTime()}"></span></h6>
+                                <p>
+                                    <a href="admin_seances.html"
+                                       th:href="@{/admin/seance/delete/{seanceId}(seanceId=${seance.getId()})}">Delete</a>
+                                </p>
+                            </div>
+                        </div>
+                </tr>
+                    <form th:action="@{seance/add}" th:object="${newSeance}" method="post">
+                    <p>Add a new Seance:
+                    <p>Movies:
+                    <select class="form-control" id="testOrder"  th:field="*{movieId}"  name="testOrder" >
+                        <option value="">Select movie</option>
+                        <option th:each="movie : ${futureMovies}"
+                                th:text="${movie.getTitle()}"
+                                th:value="${movie.getId()}"></option>
+                    </select></p>
+                        <p>Cinema rooms:
+                            <select class="form-control" th:field="*{cinemaRoomId}"  name="testOrder" >
+                                <option value="">Select cinema room</option>
+                                <!-- Cinema City, Warszawa, Sala A -->
+                                <option th:each="cinemaRoom : ${roomIdCinemaCity}"
+                                        th:text="${cinemaRoom.getValue()}"
+                                        th:value="${cinemaRoom.getKey()}"></option>
+                            </select></p>
+                   <p>Date: <input type="datetime-local" value="2014-12-08 15:43:00" th:field="*{dateTime}" placeholder="Enter start date"></p>-->
+                    <!-- <p>Date: <input type="text" pattern="\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2}" title="Should be: YYYY-mm-dd HH:mm:ss" th:field="*{dateTime}" placeholder="YYYY-mm-dd HH:mm:ss"></p> -->
+                    <p>Price: <input type="text" th:field="*{price}" pattern="\d*(.\d+)?" title="eg. 10 / 12.50" placeholder="Enter price"></p>
+                    <p><input type="submit" value="Add new seance"></p>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<div th:replace="fragments/footer :: footer"></div>

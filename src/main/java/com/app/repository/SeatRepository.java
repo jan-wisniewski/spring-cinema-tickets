@@ -22,5 +22,4 @@ public interface SeatRepository extends CrudRepository<Seat, Integer> {
 
     Integer deleteAll(List<Seat> seats);
 
-
 }

@@ -134,4 +134,8 @@ public class SeatService {
         return (seatRepository.deleteById(id)) ? 1 : 0;
     }
 
+//    public List<Seat> findAllBySeanceId (Integer id){
+//        return seatRepository.findAllBySeanceId(id);
+//    }
+
 }

@@ -1,18 +1,10 @@
 package com.app.controller;
 
-import com.app.dto.CreateCinemaDto;
-import com.app.dto.CreateCinemaRoomDto;
-import com.app.dto.CreateCityDto;
-import com.app.dto.CreateMovieDto;
+import com.app.dto.*;
 import com.app.enums.Genre;
-import com.app.model.Cinema;
-import com.app.model.CinemaRoom;
-import com.app.model.City;
-import com.app.model.Movie;
-import com.app.model.thymeleaf.CinemaRoomWithObj;
-import com.app.model.thymeleaf.CinemaWithObj;
-import com.app.model.thymeleaf.CityWithObj;
-import com.app.model.thymeleaf.MovieWithObj;
+import com.app.mappers.Mapper;
+import com.app.model.*;
+import com.app.model.thymeleaf.*;
 import com.app.service.*;
 import lombok.AllArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -21,9 +13,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalUnit;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Controller
@@ -71,13 +68,13 @@ public class AdminController {
 
     @GetMapping("/cinema/delete/{id}")
     public String deleteCinema(@PathVariable Integer id, Model model) {
-        model.addAttribute("status",(cinemaService.deleteCinema(id)==1) ? "Cinema deleted!" : "Cant' delete cinema. You can't have any active seances!");
+        model.addAttribute("status", (cinemaService.deleteCinema(id) == 1) ? "Cinema deleted!" : "Cant' delete cinema. You can't have any active seances!");
         return "admin_operation";
     }
 
     @PostMapping("cinema/add")
     public String addCinema(@ModelAttribute Cinema cinema, Model model) {
-        model.addAttribute("status",(cinemaService.addCinema(new CreateCinemaDto(cinema.getName(), cinema.getCityId()))==1) ? "Cinema added!" : "Cant' add Cinema. Duplicate name");
+        model.addAttribute("status", (cinemaService.addCinema(new CreateCinemaDto(cinema.getName(), cinema.getCityId())) == 1) ? "Cinema added!" : "Cant' add Cinema. Duplicate name");
         System.out.println(cinema.toString());
         return "admin_operation";
     }
@@ -109,16 +106,15 @@ public class AdminController {
     }
 
 
-
     @GetMapping("/cinemaRoom/delete/{id}")
     public String deleteRoom(@PathVariable Integer id, Model model) {
-        model.addAttribute("status",(cinemaRoomService.deleteCinemaRoom(id)==1) ? "Cinema room deleted!" : "Cant' delete cinema room. You can't have any active seances!");
+        model.addAttribute("status", (cinemaRoomService.deleteCinemaRoom(id) == 1) ? "Cinema room deleted!" : "Cant' delete cinema room. You can't have any active seances!");
         return "admin_operation";
     }
 
     @PostMapping("cinemaRoom/add")
     public String addCinemaRoom(@ModelAttribute CinemaRoom cinemaRoom, Model model) {
-        model.addAttribute("status",(cinemaRoomService.addCinemaRoom(new CreateCinemaRoomDto(cinemaRoom.getName(), cinemaRoom.getCinemaId(), cinemaRoom.getRowsNumber(), cinemaRoom.getPlaces()))==1) ? "Cinema room added!" : "Cant' add Cinema room. Duplicate name");
+        model.addAttribute("status", (cinemaRoomService.addCinemaRoom(new CreateCinemaRoomDto(cinemaRoom.getName(), cinemaRoom.getCinemaId(), cinemaRoom.getRowsNumber(), cinemaRoom.getPlaces())) == 1) ? "Cinema room added!" : "Cant' add Cinema room. Duplicate name");
         System.out.println(cinemaRoom.toString());
         return "admin_operation";
     }
@@ -145,15 +141,14 @@ public class AdminController {
 
     @GetMapping("/city/delete/{id}")
     public String deleteCity(@PathVariable Integer id, Model model) {
-        model.addAttribute("status",(cityService.deleteCity(id)==1) ? "City deleted!" : "Cant' delete city. You need to remove all cinemas first");
+        model.addAttribute("status", (cityService.deleteCity(id) == 1) ? "City deleted!" : "Cant' delete city. You need to remove all cinemas first");
         return "admin_operation";
     }
 
 
     @PostMapping("city/add")
     public String deleteCity(@ModelAttribute City city, Model model) {
-        model.addAttribute("status",(cityService.addCity(new CreateCityDto(city.getName()))==1) ? "City added!" : "Cant' add city. Duplicate name");
-        System.out.println(city.toString());
+        model.addAttribute("status", (cityService.addCity(new CreateCityDto(city.getName())) == 1) ? "City added!" : "Cant' add city. Duplicate name");
         return "admin_operation";
     }
     //--------------[Movie]-----------------------------------
@@ -175,7 +170,7 @@ public class AdminController {
                                 .build())
                         .collect(Collectors.toList());
         model.addAttribute("movies", movieWithObjs);
-        model.addAttribute("newMovie", new Movie());
+        model.addAttribute("newMovie", new CreateMovieDto());
         List<Enum> genres = Arrays.asList(Genre.values());
         model.addAttribute("getAllGenres", genres);
         return "admin_movies";
@@ -183,25 +178,62 @@ public class AdminController {
 
     @GetMapping("/movie/delete/{id}")
     public String deleteMovie(@PathVariable Integer id, Model model) {
-
-        model.addAttribute("status",(movieService.deleteMovie(id)==1) ? "Movie deleted!" : "Cant' delete movie. You already have seances planned");
+        model.addAttribute("status", (movieService.deleteMovie(id) == 1) ? "Movie deleted!" : "Cant' delete movie. You already have seances planned");
         return "admin_operation";
     }
 
 
     @PostMapping("movie/add")
-    public String addMovie(@ModelAttribute Movie movie, Model model) {
-        model.addAttribute("status",(movieService.addMovie(new CreateMovieDto(movie.getTitle(), movie.getGenre(), movie.getDescription(),
-                 movie.getDateFrom(), movie.getDateTo()))==1) ? "Cinema room added!" : "Cant' add Movie");
-        System.out.println(movie.toString());
+    public String addMovie(@ModelAttribute CreateMovieDto movieDto, Model model) {
+        model.addAttribute("status", (movieService.addMovie(movieDto) > 0) ? "Movie added!" : "Cant' add Movie");
         return "admin_operation";
     }
 
     //--------------[SEANCE]-----------------------------------
 
+    @PostMapping("seance/add")
+    public String addSeance(@ModelAttribute CreateSeanceDto seanceDto, Model model) {
+        model.addAttribute("status", (seanceService.addSeance(seanceDto) > 0) ? "Seance added!" : "Cant' add Seance");
+        return "admin_operation";
+    }
+
+    @GetMapping("/seance")
+    public String seances(Model model) {
+        List<SeanceWithObj> seanceWithObjs =
+                seanceService
+                        .getAll()
+                        .stream()
+                        .map(seance -> SeanceWithObj
+                                .builder()
+                                .id(seance.getId())
+                                .cinemaRoom(cinemaRoomService.findById(seance.getCinemaRoomId()))
+                                .movie(movieService.findById(seance.getMovieId()))
+                                .dateTime(seance.getDateTime())
+                                .price(seance.getPrice())
+                                .build()
+                        )
+                        .collect(Collectors.toList());
+        Map<Integer, String> cinemaRoomAndCinema = cinemaRoomService
+                .getAll()
+                .stream()
+                .collect(Collectors.toMap(
+                        CinemaRoom::getId,
+                        room -> cinemaService.getById(room.getId()).getName() + " (" +
+                                cityService.showNameByCityId(cinemaService.getById(room.getId()).getCityId()) + ") - "
+                        +cinemaRoomService.findById(room.getId()).getName()
+                ));
+        model.addAttribute("seances", seanceWithObjs);
+        model.addAttribute("newSeance", new Seance());
+        model.addAttribute("futureMovies", movieService.getAllWithFutureDate());
+        System.out.println(movieService.getAllWithFutureDate());
+        model.addAttribute("roomIdCinemaCity", cinemaRoomAndCinema);
+        return "admin_seances";
+    }
+
     @GetMapping("/seance/delete/{id}")
-    public Integer deleteSeance(@PathVariable Integer id) {
-        return seanceService.deleteSeance(id);
+    public String deleteSeance(@PathVariable Integer id, Model model) {
+        model.addAttribute("status", (seanceService.deleteSeance(id) == 1) ? "Seance deleted!" : "Cant' delete seance.");
+        return "admin_operation";
     }
 
     //--------------[SEAT]-----------------------------------

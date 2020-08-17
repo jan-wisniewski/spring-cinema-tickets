@@ -76,12 +76,11 @@ public class SeanceService {
     }
 
     public Integer deleteSeance(Integer id) {
-        Seance seance = seanceRepository.findById(id).orElseThrow();
-        if (!ticketRepository.findBySeance(seance).isEmpty()) {
+        if (!ticketRepository.findBySeanceId(id).isEmpty()) {
             System.out.println("Can't delete seance! Ticket sales have already started");
             return 0;
         }
-        return (seanceRepository.deleteById(seance.getId())) ? 1 : 0;
+        return (seanceRepository.deleteById(id)) ? 1 : 0;
     }
 
     public Optional<Seance> getSeanceById(Integer seanceId) {

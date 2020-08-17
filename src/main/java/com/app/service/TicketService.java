@@ -50,5 +50,9 @@ public class TicketService {
         return ticketRepository.findById(id).orElseThrow();
     }
 
+    public List<Ticket> findBySeanceId (Integer id){
+        return ticketRepository.findBySeanceId(id);
+    }
+
 
 }

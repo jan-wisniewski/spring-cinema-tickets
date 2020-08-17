@@ -23,12 +23,6 @@ public class SeanceController {
     private final MovieService movieService;
     private final CinemaRoomService cinemaRoomService;
 
-
-    @GetMapping("/{id}")
-    public Seance findById (@PathVariable Integer id){
-        return seanceService.findById(id);
-    }
-
     @GetMapping("/all")
     public String getAll (Model model){
         List<SeanceWithObj> seances = new ArrayList<>();

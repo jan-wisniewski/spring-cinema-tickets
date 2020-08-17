@@ -6,6 +6,8 @@ import com.app.repository.MovieRepository;
 import com.app.repository.generic.AbstractCrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -29,7 +31,24 @@ public class MovieRepositoryImpl extends AbstractCrudRepository<Movie, Integer> 
                         .bind("genre", movie.getGenre())
                         .bind("dateFrom", movie.getDateFrom())
                         .bind("dateTo", movie.getDateTo())
-                .mapToBean(Movie.class)
-                .findFirst());
+                        .mapToBean(Movie.class)
+                        .findFirst());
+    }
+
+    @Override
+    public List<Movie> findAllWithFutureDate() {
+        var sql = """
+                select * from movies where date_to >=:dateto
+                """;
+        return dbConnection
+                .getJdbi()
+                .withHandle(handle -> handle
+                        .createQuery(sql)
+                        .bind("dateto", LocalDateTime.now())
+                        .mapToBean(Movie.class)
+                        .list()
+                );
+
+
     }
 }

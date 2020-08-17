@@ -39,4 +39,9 @@ public class ReservationService {
     public List<Reservation> getAll() {
         return reservationRepository.findAll();
     }
+
+    public List<Reservation> findBySeanceId (Integer id){
+        return reservationRepository.findBySeanceId(id);
+    }
+
 }

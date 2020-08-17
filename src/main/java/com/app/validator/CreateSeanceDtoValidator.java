@@ -6,6 +6,7 @@ import com.app.validator.validator.Validator;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,7 +25,7 @@ public class CreateSeanceDtoValidator implements Validator<CreateSeanceDto> {
     }
 
     private boolean isLocalDateHasAlreadyPassed(CreateSeanceDto seanceDto) {
-        return seanceDto.getDateTime().isBefore(LocalDateTime.now());
+        return (LocalDateTime.parse(seanceDto.getDateTime())).isBefore(LocalDateTime.now());
     }
 
     private boolean isPriceIsNegative(CreateSeanceDto seanceDto) {

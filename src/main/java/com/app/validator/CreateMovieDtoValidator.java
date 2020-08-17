@@ -4,6 +4,7 @@ package com.app.validator;
 import com.app.dto.CreateMovieDto;
 import com.app.validator.validator.Validator;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,7 +26,7 @@ public class CreateMovieDtoValidator  implements Validator<CreateMovieDto> {
     }
 
     private boolean isDateToBeforeDateFrom(CreateMovieDto item) {
-        return item.getDateTo().isBefore(item.getDateFrom());
+        return LocalDateTime.parse(item.getDateTo()).isBefore(LocalDateTime.parse(item.getDateFrom()));
     }
 
     private boolean isTitleLowercase(CreateMovieDto item) {

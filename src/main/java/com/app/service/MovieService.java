@@ -72,6 +72,10 @@ public class MovieService {
         return movieRepository.findAll();
     }
 
+    public List<Movie> getAllWithFutureDate (){
+        return movieRepository.findAllWithFutureDate();
+    }
+
 
     public Integer deleteMovie(Integer id) {
         Movie movie = movieRepository.findById(id).orElseThrow();

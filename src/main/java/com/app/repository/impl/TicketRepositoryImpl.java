@@ -36,7 +36,7 @@ public class TicketRepositoryImpl extends AbstractCrudRepository<Ticket, Integer
     }
 
     @Override
-    public List<Ticket> findBySeance(Seance seance) {
+    public List<Ticket> findBySeanceId(Integer id) {
         var sql = """
                 select t.id, t.seance_id,t.seat_id,t.price,t.discount,t.user_id
                 from tickets t join seances s on t.seance_id = s.id
@@ -46,7 +46,7 @@ public class TicketRepositoryImpl extends AbstractCrudRepository<Ticket, Integer
                 .getJdbi()
                 .withHandle(handle -> handle
                         .createQuery(sql)
-                        .bind("seanceId",seance.getId())
+                        .bind("seanceId",id)
                         .bind("date", LocalDateTime.now())
                         .mapToBean(Ticket.class)
                         .list()
