@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/header :: navbar"></div>
+<body>
+<div class="hero user-hero">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="hero-ct">
+                    <h1>Admin Panel - Edit City: <span th:text="${city.getName()}"></span></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-single movie_list">
+    <div class="container">
+        <div class="row ipad-width2">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="form-style-1 user-information">
+                    <form th:action="@{/city/edit}" th:object="${city}" method="post">
+                        <p>Edit city name: <input type="text" th:field="*{name}" placeholder="Enter name of new city"></p>
+                        <p> <input th:href="admin_city_edit.html" type="submit" value="Edit city"></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<div th:replace="fragments/footer :: footer"></div>

@@ -50,8 +50,7 @@
                                         th:text="${cinemaRoom.getValue()}"
                                         th:value="${cinemaRoom.getKey()}"></option>
                             </select></p>
-                   <p>Date: <input type="datetime-local" value="2014-12-08 15:43:00" th:field="*{dateTime}" placeholder="Enter start date"></p>-->
-                    <!-- <p>Date: <input type="text" pattern="\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2}" title="Should be: YYYY-mm-dd HH:mm:ss" th:field="*{dateTime}" placeholder="YYYY-mm-dd HH:mm:ss"></p> -->
+                   <p>Date: <input type="datetime-local" th:field="*{dateTime}" placeholder="Enter start date"></p>
                     <p>Price: <input type="text" th:field="*{price}" pattern="\d*(.\d+)?" title="eg. 10 / 12.50" placeholder="Enter price"></p>
                     <p><input type="submit" value="Add new seance"></p>
                 </form>

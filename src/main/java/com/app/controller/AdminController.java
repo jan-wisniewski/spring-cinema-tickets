@@ -145,12 +145,24 @@ public class AdminController {
         return "admin_operation";
     }
 
-
-    @PostMapping("city/add")
+    @PostMapping("/city/add")
     public String deleteCity(@ModelAttribute City city, Model model) {
         model.addAttribute("status", (cityService.addCity(new CreateCityDto(city.getName())) == 1) ? "City added!" : "Cant' add city. Duplicate name");
         return "admin_operation";
     }
+
+    @PostMapping("/city/edit")
+    public String saveEditedCity(@ModelAttribute City city, Model model) {
+        model.addAttribute("status", (cityService.editCity(city).getId().equals(city.getId())) ? "City edited!" : "Cant' edit city");
+        return "admin_operation";
+    }
+
+    @GetMapping("/city/edit/{id}")
+    public String editCity(@PathVariable Integer id, Model model) {
+        model.addAttribute("city", cityService.findCityById(id));
+        return "admin_city_edit";
+    }
+
     //--------------[Movie]-----------------------------------
 
     @GetMapping("/movie")
@@ -220,7 +232,7 @@ public class AdminController {
                         CinemaRoom::getId,
                         room -> cinemaService.getById(room.getId()).getName() + " (" +
                                 cityService.showNameByCityId(cinemaService.getById(room.getId()).getCityId()) + ") - "
-                        +cinemaRoomService.findById(room.getId()).getName()
+                                + cinemaRoomService.findById(room.getId()).getName()
                 ));
         model.addAttribute("seances", seanceWithObjs);
         model.addAttribute("newSeance", new Seance());

@@ -29,7 +29,7 @@
                                         th:text="${movie.getDescription()}"></span>),</p>
                                     Play duration: <span
                                             th:text="${movie.getDateFrom()}"></span>) - <span
-                                            th:text="${movie.getDateTo()}"></span></h6>-->
+                                            th:text="${movie.getDateTo()}"></span></h6>
                                 <p>
                                     <a href="admin_cinemas.html"
                                        th:href="@{/admin/movie/delete/{movieId}(movieId=${movie.getId()})}">Delete</a>

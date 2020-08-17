@@ -21,8 +21,8 @@ public class CityService {
     private final CityRepository cityRepository;
     private final CinemaRepository cinemaRepository;
 
-    public Optional<City> editCity(City city) {
-        return cityRepository.update(city);
+    public City editCity(City city) {
+        return cityRepository.update(city).orElseThrow();
     }
 
     public Integer deleteCity(Integer id) {

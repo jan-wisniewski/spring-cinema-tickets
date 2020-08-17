@@ -32,14 +32,7 @@ public class ProfileController {
         if (editProfileDto.getNewPassword().isEmpty()){
             editProfileDto.setNewPassword(editProfileDto.getPassword());
         }
-
-        System.out.println("---------------------------------");
-        System.out.println(editProfileDto);
-
-        System.out.println("---------------------------------");
         User user = Mapper.fromEditProfileDtoToUser(editProfileDto);
-        System.out.println(user);
-        System.out.println("---------------------------------");
         userService.edit(user);
         return "index";
     }
