@@ -27,7 +27,7 @@
                                     <h6><span th:text="${cinema.getName()}"></span></h6>
                                     <!--&lt;!&ndash;                            -->
                                     <p><span th:text="${cinema.city?.getName()}"></span></p>
-                                    <a href="seancesInCinema.html" th:href="@{/search/cinema/{cinemaId}/seance(cinemaId=${cinema.getId()})}">Show seances in this cinema</a>
+                                    <a href="seancesInCinema.html" th:href="@{/search/cinema/{cinemaId}/seance(cinemaId=${cinema.getId()})}"><input type="submit" value="Show seances in this cinema"/></a>
                                 </div>
                         </div>
 

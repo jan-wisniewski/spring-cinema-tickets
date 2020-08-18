@@ -33,7 +33,7 @@
                             </div>
                         </div>
                 </tr>
-                    <form th:action="@{seance/add}" th:object="${newSeance}" method="post">
+                    <form th:action="@{/admin/seance/add}" th:object="${newSeance}" method="post">
                     <p>Add a new Seance:
                     <p>Movies:
                     <select class="form-control" id="testOrder"  th:field="*{movieId}"  name="testOrder" >
@@ -45,7 +45,6 @@
                         <p>Cinema rooms:
                             <select class="form-control" th:field="*{cinemaRoomId}"  name="testOrder" >
                                 <option value="">Select cinema room</option>
-                                <!-- Cinema City, Warszawa, Sala A -->
                                 <option th:each="cinemaRoom : ${roomIdCinemaCity}"
                                         th:text="${cinemaRoom.getValue()}"
                                         th:value="${cinemaRoom.getKey()}"></option>

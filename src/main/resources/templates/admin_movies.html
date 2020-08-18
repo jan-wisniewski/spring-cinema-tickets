@@ -24,34 +24,40 @@
                         <div class="movie-item-style-2">
                             <div class="mv-item-infor">
                                 <h6><span
-                                        th:text="${movie.getTitle()}"></span> <span th:text="${movie.getGenre()}"></span>
+                                        th:text="${movie.getTitle()}"></span> <span
+                                        th:text="${movie.getGenre()}"></span>
                                     <p>Description: <span
-                                        th:text="${movie.getDescription()}"></span>),</p>
+                                            th:text="${movie.getDescription()}"></span>,</p>
                                     Play duration: <span
                                             th:text="${movie.getDateFrom()}"></span>) - <span
                                             th:text="${movie.getDateTo()}"></span></h6>
                                 <p>
-                                    <a href="admin_cinemas.html"
+                                    <a href="admin_movie_edit.html"
+                                       th:href="@{/admin/movie/edit/{movieId}(movieId=${movie.getId()})}">Edit</a> |
+                                    <a href="admin_movies.html"
                                        th:href="@{/admin/movie/delete/{movieId}(movieId=${movie.getId()})}">Delete</a>
                                 </p>
                             </div>
                         </div>
-                </tr>
-                <form th:action="@{movie/add}" th:object="${newMovie}" method="post">
-                    <p>Add a new Cinema: <input type="text" th:field="*{title}"
-                                                placeholder="Enter title" required></p>
-                    <p>Genre:
-                    <select class="form-control" id="testOrder"  th:field="*{genre}"  name="testOrder"  required>
-                        <option value="">Select movie genre</option>
-                        <option th:each="genres : ${getAllGenres}"
-                                th:text="${genres.toString()}"
-                                th:value="${genres.toString()}"></option>
-                    </select></p>
-                    <p>Description: <input type="text"  th:field="*{description}" placeholder="Enter description" required></p>
-                    <p>Start date: <input type="datetime-local"  th:field="*{dateFrom}" placeholder="Enter start date" required></p>
-                    <p>Stop date: <input type="datetime-local" th:field="*{dateTo}" placeholder="Enter start date" required></p>
-                    <p><input th:href="admin_cinemas.html" type="submit" value="Add new movie"></p>
-                </form>
+                    </tr>
+                    <form th:action="@{/admin/movie/add}" th:object="${newMovie}" method="post">
+                        <p>Add a new movie: <input type="text" th:field="*{title}"
+                                                   placeholder="Enter title" required></p>
+                        <p>Genre:
+                            <select class="form-control" id="testOrder" th:field="*{genre}" name="testOrder" required>
+                                <option value="">Select movie genre</option>
+                                <option th:each="genres : ${getAllGenres}"
+                                        th:text="${genres.toString()}"
+                                        th:value="${genres.toString()}"></option>
+                            </select></p>
+                        <p>Description: <input type="text" th:field="*{description}" placeholder="Enter description"
+                                               required></p>
+                        <p>Start date: <input type="datetime-local" th:field="*{dateFrom}"
+                                              placeholder="Enter start date" required></p>
+                        <p>Stop date: <input type="datetime-local" th:field="*{dateTo}" placeholder="Enter start date"
+                                             required></p>
+                        <p><input th:href="admin_cinemas.html" type="submit" value="Add new movie"></p>
+                    </form>
                 </div>
             </div>
         </div>

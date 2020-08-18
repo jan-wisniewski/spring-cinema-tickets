@@ -22,8 +22,8 @@ public class MovieService {
     private final MovieRepository movieRepository;
     private final SeanceRepository seanceRepository;
 
-    public Optional<Movie> editMovie(Movie movie) {
-        return movieRepository.update(movie);
+    public Movie editMovie(Movie movie) {
+        return movieRepository.update(movie).orElseThrow();
     }
 
     public Integer addMovie(CreateMovieDto movieDto) {

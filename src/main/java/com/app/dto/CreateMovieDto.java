@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @AllArgsConstructor
@@ -16,6 +17,6 @@ public class CreateMovieDto {
     private String title;
     private Genre genre;
     private String description;
-    private String dateFrom;
-    private String dateTo;
+    private LocalDateTime dateFrom;
+    private LocalDateTime dateTo;
 }

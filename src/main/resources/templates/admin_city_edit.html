@@ -19,8 +19,9 @@
         <div class="row ipad-width2">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="form-style-1 user-information">
-                    <form th:action="@{/city/edit}" th:object="${city}" method="post">
+                    <form th:action="@{/admin/city/edit}" th:object="${city}" method="post">
                         <p>Edit city name: <input type="text" th:field="*{name}" placeholder="Enter name of new city"></p>
+                        <input type="hidden" th:field="*{id}" th:value="${city.getId()}">
                         <p> <input th:href="admin_city_edit.html" type="submit" value="Edit city"></p>
                     </form>
                 </div>

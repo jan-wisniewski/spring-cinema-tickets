@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.math.BigDecimal;
@@ -50,9 +51,6 @@ public class SearchController {
                 });
         model.addAttribute("seances", seanceWithObjs);
         model.addAttribute("cinema", cinemaService.getById(id));
-        System.out.println(seanceWithObjs);
-        System.out.println("------------");
-        System.out.println(cinemaService.getById(id));
         return "seancesInCinema";
     }
 
@@ -70,8 +68,6 @@ public class SearchController {
     @GetMapping("/{phrase}")
     public String search(Model model, @PathVariable String phrase) {
         List<SeanceWithObj> seances = new ArrayList<>();
-        System.out.println(phrase);
-        System.out.println(seanceService.findByPhrase(phrase));
         for (Seance s : seanceService.findByPhrase(phrase)) {
             seances.add(
                     SeanceWithObj
@@ -84,6 +80,7 @@ public class SearchController {
                             .build()
             );
         }
+        //model.addAttribute("phrase",phrase);
         model.addAttribute("seances", seances);
         System.out.println(seances);
         return "search";

@@ -25,7 +25,7 @@ public class CreateSeanceDtoValidator implements Validator<CreateSeanceDto> {
     }
 
     private boolean isLocalDateHasAlreadyPassed(CreateSeanceDto seanceDto) {
-        return (LocalDateTime.parse(seanceDto.getDateTime())).isBefore(LocalDateTime.now());
+        return seanceDto.getDateTime().isBefore(LocalDateTime.now());
     }
 
     private boolean isPriceIsNegative(CreateSeanceDto seanceDto) {

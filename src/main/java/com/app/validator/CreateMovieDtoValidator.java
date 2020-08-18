@@ -26,7 +26,7 @@ public class CreateMovieDtoValidator  implements Validator<CreateMovieDto> {
     }
 
     private boolean isDateToBeforeDateFrom(CreateMovieDto item) {
-        return LocalDateTime.parse(item.getDateTo()).isBefore(LocalDateTime.parse(item.getDateFrom()));
+        return item.getDateTo().isBefore(item.getDateFrom());
     }
 
     private boolean isTitleLowercase(CreateMovieDto item) {

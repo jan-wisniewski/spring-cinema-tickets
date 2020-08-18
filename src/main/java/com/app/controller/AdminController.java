@@ -5,22 +5,17 @@ import com.app.enums.Genre;
 import com.app.mappers.Mapper;
 import com.app.model.*;
 import com.app.model.thymeleaf.*;
+import com.app.model.thymeleaf.localDateAsString.MovieLocalDateAsString;
 import com.app.service.*;
 import lombok.AllArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalUnit;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Controller
@@ -151,13 +146,13 @@ public class AdminController {
         return "admin_operation";
     }
 
-    @PostMapping("/city/edit")
+    @PostMapping("city/edit")
     public String saveEditedCity(@ModelAttribute City city, Model model) {
         model.addAttribute("status", (cityService.editCity(city).getId().equals(city.getId())) ? "City edited!" : "Cant' edit city");
         return "admin_operation";
     }
 
-    @GetMapping("/city/edit/{id}")
+    @GetMapping("city/edit/{id}")
     public String editCity(@PathVariable Integer id, Model model) {
         model.addAttribute("city", cityService.findCityById(id));
         return "admin_city_edit";
@@ -167,24 +162,9 @@ public class AdminController {
 
     @GetMapping("/movie")
     public String movies(Model model) {
-        List<MovieWithObj> movieWithObjs =
-                movieService
-                        .getAll()
-                        .stream()
-                        .map(movie -> MovieWithObj
-                                .builder()
-                                .id(movie.getId())
-                                .title(movie.getTitle())
-                                .genre(movie.getGenre())
-                                .description(movie.getDescription())
-                                .dateFrom(movie.getDateFrom())
-                                .dateTo(movie.getDateTo())
-                                .build())
-                        .collect(Collectors.toList());
-        model.addAttribute("movies", movieWithObjs);
+        model.addAttribute("movies", movieService.getAll());
         model.addAttribute("newMovie", new CreateMovieDto());
-        List<Enum> genres = Arrays.asList(Genre.values());
-        model.addAttribute("getAllGenres", genres);
+        model.addAttribute("getAllGenres", Arrays.asList(Genre.values()));
         return "admin_movies";
     }
 
@@ -196,9 +176,25 @@ public class AdminController {
 
 
     @PostMapping("movie/add")
-    public String addMovie(@ModelAttribute CreateMovieDto movieDto, Model model) {
+    public String addMovie(@ModelAttribute MovieLocalDateAsString movie, Model model) {
+        var movieDto = Mapper.fromMovieLocalDateAsStringToMovieDto(movie);
         model.addAttribute("status", (movieService.addMovie(movieDto) > 0) ? "Movie added!" : "Cant' add Movie");
         return "admin_operation";
+    }
+
+    @PostMapping("movie/edit")
+    public String saveEditedMovie(@ModelAttribute MovieLocalDateAsString movieLocalDateAsString, Model model) {
+        var movie = Mapper.fromMovieLocalDateAsStringToMovie(movieLocalDateAsString);
+        model.addAttribute("status", (movieService.editMovie(movie).getId().equals(movie.getId())) ? "Movie edited!" : "Cant' edit movie");
+        return "admin_operation";
+    }
+
+    @GetMapping("movie/edit/{id}")
+    public String editMovie(@PathVariable Integer id, Model model) {
+        var movie = Mapper.fromMovieToMovieLocalDateString(movieService.findById(id));
+        model.addAttribute("getAllGenres", Arrays.asList(Genre.values()));
+        model.addAttribute("movie", movie);
+        return "admin_movie_edit";
     }
 
     //--------------[SEANCE]-----------------------------------
