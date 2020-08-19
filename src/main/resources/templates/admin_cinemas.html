@@ -25,9 +25,7 @@
                             <div class="mv-item-infor">
                                 <h6><span th:text="${cinema.getName()}"></span> (ID: <span
                                         th:text="${cinema.getId()}"></span>), <span
-                                        th:text="${cinema.city?.getName()}"></span></h6>-->
-                                <!-- admin/cinema/delete/id -->
-
+                                        th:text="${cinema.city?.getName()}"></span></h6>
                                 <p> EDIT |
                                     <a href="admin_cinemas.html"
                                        th:href="@{/admin/cinema/delete/{cinemaId}(cinemaId=${cinema.getId()})}">Delete</a>

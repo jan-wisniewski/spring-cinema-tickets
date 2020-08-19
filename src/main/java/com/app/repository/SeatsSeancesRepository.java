@@ -18,4 +18,5 @@ public interface SeatsSeancesRepository extends CrudRepository<SeatsSeance, Inte
     List<SeatsSeance> addAllBySeanceId (List<Seat> seats, Integer seanceId);
     List<SeatsSeanceWithSeanceDate> isOneOfAPlaceReservedForFutureSeance (List<Seat> seats);
     Integer clearSeatSeances();
+    List<SeatsSeance> findAllFree(Integer id);
 }

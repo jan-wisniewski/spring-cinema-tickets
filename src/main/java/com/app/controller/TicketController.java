@@ -25,6 +25,7 @@ public class TicketController {
     private final CinemaRoomService cinemaRoomService;
     private final ReservationService reservationService;
     private final SeatSeanceService seatSeanceService;
+    private final SeatService seatService;
 
     @GetMapping("/seance/{id}")
     public String findById (@PathVariable Integer id, Model model){
@@ -38,7 +39,9 @@ public class TicketController {
                 .cinemaRoom(cinemaRoomService.findById(seance.getCinemaRoomId()))
                 .build();
         model.addAttribute("seance",seanceObj);
-        model.addAttribute("allTickets",seatSeanceService.findAllBySeanceId(seance.getId()));
+        model.addAttribute("seatSeances",seatSeanceService.findAllBySeanceId(seance.getId()));
+        model.addAttribute("freeSeatSeances",seatSeanceService.findAllBySeanceIdWithFreeStatus(seance.getId()));
+        model.addAttribute("seats",seatService.getAll());
        // model.addAttribute("tickets",ticketService.findBySeanceId(seance.getId()));
         //model.addAttribute("reservations",reservationService.findBySeanceId(seance.getId()));
         return "buyticket";

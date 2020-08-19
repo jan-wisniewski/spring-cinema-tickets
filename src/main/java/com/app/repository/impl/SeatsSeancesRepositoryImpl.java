@@ -174,4 +174,19 @@ public class SeatsSeancesRepositoryImpl extends AbstractCrudRepository<SeatsSean
         return seatsSeancesIdToClear.size();
 
     }
+
+    @Override
+    public List<SeatsSeance> findAllFree(Integer id) {
+        var sql = """
+                select * from seats_seances where seance_id = :seance_id and state='FREE'
+                """;
+        return dbConnection
+                .getJdbi()
+                .withHandle(handle -> handle
+                        .createQuery(sql)
+                        .bind("seance_id", id)
+                        .mapToBean(SeatsSeance.class)
+                        .list()
+                );
+    }
 }

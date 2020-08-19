@@ -21,16 +21,27 @@
                     <div class="movie-item-style-2">
                         <img src="../static/images/uploads/mv-it2.jpg" th:src="@{/assets/images/uploads/mv-it2.jpg}">
                         <div class="mv-item-infor">
-                            <h6><a href=""><span th:text="${seance.movie?.getTitle()}"></span></a></h6>
+                            <h6><span th:text="${seance.movie?.getTitle()}"></span></h6>
 
-                            <tr th:each="ticket : ${allTickets}">
-                            <td th:text="${ticket.getSeatId()}">AAA</td>
+                            <tr th:each="seat : ${seatSeances}">
+                          <td><span th:text="${seat.getState()+' '+seat.getSeatId()}"><input type="checkbox"/></span></td><br/>
                             </tr>
 
-                            <!-- <p class="describe"><span th:text="${seance.getMovie().getDescription()}"></span></p> -->
-                            <p>PRICE: <span th:text="${seance.getPrice()}"></span>$</p>
-                            <p>DATE: <span th:text="${seance.getDateTime()}"></span></p>
-                            <input type="submit" value="SDADS"></p>
+                            <p>Price: <span th:text="${seance.getPrice()}"></span>$</p>
+                            <p>Date: <span th:text="${#temporals.format(seance.getDateTime(), 'dd-MM-yyyy HH:mm:ss')}"></span></p>
+                            <p>Chosen place: <select class="form-control" name="testOrder" >
+                                <option value="">Select place</option>
+                                <option th:each="seat : ${freeSeatSeances}"
+                                        th:text="${seat.getSeatId()}"
+                                        th:value="${seat.getId()}"></option>
+                            </select>
+                                <p>Buy or reserve?
+                            <select class="form-control" name="testOrder" >
+                                <option value="">Select option</option>
+                                <option value="">Buy</option>
+                                <option value="">Reserve</option>
+                            </select>
+                            <input type="submit" value="Buy"></p>
                         </div>
                     </div>
                 </div>

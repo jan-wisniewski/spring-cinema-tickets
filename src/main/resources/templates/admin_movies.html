@@ -27,7 +27,8 @@
                                         th:text="${movie.getId()}"></span>)</h6>
                                     <p><span th:text="${movie.getGenre()}"></span>
                                     <p>Description: <span th:text="${movie.getDescription()}"></span>,</p>
-                                    <p>Date: <span th:text="${movie.getDateFrom()}"></span> - <span th:text="${movie.getDateTo()}"></span>
+                                    <p>Date: <span th:text="${#temporals.format(movie.getDateFrom(), 'dd-MM-yyyy HH:mm:ss')}"></span>
+                                        - <span th:text="${#temporals.format(movie.getDateTo(), 'dd-MM-yyyy HH:mm:ss')}"></span>
                                 <p>
                                     <a href="admin_movie_edit.html"
                                        th:href="@{/admin/movie/edit/{movieId}(movieId=${movie.getId()})}">Edit</a> |

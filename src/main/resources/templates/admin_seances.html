@@ -24,7 +24,7 @@
                         <div class="movie-item-style-2">
                             <div class="mv-item-infor">
                                 <h6><span
-                                        th:text="${seance.getMovie()?.getTitle()}"></span> - <span th:text="${seance.getDateTime()}"></span>
+                                        th:text="${seance.getMovie()?.getTitle()}"></span> - <span th:text="${#temporals.format(seance.getDateTime(), 'dd-MM-yyyy HH:mm:ss')}"></span>
                                     </h6>
                                 <p> <span th:text="${seance.getCinemaRoom()?.getName()}"></span>
                                     <p><a href="admin_seance_edit.html"

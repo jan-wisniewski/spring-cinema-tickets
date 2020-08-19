@@ -57,4 +57,7 @@ public class SeatSeanceService {
         return seatsSeancesRepository.findBySeanceId(id);
     }
 
+    public List<SeatsSeance> findAllBySeanceIdWithFreeStatus(Integer id) {
+        return seatsSeancesRepository.findAllFree(id);
+    }
 }

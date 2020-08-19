@@ -26,7 +26,7 @@
                             <h6><a href=""><span th:text="${seance.movie?.getTitle()}"></span></a></h6>
                             <p class="describe">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque pulvinar lectus id egestas fermentum. Suspendisse at ultrices odio. Fusce vel ullamcorper ligula. Etiam vitae risus tincidunt, dapibus orci ac, mollis nulla. Pellentesque bibendum risus id lectus hendrerit, vitae sollicitudin purus dapibus. Ut id orci vitae eros scelerisque laoreet in viverra nibh. Quisque vitae scelerisque leo. In id fermentum justo, in bibendum lorem. Praesent elit nibh, viverra ac iaculis vitae, laoreet sed magna. Vestibulum nec justo tellus.</p>
                             <p>PRICE: <span th:text="${seance.getPrice()}"></span>$</p>
-                            <p>DATE: <span th:text="${seance.getDateTime()}"></span></p>
+                            <p>DATE: <span th:text="${#temporals.format(seance.getDateTime(), 'dd-MM-yyyy HH:mm:ss')}"></span></p>
                             <a href="buyticket.html" th:href="@{/ticket/seance/{seanceId}(seanceId=${seance.getId()})}"><input type="submit" value="Buy ticket"></a>
                         </div>
 
