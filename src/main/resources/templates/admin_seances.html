@@ -24,9 +24,11 @@
                         <div class="movie-item-style-2">
                             <div class="mv-item-infor">
                                 <h6><span
-                                        th:text="${seance.getMovie()?.getTitle()}"></span> - <span th:text="${seance.getCinemaRoom()?.getName()}"></span>,
-                                    <span th:text="${seance.getDateTime()}"></span></h6>
-                                <p>
+                                        th:text="${seance.getMovie()?.getTitle()}"></span> - <span th:text="${seance.getDateTime()}"></span>
+                                    </h6>
+                                <p> <span th:text="${seance.getCinemaRoom()?.getName()}"></span>
+                                    <p><a href="admin_seance_edit.html"
+                                       th:href="@{/admin/seance/edit/{seanceId}(seanceId=${seance.getId()})}">Edit</a> |
                                     <a href="admin_seances.html"
                                        th:href="@{/admin/seance/delete/{seanceId}(seanceId=${seance.getId()})}">Delete</a>
                                 </p>

@@ -28,8 +28,8 @@ public class SeanceService {
     private final TicketRepository ticketRepository;
     private final SeatRepository seatRepository;
 
-    public Optional<Seance> editSeance(Seance seance) {
-        return seanceRepository.update(seance);
+    public Seance editSeance(Seance seance) {
+        return seanceRepository.update(seance).orElseThrow();
     }
 
     public Integer addSeance(CreateSeanceDto seanceDto) {

@@ -3,6 +3,7 @@ package com.app.mappers;
 import com.app.model.*;
 import com.app.dto.*;
 import com.app.model.thymeleaf.localDateAsString.MovieLocalDateAsString;
+import com.app.model.thymeleaf.localDateAsString.SeanceLocalDateAsString;
 import org.apache.tomcat.jni.Local;
 
 import java.time.LocalDateTime;
@@ -65,6 +66,38 @@ public interface Mapper {
                 .movieId(seanceDto.getMovieId())
                 .cinemaRoomId(seanceDto.getCinemaRoomId())
                 .price(seanceDto.getPrice())
+                .build();
+    }
+
+    static SeanceLocalDateAsString fromSeanceToSeanceLocalDateAsString(Seance seance) {
+        return SeanceLocalDateAsString
+                .builder()
+                .id(seance.getId())
+                .dateTime(seance.getDateTime().toString())
+                .movieId(seance.getMovieId())
+                .cinemaRoomId(seance.getCinemaRoomId())
+                .price(seance.getPrice())
+                .build();
+    }
+
+    static CreateSeanceDto fromSeanceLocalDateAsStringToSeanceDto(SeanceLocalDateAsString seance) {
+        return CreateSeanceDto
+                .builder()
+                .dateTime(LocalDateTime.parse(seance.getDateTime()))
+                .movieId(seance.getMovieId())
+                .cinemaRoomId(seance.getCinemaRoomId())
+                .price(seance.getPrice())
+                .build();
+    }
+
+    static Seance fromSeanceLocalDateAsStringToSeance(SeanceLocalDateAsString seance) {
+        return Seance
+                .builder()
+                .id(seance.getId())
+                .dateTime(LocalDateTime.parse(seance.getDateTime()))
+                .movieId(seance.getMovieId())
+                .cinemaRoomId(seance.getCinemaRoomId())
+                .price(seance.getPrice())
                 .build();
     }
 

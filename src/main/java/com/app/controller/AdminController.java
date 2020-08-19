@@ -6,6 +6,7 @@ import com.app.mappers.Mapper;
 import com.app.model.*;
 import com.app.model.thymeleaf.*;
 import com.app.model.thymeleaf.localDateAsString.MovieLocalDateAsString;
+import com.app.model.thymeleaf.localDateAsString.SeanceLocalDateAsString;
 import com.app.service.*;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -198,6 +199,31 @@ public class AdminController {
     }
 
     //--------------[SEANCE]-----------------------------------
+
+    @PostMapping("seance/edit")
+    public String saveEditedSeance (@ModelAttribute SeanceLocalDateAsString seanceLDS, Model model){
+        var seance = Mapper.fromSeanceLocalDateAsStringToSeance(seanceLDS);
+        model.addAttribute("status",(seanceService.editSeance(seance).getId().equals(seance.getId())) ? "Seance edited!" : "Can't edit seance");
+        return "admin_operation";
+    }
+
+    @GetMapping("seance/edit/{id}")
+    public String editSeance (@PathVariable Integer id, Model model){
+        var seance = Mapper.fromSeanceToSeanceLocalDateAsString(seanceService.findById(id));
+        Map<Integer, String> cinemaRoomAndCinema = cinemaRoomService
+                .getAll()
+                .stream()
+                .collect(Collectors.toMap(
+                        CinemaRoom::getId,
+                        room -> cinemaService.getById(room.getId()).getName() + " (" +
+                                cityService.showNameByCityId(cinemaService.getById(room.getId()).getCityId()) + ") - "
+                                + cinemaRoomService.findById(room.getId()).getName()
+                ));
+        model.addAttribute("seance",seance);
+        model.addAttribute("rooms",cinemaRoomAndCinema);
+        model.addAttribute("movies",movieService.getAllWithFutureDate());
+        return "admin_seance_edit";
+    }
 
     @PostMapping("seance/add")
     public String addSeance(@ModelAttribute CreateSeanceDto seanceDto, Model model) {

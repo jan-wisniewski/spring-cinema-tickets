@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 @Builder
 @Data
 public class SeanceLocalDateAsString {
+    private Integer id;
     private Integer movieId;
     private Integer cinemaRoomId;
     private String dateTime;

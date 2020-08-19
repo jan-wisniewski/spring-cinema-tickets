@@ -23,14 +23,11 @@
 
                         <div class="movie-item-style-2">
                             <div class="mv-item-infor">
-                                <h6><span
-                                        th:text="${movie.getTitle()}"></span> <span
-                                        th:text="${movie.getGenre()}"></span>
-                                    <p>Description: <span
-                                            th:text="${movie.getDescription()}"></span>,</p>
-                                    Play duration: <span
-                                            th:text="${movie.getDateFrom()}"></span>) - <span
-                                            th:text="${movie.getDateTo()}"></span></h6>
+                                <h6><span th:text="${movie.getTitle()}"></span> (ID: <span
+                                        th:text="${movie.getId()}"></span>)</h6>
+                                    <p><span th:text="${movie.getGenre()}"></span>
+                                    <p>Description: <span th:text="${movie.getDescription()}"></span>,</p>
+                                    <p>Date: <span th:text="${movie.getDateFrom()}"></span> - <span th:text="${movie.getDateTo()}"></span>
                                 <p>
                                     <a href="admin_movie_edit.html"
                                        th:href="@{/admin/movie/edit/{movieId}(movieId=${movie.getId()})}">Edit</a> |

@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/header :: navbar"></div>
+<body>
+<div class="hero user-hero">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="hero-ct">
+                    <h1>Admin Panel - Edit Seance: <span th:text="${seance.getId()}"></span></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-single movie_list">
+    <div class="container">
+        <div class="row ipad-width2">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="form-style-1 user-information">
+                    <form th:action="@{/admin/seance/edit}" th:object="${seance}" method="post">
+                        <p>Edit Seance:
+                        <p>Movie:
+                            <select class="form-control" id="testOrder"  th:field="*{movieId}"  name="testOrder" required>
+                                <option value="">Select movie</option>
+                                <option th:value="${seance.getMovieId()}" th:text="${seance.movieId}" selected></option>
+                                <option th:each="movie : ${movies}"
+                                        th:text="${movie.getTitle()}"
+                                        th:value="${movie.getId()}"></option>
+                            </select></p>
+                        <p>Cinema room:
+                            <select class="form-control" th:field="*{cinemaRoomId}"  name="testOrder" required>
+                                <option value="">Select cinema room</option>
+                                <option th:value="${seance.getCinemaRoomId()}" th:text="${seance.getCinemaRoomId()}" selected></option>
+                                <option th:each="cinemaRoom : ${rooms}"
+                                        th:text="${cinemaRoom.getValue()}"
+                                        th:value="${cinemaRoom.getKey()}"></option>
+                            </select></p>
+                        <p>Date: <input type="datetime-local" th:value="${seance.getDateTime()}" th:field="*{dateTime}" placeholder="Enter start date" required></p>
+                        <p>Price: <input type="text" th:field="*{price}" th:value="${seance.getPrice()}" pattern="\d*(.\d+)?" title="eg. 10 / 12.50" placeholder="Enter price" required></p>
+                        <input type="hidden" th:field="*{id}" th:value="${seance.getId()}">
+                        <p><input type="submit" value="Edit seance"></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<div th:replace="fragments/footer :: footer"></div>
