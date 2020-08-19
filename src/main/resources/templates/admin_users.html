@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/header :: navbar"></div>
+<body>
+<div class="hero user-hero">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="hero-ct">
+                    <h1>Admin Panel - Users</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-single movie_list">
+    <div class="container">
+        <div class="row ipad-width2">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="form-style-1 user-information">
+                    <tr th:each="user: ${users}">
+                        <div class="movie-item-style-2">
+                            <div class="mv-item-infor">
+                                <h6>(ID: <span th:text="${user.getId()}"></span>) <span th:text="${user.getName()}"></span> <span th:text="${user.getSurname()}"></span> </h6>
+                                <p>Role: <span th:text="${user.getRole()}"></span></p>
+                                    <p>Email: <span th:text="${user.getEmail()}"></span>  </p>
+<!--                                <p> <a href="admin_city_edit.html" th:href="@{/admin/city/edit/{cityId}(cityId=${city.getId()})}">Edit</a> |-->
+                                    <a href="admin_cities.html" th:href="@{/admin/user/delete/{userId}(userId=${user.getId()})}">Delete</a>
+                                </p>
+                            </div>
+                        </div>
+                    </tr>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<div th:replace="fragments/footer :: footer"></div>

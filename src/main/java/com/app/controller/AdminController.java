@@ -279,9 +279,32 @@ public class AdminController {
 
     //--------------[USER]-----------------------------------
 
+    @GetMapping("/user")
+    public String users(Model model) {
+        List<UsersWithObj> usersWithObjs =
+                userService
+                        .findAll()
+                        .stream()
+                        .map(user -> UsersWithObj
+                                .builder()
+                                .id(user.getId())
+                                .name(user.getName())
+                                .surname(user.getSurname())
+                                .email(user.getEmail())
+                                .password(user.getPassword())
+                                .role(user.getRole())
+                                .build())
+                        .collect(Collectors.toList());
+        model.addAttribute("users", usersWithObjs);
+
+        return "admin_users";
+    }
+
     @GetMapping("/user/delete/{id}")
-    public Integer deleteUser(@PathVariable Integer id) {
-        return (userService.delete(id)) ? 1 : 0;
+    public String deleteUser(@PathVariable Integer id, Model model) {
+        model.addAttribute("status", (userService.delete(id)) ? "User deleted!" : "Cant' delete user.");
+        return "admin_operation";
+
     }
 
 }
