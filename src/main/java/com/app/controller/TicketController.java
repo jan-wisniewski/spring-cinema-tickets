@@ -1,18 +1,18 @@
 package com.app.controller;
 
-import com.app.model.Reservation;
-import com.app.model.Seance;
-import com.app.model.Ticket;
+import com.app.dto.CreateTicketDto;
+import com.app.mappers.Mapper;
+import com.app.model.*;
 import com.app.model.thymeleaf.SeanceWithObj;
 import com.app.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
+import java.security.Principal;
+import java.util.Arrays;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -23,12 +23,29 @@ public class TicketController {
     private final SeanceService seanceService;
     private final MovieService movieService;
     private final CinemaRoomService cinemaRoomService;
-    private final ReservationService reservationService;
     private final SeatSeanceService seatSeanceService;
-    private final SeatService seatService;
+    private final ReservationService reservationService;
+    private final UserService userService;
+
+    @PostMapping("/seance/buy")
+    public String buyTicket (@ModelAttribute CreateTicketDto ticketDto, @RequestParam String ticket_option, String ticket_type, Model model){
+        String status = "";
+        if (ticket_type.equals("student")){
+            ticketDto.setDiscount(BigDecimal.valueOf(0.5));
+        }
+        if (ticket_option.equals("buy")) {
+            ticketService.buyTicket(ticketDto);
+            status = "You've successfully bought ticket!";
+        } else {
+            reservationService.addReservation(Mapper.fromCreateTicketDtoToReservation(ticketDto));
+            status = "You've successfully reserved ticket!";
+        }
+        model.addAttribute("status",status);
+        return "admin_operation";
+    }
 
     @GetMapping("/seance/{id}")
-    public String findById (@PathVariable Integer id, Model model){
+    public String findById (@PathVariable Integer id, Model model, Principal principal){
         Seance seance = seanceService.findById(id);
         var seanceObj = SeanceWithObj
                 .builder()
@@ -38,12 +55,12 @@ public class TicketController {
                 .dateTime(seance.getDateTime())
                 .cinemaRoom(cinemaRoomService.findById(seance.getCinemaRoomId()))
                 .build();
+        SeatsSeance[][] seats = ticketService.seatsSeancesFromListToArray(seatSeanceService.findAllBySeanceId(id));
+        model.addAttribute("seatSeances",seats);
         model.addAttribute("seance",seanceObj);
-        model.addAttribute("seatSeances",seatSeanceService.findAllBySeanceId(seance.getId()));
         model.addAttribute("freeSeatSeances",seatSeanceService.findAllBySeanceIdWithFreeStatus(seance.getId()));
-        model.addAttribute("seats",seatService.getAll());
-       // model.addAttribute("tickets",ticketService.findBySeanceId(seance.getId()));
-        //model.addAttribute("reservations",reservationService.findBySeanceId(seance.getId()));
+        model.addAttribute("userId",userService.findByUsername(principal.getName()).getId());
+        model.addAttribute("ticket",new CreateTicketDto());
         return "buyticket";
     }
 

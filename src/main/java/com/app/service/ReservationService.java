@@ -1,7 +1,9 @@
 package com.app.service;
 
+import com.app.enums.SeatState;
 import com.app.exception.ReservationServiceException;
 import com.app.model.Reservation;
+import com.app.model.SeatsSeance;
 import com.app.model.view.ReservationWithUser;
 import com.app.repository.ReservationRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +17,7 @@ import java.util.Optional;
 public class ReservationService {
 
     private final ReservationRepository reservationRepository;
+    private final SeatSeanceService seatSeanceService;
 
     public Integer clearReservations(Integer minutes) {
         return reservationRepository.deleteIfLessThanMinutes(minutes);
@@ -29,6 +32,9 @@ public class ReservationService {
     }
 
     public Optional<Reservation> addReservation(Reservation reservation) {
+        SeatsSeance currentSeat = seatSeanceService.getSeatSeancesBySeatId(reservation.getSeatId());
+        currentSeat.setState(SeatState.RESERVED);
+        seatSeanceService.editSeatSeance(currentSeat);
         return reservationRepository.add(reservation);
     }
 

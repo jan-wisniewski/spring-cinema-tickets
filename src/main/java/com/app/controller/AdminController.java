@@ -259,7 +259,6 @@ public class AdminController {
         model.addAttribute("seances", seanceWithObjs);
         model.addAttribute("newSeance", new Seance());
         model.addAttribute("futureMovies", movieService.getAllWithFutureDate());
-        System.out.println(movieService.getAllWithFutureDate());
         model.addAttribute("roomIdCinemaCity", cinemaRoomAndCinema);
         return "admin_seances";
     }

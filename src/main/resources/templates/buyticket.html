@@ -22,26 +22,49 @@
                         <img src="../static/images/uploads/mv-it2.jpg" th:src="@{/assets/images/uploads/mv-it2.jpg}">
                         <div class="mv-item-infor">
                             <h6><span th:text="${seance.movie?.getTitle()}"></span></h6>
-
-                            <tr th:each="seat : ${seatSeances}">
-                          <td><span th:text="${seat.getState()+' '+seat.getSeatId()}"><input type="checkbox"/></span></td><br/>
-                            </tr>
+                            <div style="background-color: #fff; text-align: center; margin-botom: 5px;">SCREEN</div>
+                            <table>
+                                <tr th:each="row: ${seatSeances}">
+                                    <td th:each="place: ${row}">
+                                    <input type="button" style="height:50px; width:100px" th:value="${place.getSeatId()+'. '+place.getState().name()}">
+                                   <!--     <input type="button" style="height:100px; width:100px" th:value="${!place.getState().name().equals('FREE') ? 'NOT FREE' : place.getSeatId()+'. '+place.getState().name()}">
+                                   --> </td>
+                                </tr>
+                            </table>
 
                             <p>Price: <span th:text="${seance.getPrice()}"></span>$</p>
-                            <p>Date: <span th:text="${#temporals.format(seance.getDateTime(), 'dd-MM-yyyy HH:mm:ss')}"></span></p>
-                            <p>Chosen place: <select class="form-control" name="testOrder" >
-                                <option value="">Select place</option>
-                                <option th:each="seat : ${freeSeatSeances}"
-                                        th:text="${seat.getSeatId()}"
-                                        th:value="${seat.getId()}"></option>
-                            </select>
+                            <p>Date: <span
+                                    th:text="${#temporals.format(seance.getDateTime(), 'dd-MM-yyyy HH:mm:ss')}"></span>
+                            </p>
+
+                            <form th:action="@{/ticket/seance/buy}" th:object="${ticket}" method="post">
+                                <p>Chosen place: <select class="form-control" name="seatId">
+                                    <option value="">Select place</option>
+                                    <option th:each="seat : ${freeSeatSeances}"
+                                            th:text="${seat.getSeatId()}"
+                                            th:value="${seat.getId()}"></option>
+                                </select></p>
                                 <p>Buy or reserve?
-                            <select class="form-control" name="testOrder" >
-                                <option value="">Select option</option>
-                                <option value="">Buy</option>
-                                <option value="">Reserve</option>
-                            </select>
-                            <input type="submit" value="Buy"></p>
+                                    <select class="form-control" name="ticket_option">
+                                        <option value="buy">Buy</option>
+                                        <option value="reserve">Reserve</option>
+                                    </select></p>
+                                <p>Ticket type
+                                    <select class="form-control" name="ticket_type">
+                                        <option value="normal">Normal</option>
+                                        <option value="student">Student (- 50%)</option>
+                                    </select></p>
+                                    <input type="hidden" id="seanceId" name="seanceId" th:value="${seance.id}">
+                                    <input type="hidden" id="userId" name="userId" th:value="${userId}">
+                                    <input type="hidden" id="price" name="price" th:value="${seance.getPrice()}">
+                                    <input type="hidden" id="discount" name="discount" value="0">
+
+
+<!--                                    <input type="hidden" id="price" name="price" th:if="(ticket_type == normal) ? ">-->
+
+
+                                <input type="submit" value="Buy">
+                            </form>
                         </div>
                     </div>
                 </div>

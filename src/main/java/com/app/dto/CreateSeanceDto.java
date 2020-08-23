@@ -16,6 +16,6 @@ import java.time.LocalDateTime;
 public class CreateSeanceDto {
     private Integer movieId;
     private Integer cinemaRoomId;
-    private LocalDateTime dateTime;
+    private String dateTime;
     private BigDecimal price;
 }
