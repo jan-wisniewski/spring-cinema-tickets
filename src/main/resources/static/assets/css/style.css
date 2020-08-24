@@ -5212,6 +5212,8 @@ ul {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
+  width: 120px;
+  height: 190px;
 }
 @media (max-width: 767px) {
   .blog-item-style-1 {

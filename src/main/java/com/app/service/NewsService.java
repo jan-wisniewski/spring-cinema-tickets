@@ -10,6 +10,7 @@ import com.app.validator.CreateNewsDtoValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,6 +21,13 @@ public class NewsService {
 
     public List<News> findAll() {
         return newsRepository.findAll();
+    }
+
+    public List<News> findAllAndSortByDate() {
+        return newsRepository.findAll()
+                .stream()
+                .sorted(Comparator.comparing(News::getDate, Comparator.reverseOrder()))
+                .collect(Collectors.toList());
     }
 
     public Integer deleteById(Integer id) {

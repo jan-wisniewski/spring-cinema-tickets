@@ -17,7 +17,7 @@ public class MainController {
 
     @GetMapping("/")
     public String getNews(Model model){
-        model.addAttribute("newsAll",newsService.findAll());
+        model.addAttribute("newsAll",newsService.findAllAndSortByDate());
         return "index";
     }
 
