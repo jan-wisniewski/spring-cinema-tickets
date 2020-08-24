@@ -33,6 +33,18 @@ public class DbConnection {
     }
 
     public void setUpTables() {
+
+        var NEWS = """
+                create table if not exists news (
+                id integer primary key auto_increment,
+                title varchar(200) not null,
+                description varchar(255) not null,
+                content varchar(255) not null,
+                author varchar(50) not null,
+                date timestamp not null
+                );
+                """;
+
         var MOVIES = """
                 create table if not exists movies (
                 id integer primary key auto_increment,
@@ -147,6 +159,7 @@ public class DbConnection {
         jdbi
                 .useTransaction(handle -> {
                     handle.execute(MOVIES);
+                    handle.execute(NEWS);
                     handle.execute(USERS);
                     handle.execute(CITIES);
                     handle.execute(CINEMAS_TABLE);

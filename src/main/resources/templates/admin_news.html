@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/header :: navbar"></div>
+<body>
+<div class="hero user-hero">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="hero-ct">
+                    <h1>Admin Panel - news</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-single movie_list">
+    <div class="container">
+        <div class="row ipad-width2">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="form-style-1 user-information">
+                    <tr th:each="news: ${newsAll}">
+
+                        <div class="movie-item-style-2">
+                            <div class="mv-item-infor">
+                                <h6><span th:text="${news.getTitle()}"></span> (ID: <span
+                                        th:text="${news.getId()}"></span>)</h6>
+                                    <p><span th:text="${news.author}"></span>
+                                    <p>Description: <span th:text="${news.getDescription()}"></span>,</p>
+                                    <p>Date: <span th:text="${#temporals.format(news.getDate(), 'dd-MM-yyyy HH:mm:ss')}"></span>
+                                <p>
+                                    <a href="admin_news_edit.html"
+                                       th:href="@{/admin/news/edit/{newsId}(newsId=${news.getId()})}">Edit</a> |
+                                    <a href="admin_movies.html"
+                                       th:href="@{/admin/news/delete/{newsId}(newsId=${news.getId()})}">Delete</a>
+                                </p>
+                            </div>
+                        </div>
+                    </tr>
+                    <form th:action="@{/admin/news/add}" th:object="${news}" method="post">
+                        <p>Add a news: <input type="text" th:field="*{title}"
+                                                   placeholder="Enter title" required></p>
+                        <p>Description: <input type="text" th:field="*{description}" placeholder="Enter description"
+                                               required></p>
+                        <p>Content: <textarea  rows = "20" cols = "80" th:field="*{content}" placeholder="Enter news text"
+                                                  required></textarea></p>
+                        <p>Author: <input type="text" th:field="*{author}" placeholder="Enter author"
+                                               required></p>
+                        <p>Date: <input type="datetime-local" th:field="*{date}"
+                                              placeholder="Enter start date" required></p>
+                        <p><input th:href="admin_news.html" type="submit" value="Add news"></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<div th:replace="fragments/footer :: footer"></div>

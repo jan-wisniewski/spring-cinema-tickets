@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/header :: navbar"></div>
+<body>
+<div class="hero user-hero">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="hero-ct">
+                    <h1>Admin Panel - Edit news: <span th:text="${news.getId()}"></span></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-single movie_list">
+    <div class="container">
+        <div class="row ipad-width2">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="form-style-1 user-information">
+                    <form th:action="@{/admin/news/edit}" th:object="${news}" method="post">
+                        <p>Edit news: <input type="text" th:field="*{title}"
+                                                   placeholder="Enter title" required></p>
+                        <p>Description: <input type="text" th:field="*{description}" placeholder="Enter description"
+                                               required></p>
+                        <p>Content: <textarea  rows = "20" cols = "80" th:field="*{content}"placeholder="Enter news text"
+                                                  required></textarea></p>
+                        <p>Author: <input type="text" th:field="*{author}" placeholder="Enter author"
+                                               required></p>
+                        <p>Date: <input type="datetime-local" th:value="${news.getDate()}" th:field="*{date}"
+                                              placeholder="Enter start date" required></p>
+                        <input type="hidden" th:field="*{id}" th:value="${news.getId()}">
+                        <p><input th:href="admin_news.html" type="submit" value="Edit news"></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<div th:replace="fragments/footer :: footer"></div>

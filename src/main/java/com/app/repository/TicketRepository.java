@@ -11,4 +11,5 @@ import java.util.List;
 public interface TicketRepository extends CrudRepository<Ticket, Integer> {
     boolean isPlaceAvailable(Ticket ticket);
     List<Ticket> findBySeanceId (Integer id);
+    List<Ticket> findByUserId(Integer id);
 }

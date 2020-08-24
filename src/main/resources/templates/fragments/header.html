@@ -26,7 +26,7 @@
                     <ul class="nav navbar-nav flex-child-menu menu-right">
 
                         <span sec:authorize="isAuthenticated()">Hello, <span sec:authentication="name"></span>! |
-                        <a href="/profile/edit">Profile</a> |
+                        <a href="/profile/edit">Profile</a> | <a href="/profile/tickets">Tickets</a> |
                         <span sec:authorize="hasAuthority('ADMIN')"><a href="/admin">Panel admina</a> | </span>
                         <a href="/logout">Logout</a>
                         </span>

@@ -29,7 +29,6 @@
                             <p>DATE: <span th:text="${#temporals.format(seance.getDateTime(), 'dd-MM-yyyy HH:mm:ss')}"></span></p>
                             <a href="buyticket.html" th:href="@{/ticket/seance/{seanceId}(seanceId=${seance.getId()})}"><input type="submit" value="Buy ticket"></a>
                         </div>
-
                     </div>
 
                 </tr>

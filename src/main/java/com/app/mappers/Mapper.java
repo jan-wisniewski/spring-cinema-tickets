@@ -3,6 +3,7 @@ package com.app.mappers;
 import com.app.dto.*;
 import com.app.model.*;
 import com.app.model.thymeleaf.localDateAsString.MovieLocalDateAsString;
+import com.app.model.thymeleaf.localDateAsString.NewsLocalDateAsString;
 import com.app.model.thymeleaf.localDateAsString.SeanceLocalDateAsString;
 
 import java.time.LocalDateTime;
@@ -183,4 +184,38 @@ public interface Mapper {
                 .build();
     }
 
+    static News fromNewsDtoToNews(CreateNewsDto newsDto) {
+        return News
+                .builder()
+                .author(newsDto.getAuthor())
+                .content(newsDto.getContent())
+                .description(newsDto.getDescription())
+                .title(newsDto.getTitle())
+                .date(LocalDateTime.parse(newsDto.getDate()))
+                .build();
+    }
+
+    static NewsLocalDateAsString fromNewsToNewsLocalDateAsString(News news) {
+        return NewsLocalDateAsString
+                .builder()
+                .id(news.getId())
+                .author(news.getAuthor())
+                .content(news.getContent())
+                .description(news.getDescription())
+                .title(news.getTitle())
+                .date(news.getDate().toString())
+                .build();
+    }
+
+    static News fromNewsLocalDateAsStringToNews(NewsLocalDateAsString newsLocalDateAsString) {
+        return News
+                .builder()
+                .id(newsLocalDateAsString.getId())
+                .author(newsLocalDateAsString.getAuthor())
+                .content(newsLocalDateAsString.getContent())
+                .description(newsLocalDateAsString.getDescription())
+                .title(newsLocalDateAsString.getTitle())
+                .date(LocalDateTime.parse(newsLocalDateAsString.getDate()))
+                .build();
+    }
 }

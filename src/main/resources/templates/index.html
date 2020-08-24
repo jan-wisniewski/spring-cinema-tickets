@@ -2,24 +2,44 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <div th:replace="fragments/header :: navbar"></div>
 <body>
-<div class="user-hero">
-
-</div>
-<div class="page-single movie_list">
+<div class="hero user-hero">
     <div class="container">
-        <div class="row ipad-width2">
-            <div class="col-md-8 col-sm-12 col-xs-12">
-                <span style="color: #f0f8ff; ">
-                <h1> profil kina -> /cinema/id<br><br>
-                    profil usera -> /user/id<br><br>
-                    rejestracja -> /sign-up<br><br>
-                    seanse -> /seance/all<br><br>
-                    seanse w danym kinie -> /search/cinema/id/seance<br><br>
-                    kina w danym miescie /search/city/id/cinema
-                </h1></span>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="hero-ct">
+                    <h1>Latest news</h1>
+                </div>
             </div>
         </div>
     </div>
 </div>
-<<<<<<< HEAD
+<div class="page-single movie_list">
+    <div class="container">
+        <div class="row ipad-width2">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="form-style-1 user-information">
+
+                    <tr th:each="news: ${newsAll}">
+
+
+                    <div class="row">
+                        <div class="blog-item-style-1">
+                            <img src="../static/images/uploads/blog-it1.jpg" th:src="@{/assets/images/uploads/blog-it1.jpg}" alt="" width="120" height="190">
+                            <div class="blog-it-infor">
+                                <h3><span th:text="${news.getTitle()}"></span> </h3>
+                                <span class="time" th:text="${news.getDate()+' by ' +news.getAuthor()}"></span>
+                                <p th:text="${news.getDescription()}"></p>
+                                <p th:text="${news.getContent()}"></p>
+                            </div>
+                        </div>
+                    </div>
+                        <hr>
+                    </tr>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div th:replace="fragments/footer :: footer"></div>

@@ -52,4 +52,19 @@ public class TicketRepositoryImpl extends AbstractCrudRepository<Ticket, Integer
                         .list()
                 );
     }
+
+    @Override
+    public List<Ticket> findByUserId(Integer id) {
+        var sql = """
+                select * from tickets where user_id = :userId;
+                """;
+        return dbConnection
+                .getJdbi()
+                .withHandle(handle -> handle
+                        .createQuery(sql)
+                        .bind("userId",id)
+                        .mapToBean(Ticket.class)
+                        .list()
+                );
+    }
 }

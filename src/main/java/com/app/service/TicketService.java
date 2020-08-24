@@ -78,5 +78,8 @@ public class TicketService {
         return ticketRepository.findBySeanceId(id);
     }
 
+    public List<Ticket> findByUserId (Integer id){
+        return ticketRepository.findByUserId(id);
+    }
 
 }

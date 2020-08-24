@@ -6,6 +6,7 @@ import com.app.mappers.Mapper;
 import com.app.model.*;
 import com.app.model.thymeleaf.*;
 import com.app.model.thymeleaf.localDateAsString.MovieLocalDateAsString;
+import com.app.model.thymeleaf.localDateAsString.NewsLocalDateAsString;
 import com.app.model.thymeleaf.localDateAsString.SeanceLocalDateAsString;
 import com.app.service.*;
 import lombok.AllArgsConstructor;
@@ -33,10 +34,46 @@ public class AdminController {
     private SeatService seatService;
     private TicketService ticketService;
     private UserService userService;
+    private NewsService newsService;
 
     @GetMapping("")
     public String index() {
         return "admin";
+    }
+
+    //--------------[NEWS]-----------------------------------
+
+    @GetMapping("/news")
+    public String news(Model model) {
+        model.addAttribute("newsAll", newsService.findAll());
+        model.addAttribute("news",new CreateNewsDto());
+        return "admin_news";
+    }
+
+    @GetMapping("/news/delete/{id}")
+    public String deleteNews(@PathVariable Integer id, Model model) {
+        model.addAttribute("status", (newsService.deleteById(id) == 1) ? "News deleted!" : "Can't delete news.");
+        return "admin_operation";
+    }
+
+    @PostMapping("news/add")
+    public String addNews(@ModelAttribute CreateNewsDto newsDto, Model model) {
+        model.addAttribute("status", (newsService.add(newsDto) > 0) ? "News added!" : "Can't add news.");
+        return "admin_operation";
+    }
+
+    @PostMapping("news/edit")
+    public String saveEditedNews(@ModelAttribute NewsLocalDateAsString newsLocalDateAsString, Model model) {
+        News news = Mapper.fromNewsLocalDateAsStringToNews(newsLocalDateAsString);
+        System.out.println(news);
+        model.addAttribute("status", (newsService.editNews(news).getId().equals(news.getId())) ? "News edited!" : "Cant' edit news");
+        return "admin_operation";
+    }
+
+    @GetMapping("news/edit/{id}")
+    public String editNews(@PathVariable Integer id, Model model) {
+        model.addAttribute("news", Mapper.fromNewsToNewsLocalDateAsString(newsService.findById(id)));
+        return "admin_news_edit";
     }
 
 
@@ -201,14 +238,14 @@ public class AdminController {
     //--------------[SEANCE]-----------------------------------
 
     @PostMapping("seance/edit")
-    public String saveEditedSeance (@ModelAttribute SeanceLocalDateAsString seanceLDS, Model model){
+    public String saveEditedSeance(@ModelAttribute SeanceLocalDateAsString seanceLDS, Model model) {
         var seance = Mapper.fromSeanceLocalDateAsStringToSeance(seanceLDS);
-        model.addAttribute("status",(seanceService.editSeance(seance).getId().equals(seance.getId())) ? "Seance edited!" : "Can't edit seance");
+        model.addAttribute("status", (seanceService.editSeance(seance).getId().equals(seance.getId())) ? "Seance edited!" : "Can't edit seance");
         return "admin_operation";
     }
 
     @GetMapping("seance/edit/{id}")
-    public String editSeance (@PathVariable Integer id, Model model){
+    public String editSeance(@PathVariable Integer id, Model model) {
         var seance = Mapper.fromSeanceToSeanceLocalDateAsString(seanceService.findById(id));
         Map<Integer, String> cinemaRoomAndCinema = cinemaRoomService
                 .getAll()
@@ -219,9 +256,9 @@ public class AdminController {
                                 cityService.showNameByCityId(cinemaService.getById(room.getId()).getCityId()) + ") - "
                                 + cinemaRoomService.findById(room.getId()).getName()
                 ));
-        model.addAttribute("seance",seance);
-        model.addAttribute("rooms",cinemaRoomAndCinema);
-        model.addAttribute("movies",movieService.getAllWithFutureDate());
+        model.addAttribute("seance", seance);
+        model.addAttribute("rooms", cinemaRoomAndCinema);
+        model.addAttribute("movies", movieService.getAllWithFutureDate());
         return "admin_seance_edit";
     }
 

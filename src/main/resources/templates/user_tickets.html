@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="hero-ct">
-                    <h1>Administration Panel</h1>
+                    <h1>Your tickets and reservations</h1>
                 </div>
             </div>
         </div>
@@ -20,20 +20,11 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="form-style-1 user-information" action="#">
                     <div class="user-fav">
-                        <p>Database services</p>
-                        <ul>
-                            <li><a th:href="@{/admin/city}">Cities</a></li>
-                            <li><a th:href="@{/admin/cinema}">Cinemas</a></li>
-                            <li><a th:href="@{/admin/cinemaRoom}">Cinemas Rooms</a></li>
-                            <li><a th:href="@{/admin/movie}">Movies</a></li>
-                            <li><a th:href="@{/admin/news}">News</a></li>
-                            <li><a th:href="@{/admin/seance}">Seances</a></li>
-                            <li><a href="">Seats</a></li>
-                            <li><a th:href="@{/admin/user}">Users</a></li>
-                        </ul>
-                    </div>
-                    <div class="user-fav">
-                        <p>Others</p>
+                        <p>Tickets</p>
+                        <tr th:each="ticket: ${tickets}">
+                        <ul><span th:text="${ticket.getSeanceId()}"></span></ul>
+                        </tr>
+                        <p>Reservations</p>
                         <ul>
                             <li><a href="/logout">Log out</a></li>
                         </ul>
