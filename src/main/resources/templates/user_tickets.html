@@ -18,11 +18,14 @@
     <div class="container">
         <div class="row ipad-width">
             <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="form-style-1 user-information" action="#">
+                <div class="form-style-1">
                     <div class="user-fav">
-                        <p>Your tickets</p>
                         <tr th:each="ticket: ${tickets}">
-                        <ul><span th:text="${ticket.getMovie().getTitle()+' - '+ticket.getDate()+': ROW: ' +ticket.getRowNumber()+' / PLACE: '+ticket.getPlaceNumber()}"></span></ul>
+                            <div class="movie-item-style-2">
+                                <div class="mv-item-infor">
+                                    <h6><span th:text="${'TICKET ID: '+ticket.getId()+', Movie: ' +ticket.getMovie().getTitle()+', Date: '+ticket.getDate()+' [Row: ' +ticket.getRowNumber()+' / Place: '+ticket.getPlaceNumber()+'] - '+ticket.getCinema().getName()+' ('+ticket.getCity().getName()+')'}"></span></h6>
+                                </div>
+                            </div>
                         </tr>
                     </div>
                 </div>

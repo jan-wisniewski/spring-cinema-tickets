@@ -1,13 +1,10 @@
 package com.app.controller;
 
-import com.app.model.News;
 import com.app.service.NewsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import java.util.Comparator;
 
 @RequiredArgsConstructor
 @Controller

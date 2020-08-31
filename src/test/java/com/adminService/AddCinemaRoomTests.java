@@ -45,7 +45,6 @@ public class AddCinemaRoomTests {
         try {
             cinemaRoomService.addCinemaRoom(null);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
             exceptionMessage = e.getMessage();
         }
         assertEquals("CinemaRoomDto is null", exceptionMessage);

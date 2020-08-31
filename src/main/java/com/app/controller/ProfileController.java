@@ -29,6 +29,9 @@ public class ProfileController {
     private final SeanceService seanceService;
     private final MovieService movieService;
     private final SeatService seatService;
+    private final CityService cityService;
+    private final CinemaService cinemaService;
+    private final CinemaRoomService cinemaRoomService;
 
     @GetMapping("/tickets")
     public String profileTickets(Model model, Authentication authentication) {
@@ -42,13 +45,13 @@ public class ProfileController {
                             TicketWithObj
                                     .builder()
                                     .id(ticket.getId())
-                                    .discount(ticket.getDiscount())
-                                    .price(ticket.getPrice())
                                     .date(seanceService.findById(ticket.getSeanceId()).getDateTime())
                                     .movie(movieService.findById(seanceService.findById(ticket.getSeanceId()).getMovieId()))
                                     .user(currentUser)
                                     .placeNumber(seatService.getSeat(ticket.getSeatId()).getPlace())
                                     .rowNumber(seatService.getSeat(ticket.getSeatId()).getRowsNumber())
+                                    .city(cityService.findCityById(cinemaService.findCinemaById(cinemaRoomService.findById(seanceService.findById(ticket.getSeanceId()).getCinemaRoomId()).getCinemaId()).getCityId()))
+                                    .cinema(cinemaService.getById(cinemaRoomService.findById(seanceService.findById(ticket.getSeanceId()).getCinemaRoomId()).getCinemaId()))
                                     .build()
                     );
                 });
