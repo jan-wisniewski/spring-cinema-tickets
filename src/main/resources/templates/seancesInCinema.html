@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="hero-ct">
-                    <h1>Seances in cinema: <span th:text="${cinema.getName()}"/></h1>
+                    <h1>Seances in <span th:text="${cinema.getName()}"/></h1>
                 </div>
             </div>
         </div>
@@ -24,7 +24,7 @@
                             <div class="mv-item-infor">
                                 <h6><span th:text="${seance.getMovie()?.getTitle()}"></span></h6>
                                 <h6><span th:text="${seance.getMovie()?.getGenre()}"></span></h6>
-                                <p class="describe">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque pulvinar lectus id egestas fermentum. Suspendisse at ultrices odio. Fusce vel ullamcorper ligula. Etiam vitae risus tincidunt, dapibus orci ac, mollis nulla. Pellentesque bibendum risus id lectus hendrerit, vitae sollicitudin purus dapibus. Ut id orci vitae eros scelerisque laoreet in viverra nibh. Quisque vitae scelerisque leo. In id fermentum justo, in bibendum lorem. Praesent elit nibh, viverra ac iaculis vitae, laoreet sed magna. Vestibulum nec justo tellus.</p>
+                                <p ><span th:text="${seance.getMovie()?.getDescription()}"></span></p>
                                 <p>PRICE: <span th:text="${seance.getPrice()}"></span>$</p>
                                 <p>DATE: <span th:text="${#temporals.format(seance.getDateTime(), 'dd-MM-yyyy HH:mm:ss')}"></span></p>
                                 <a href="buyticket.html" th:href="@{/ticket/seance/{seanceId}(seanceId=${seance.getId()})}"><input type="submit" value="Buy ticket"></a>
