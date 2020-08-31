@@ -143,7 +143,6 @@ public class SeanceRepositoryImpl extends AbstractCrudRepository<Seance, Integer
 
     @Override
     public List<Seance> findByPhrase(String phrase) {
-        System.out.println(phrase);
         var sql = """
                 select s.id,s.movie_id,s.cinema_room_id,s.date_time,s.price
                 from seances s
@@ -151,8 +150,9 @@ public class SeanceRepositoryImpl extends AbstractCrudRepository<Seance, Integer
                 join cinema_rooms cr on s.cinema_room_id = cr.id
                 join cinemas c on cr.cinema_id = c.id
                 join cities ct on c.city_id = ct.id
-                where m.title like '%' || :search || '%'
+                where m.title = :search;
                 """;
+
         return dbConnection
                 .getJdbi()
                 .withHandle(handle -> handle

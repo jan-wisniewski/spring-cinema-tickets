@@ -82,7 +82,6 @@ public class SearchController {
         }
         //model.addAttribute("phrase",phrase);
         model.addAttribute("seances", seances);
-        System.out.println(seances);
         return "search";
     }
 
