@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/header :: navbar"></div>
+<body>
+<div class="hero user-hero">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="hero-ct">
+                    <h1>Admin Panel - Edit Room: <span th:text="${cinemaRoom.getName()}"></span></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-single movie_list">
+    <div class="container">
+        <div class="row ipad-width2">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="form-style-1 user-information">
+                    <form th:action="@{/admin/cinemaRoom/edit}" th:object="${cinemaRoom}" method="post">
+                        <p>Edit cinema room name: <input type="text" th:field="*{name}" th:placeholder="${cinemaRoom.getName()}"></p>
+                        <input type="hidden" th:field="*{id}" th:value="${cinemaRoom.getId()}">
+                        <select class="form-control" id="testOrder"  th:field="*{cinemaId}"  name="testOrder" readonly>
+                            <option th:each="cinema : ${getAllCinemas}"
+                                    th:text="${cinema.getName()}"
+                                    th:value="${cinema.getId()}" th:selected="currentCinema" readonly></option>
+                        </select></p>
+                        <p> <input type="text" th:field="*{rowsNumber}"
+                                   placeholder="Enter row number"></p>
+                        <p> <input type="text" th:field="*{places}"
+                                   placeholder="Enter row seats"></p>
+                        <p> <input th:href="admin_cinema_room_edit.html" type="submit" value="Edit Room"></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<div th:replace="fragments/footer :: footer"></div>

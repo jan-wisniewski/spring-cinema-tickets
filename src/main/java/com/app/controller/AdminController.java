@@ -168,6 +168,21 @@ public class AdminController {
         return "admin_operation";
     }
 
+    @PostMapping("cinemaRoom/edit")
+    public String saveEditedCinemaRoom(@ModelAttribute CinemaRoom cinemaRoom, Model model) {
+        model.addAttribute("status", (cinemaRoomService.editCinemaRoom(cinemaRoom).getId().equals(cinemaRoom.getId())) ? "Cinema room edited!" : "Cant' edit cinema room");
+        return "admin_operation";
+    }
+
+    @GetMapping("cinemaRoom/edit/{id}")
+    public String editCinemaRoom(@PathVariable Integer id, Model model) {
+        model.addAttribute("cinemaRoom", cinemaRoomService.findById(id));
+        List<Cinema> cinemas = cinemaService.getAll();
+        model.addAttribute("getAllCinemas", cinemas);
+        model.addAttribute("currentCinema", cinemaRoomService.findById(id).getCinemaId().toString());
+        return "admin_cinema_room_edit";
+    }
+
     //--------------[CITY]-----------------------------------
 
 

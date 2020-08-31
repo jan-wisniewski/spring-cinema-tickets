@@ -29,7 +29,8 @@
                                     <span th:text="${cinemaRoom.getRowsNumber()}"></span>x<span th:text="${cinemaRoom.getPlaces()}"></span></h6>
 
 
-                                <p> EDIT |
+                                <p> <a href="admin_cinema_room_edit.html"
+                                                                   th:href="@{/admin/cinemaRoom/edit/{cinemaRoomId}(cinemaRoomId=${cinemaRoom.getId()})}"> Edit </a> |
                                     <a href="admin_cinemas.html"
                                        th:href="@{/admin/cinemaRoom/delete/{cinemaRoomId}(cinemaRoomId=${cinemaRoom.getId()})}">Delete</a>
                                 </p>
