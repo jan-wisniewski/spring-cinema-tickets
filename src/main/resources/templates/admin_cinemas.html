@@ -26,7 +26,7 @@
                                 <h6><span th:text="${cinema.getName()}"></span> (ID: <span
                                         th:text="${cinema.getId()}"></span>), <span
                                         th:text="${cinema.city?.getName()}"></span></h6>
-                                <p> EDIT |
+                                <p> <a href="admin_cinema_edit.html" th:href="@{/admin/cinema/edit/{cinemaId}(cinemaId=${cinema.getId()})}">Edit</a>  |
                                     <a href="admin_cinemas.html"
                                        th:href="@{/admin/cinema/delete/{cinemaId}(cinemaId=${cinema.getId()})}">Delete</a>
                                 </p>
