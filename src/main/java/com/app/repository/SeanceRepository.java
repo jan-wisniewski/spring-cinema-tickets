@@ -24,4 +24,6 @@ public interface SeanceRepository extends CrudRepository<Seance, Integer> {
     List<Seance> findByCity (City city);
 
     List<Seance> findByPhrase(String phrase);
+
+    List<Seance> getFutureSeancesListByCinemaRooms(List<CinemaRoom> cinemaRooms);
 }

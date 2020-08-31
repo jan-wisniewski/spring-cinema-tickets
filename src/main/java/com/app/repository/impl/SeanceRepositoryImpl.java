@@ -162,4 +162,23 @@ public class SeanceRepositoryImpl extends AbstractCrudRepository<Seance, Integer
                         .list()
                 );
     }
+
+    @Override
+    public List<Seance> getFutureSeancesListByCinemaRooms(List<CinemaRoom> cinemaRooms) {
+        List<Integer> cinemaRoomsIds = cinemaRooms
+                .stream()
+                .map(CinemaRoom::getId)
+                .collect(Collectors.toList());
+        var SQL = """
+                select * from seances where date_time > now() and cinema_room_id IN (<cinemaRoomsIds>)
+                """;
+        return dbConnection
+                .getJdbi()
+                .withHandle(handle ->
+                        handle.createQuery(SQL)
+                                .bindList("cinemaRoomsIds", cinemaRoomsIds)
+                                .mapToBean(Seance.class)
+                                .list()
+                );
+    }
 }

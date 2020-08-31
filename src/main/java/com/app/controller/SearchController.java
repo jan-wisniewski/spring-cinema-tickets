@@ -35,9 +35,7 @@ public class SearchController {
     @GetMapping("/cinema/{id}/seance")
     public String showSeancesInCinema(@PathVariable Integer id, Model model) {
         List<SeanceWithObj> seanceWithObjs = new ArrayList<>();
-        System.out.println(cinemaRoomService.getCinemaRoomListByCinemaId(id));
-        System.out.println("------------------------------------");
-        seanceService.getSeancesListByCinemaRooms(cinemaRoomService.getCinemaRoomListByCinemaId(id))
+        seanceService.getFutureSeancesListByCinemaRooms(cinemaRoomService.getCinemaRoomListByCinemaId(id))
                 .forEach(seance -> {
                     seanceWithObjs.add(
                             SeanceWithObj.builder()

@@ -56,6 +56,9 @@ public class CinemaService {
     }
 
     public Integer addCinema(CreateCinemaDto cinemaDto) {
+        if (cinemaDto==null){
+            throw new AdminServiceException("Cinema dto is null");
+        }
         var validator = new CreateCinemaDtoValidator();
         var errors = validator.validate(cinemaDto);
         if (!errors.isEmpty()) {
@@ -68,8 +71,7 @@ public class CinemaService {
         }
 
         if (cinemaRepository.findByName(cinemaDto.getName()).isPresent()) {
-            System.out.println("This city already exists in database");
-            return 0;
+            throw new AdminServiceException("Cinema with this name is already on DB");
         }
 
         Cinema cinemaToAdd = Cinema

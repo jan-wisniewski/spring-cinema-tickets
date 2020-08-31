@@ -28,18 +28,13 @@ public class TicketController {
     private final UserService userService;
 
     @PostMapping("/seance/buy")
-    public String buyTicket (@ModelAttribute CreateTicketDto ticketDto, @RequestParam String ticket_option, String ticket_type, Model model){
+    public String buyTicket (@ModelAttribute CreateTicketDto ticketDto, @RequestParam String ticket_type, Model model){
         String status = "";
         if (ticket_type.equals("student")){
             ticketDto.setDiscount(BigDecimal.valueOf(0.5));
         }
-        if (ticket_option.equals("buy")) {
-            ticketService.buyTicket(ticketDto);
-            status = "You've successfully bought ticket!";
-        } else {
-            reservationService.addReservation(Mapper.fromCreateTicketDtoToReservation(ticketDto));
-            status = "You've successfully reserved ticket!";
-        }
+        ticketService.buyTicket(ticketDto);
+        status = "You've successfully bought ticket!";
         model.addAttribute("status",status);
         return "admin_operation";
     }

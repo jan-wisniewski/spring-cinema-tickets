@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="hero-ct">
-                    <h1>Your tickets and reservations</h1>
+                    <h1>Your tickets</h1>
                 </div>
             </div>
         </div>
@@ -20,14 +20,10 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="form-style-1 user-information" action="#">
                     <div class="user-fav">
-                        <p>Tickets</p>
+                        <p>Your tickets</p>
                         <tr th:each="ticket: ${tickets}">
-                        <ul><span th:text="${ticket.getSeanceId()}"></span></ul>
+                        <ul><span th:text="${ticket.getMovie().getTitle()+' - '+ticket.getDate()+': ROW: ' +ticket.getRowNumber()+' / PLACE: '+ticket.getPlaceNumber()}"></span></ul>
                         </tr>
-                        <p>Reservations</p>
-                        <ul>
-                            <li><a href="/logout">Log out</a></li>
-                        </ul>
                     </div>
                 </div>
             </div>

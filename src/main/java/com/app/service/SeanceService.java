@@ -92,6 +92,11 @@ public class SeanceService {
                 .findSeancesByCinemaRooms(cinemaRooms);
     }
 
+    public List<Seance> getFutureSeancesListByCinemaRooms(List<CinemaRoom> cinemaRooms) {
+        return seanceRepository
+                .getFutureSeancesListByCinemaRooms(cinemaRooms);
+    }
+
     public String showAll() {
         return seanceRepository.findAll()
                 .stream()
@@ -122,4 +127,5 @@ public class SeanceService {
     public Seance findById(Integer seanceId) {
         return seanceRepository.findById(seanceId).orElseThrow();
     }
+
 }
