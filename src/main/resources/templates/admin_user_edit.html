@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/header :: navbar"></div>
+<body>
+<div class="hero user-hero">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="hero-ct">
+                    <h1>Admin Panel - Edit User: <span th:text="${user.getUsername()}"></span></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-single movie_list">
+    <div class="container">
+        <div class="row ipad-width2">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="form-style-1 user-information">
+                    <form th:action="@{/admin/user/edit}" th:object="${user}" method="post">
+                        <p>Name: <input type="text" name="name" pattern="[A-Z][a-z]+" required th:field="*{name}"
+                                        th:placeholder="${user.getName()}" readonly></p>
+                        <p>Surname: <input type="text" name="surname" pattern="[A-Z][a-z]+" required
+                                           th:field="*{surname}" th:placeholder="${user.getSurname()}" readonly></p>
+                        <p>User name: <input type="text" th:field="*{username}" th:value="${user.getUsername()}" readonly></p>
+                        <p>Email: <input type="text" th:field="*{email}" th:value="${user.getEmail()}" readonly></p>
+                        <input type="hidden" name="id" th:field="*{id}">
+                        <input type="hidden" name="old_password" th:value="${user.getPassword()}" th:field="*{password}">
+
+                        <p>Role:
+                            <select class="form-control" id="testOrder" th:field="*{role}" name="testOrder" required>
+                                <option value="">Select user role</option>
+                                <option th:each="roles : ${getAllRoles}"
+                                        th:text="${roles.toString()}"
+                                        th:value="${roles.toString()}"
+                                th:selected="currentRole"></option>
+                            </select></p>
+                        <p> <input type="submit" value="Edit user"></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<div th:replace="fragments/footer :: footer"></div>

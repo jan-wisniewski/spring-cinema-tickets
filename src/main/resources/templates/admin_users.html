@@ -25,7 +25,7 @@
                                 <h6>(ID: <span th:text="${user.getId()}"></span>) <span th:text="${user.getName()}"></span> <span th:text="${user.getSurname()}"></span> </h6>
                                 <p>Role: <span th:text="${user.getRole()}"></span></p>
                                     <p>Email: <span th:text="${user.getEmail()}"></span>  </p>
-<!--                                <p> <a href="admin_city_edit.html" th:href="@{/admin/city/edit/{cityId}(cityId=${city.getId()})}">Edit</a> |-->
+                                <p> <a href="admin_user_edit.html" th:href="@{/admin/user/edit/{userId}(userId=${user.getId()})}">Edit user's Role</a> |
                                     <a href="admin_cities.html" th:href="@{/admin/user/delete/{userId}(userId=${user.getId()})}">Delete</a>
                                 </p>
                             </div>

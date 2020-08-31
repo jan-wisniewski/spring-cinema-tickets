@@ -64,12 +64,12 @@ public class ProfileController {
     }
 
     @PostMapping("/edit")
-    public String editedProfile(@ModelAttribute EditProfileDto editProfileDto) {
-        if (editProfileDto.getNewPassword().isEmpty()) {
+    public String editedProfile (@ModelAttribute EditProfileDto editProfileDto, Model model){
+        if (editProfileDto.getNewPassword().isEmpty()){
             editProfileDto.setNewPassword(editProfileDto.getPassword());
         }
         User user = Mapper.fromEditProfileDtoToUser(editProfileDto);
-        userService.edit(user);
-        return "index";
+        model.addAttribute("status", (userService.edit(user).getId().equals(user.getId())) ? "User edited!" : "Can't edit user");
+        return "admin_operation";
     }
 }

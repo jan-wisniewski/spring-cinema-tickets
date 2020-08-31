@@ -45,6 +45,10 @@ public class CinemaService {
         return result;
     }
 
+    public Cinema editCinema(Cinema cinema) {
+        return cinemaRepository.update(cinema).orElseThrow();
+    }
+
     public Integer deleteCinema(Integer id) {
         Cinema cinema = cinemaRepository.findById(id).orElseThrow();
         if (!seanceRepository.findByCinema(cinema).isEmpty()) {

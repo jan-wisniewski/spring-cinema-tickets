@@ -64,7 +64,6 @@ public class UserService {
     }
 
     public User edit(User chosenUser) {
-        chosenUser.setPassword(passwordEncoder.encode(chosenUser.getPassword()));
         return userRepository.update(chosenUser).orElseThrow(() -> new UserServiceException("Cannot edit user"));
     }
 

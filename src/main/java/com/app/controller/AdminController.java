@@ -2,6 +2,7 @@ package com.app.controller;
 
 import com.app.dto.*;
 import com.app.enums.Genre;
+import com.app.enums.Role;
 import com.app.mappers.Mapper;
 import com.app.model.*;
 import com.app.model.thymeleaf.*;
@@ -110,6 +111,21 @@ public class AdminController {
         model.addAttribute("status", (cinemaService.addCinema(new CreateCinemaDto(cinema.getName(), cinema.getCityId())) == 1) ? "Cinema added!" : "Cant' add Cinema. Duplicate name");
         System.out.println(cinema.toString());
         return "admin_operation";
+    }
+
+    @PostMapping("cinema/edit")
+    public String saveEditedCinema(@ModelAttribute Cinema cinema, Model model) {
+        model.addAttribute("status", (cinemaService.editCinema(cinema).getId().equals(cinema.getId())) ? "Cinema edited!" : "Cant' edit cinema");
+        return "admin_operation";
+    }
+
+    @GetMapping("cinema/edit/{id}")
+    public String editCinema(@PathVariable Integer id, Model model) {
+        model.addAttribute("cinema", cinemaService.findCinemaById(id));
+        List<City> cities = cityService.getAll();
+        model.addAttribute("getAllCities", cities);
+        model.addAttribute("currentCity", cinemaService.findCinemaById(id).getCityId().toString());
+        return "admin_cinema_edit";
     }
 
     //--------------[CINEMA ROOM]-----------------------------------
@@ -340,7 +356,20 @@ public class AdminController {
     public String deleteUser(@PathVariable Integer id, Model model) {
         model.addAttribute("status", (userService.delete(id)) ? "User deleted!" : "Cant' delete user.");
         return "admin_operation";
+    }
+    @PostMapping("user/edit")
+    public String saveEditedUser(@ModelAttribute User user, Model model) {
+        model.addAttribute("status", (userService.edit(user).getId().equals(user.getId())) ? "User edited!" : "Cant' edit user");
 
+        return "admin_operation";
+    }
+
+    @GetMapping("user/edit/{id}")
+    public String editUser(@PathVariable Integer id, Model model) {
+        model.addAttribute("user", userService.findById(id));
+        model.addAttribute("getAllRoles", Arrays.asList(Role.values()));
+        model.addAttribute("currentRole", userService.findById(id).getRole().toString());
+        return "admin_user_edit";
     }
 
 }

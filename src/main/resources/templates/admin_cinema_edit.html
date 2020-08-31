@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/header :: navbar"></div>
+<body>
+<div class="hero user-hero">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="hero-ct">
+                    <h1>Admin Panel - Edit Cinema: <span th:text="${cinema.getName()}"></span></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-single movie_list">
+    <div class="container">
+        <div class="row ipad-width2">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="form-style-1 user-information">
+                    <form th:action="@{/admin/cinema/edit}" th:object="${cinema}" method="post">
+                        <p>Edit city name: <input type="text" th:field="*{name}" th:placeholder="${cinema.getName()}"></p>
+                        <input type="hidden" th:field="*{id}" th:value="${cinema.getId()}">
+                        <select class="form-control" id="testOrder"  th:field="*{cityId}"  name="testOrder" >
+                            <option value="">Select City location</option>
+                            <option th:each="city : ${getAllCities}"
+                                    th:text="${city.getName()}"
+                                    th:value="${city.getId()}" th:selected="currentCity"></option>
+                        </select></p>
+                        <p> <input th:href="admin_city_edit.html" type="submit" value="Edit city"></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<div th:replace="fragments/footer :: footer"></div>
