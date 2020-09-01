@@ -53,8 +53,8 @@ public class TicketService {
                     .collect(Collectors.joining("\n"));
             throw new TicketServiceException("Create ticket validation errors: " + messageErrors);
         }
-
         var ticket = Mapper.fromCreateTicketDtoToTicket(ticketDto);
+
         var createdTicket = ticketRepository
                 .add(ticket)
                 .orElseThrow(() -> new UserServiceException("cannot insert ticket to db"));

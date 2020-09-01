@@ -48,7 +48,7 @@
                                         th:text="${genres.toString()}"
                                         th:value="${genres.toString()}"></option>
                             </select></p>
-                        <p>Description: <input type="text" th:field="*{description}" placeholder="Enter description"
+                        <p>Description: <input type="text" maxlength="255" th:field="*{description}" placeholder="Enter description"
                                                required></p>
                         <p>Start date: <input type="datetime-local" th:field="*{dateFrom}"
                                               placeholder="Enter start date" required></p>

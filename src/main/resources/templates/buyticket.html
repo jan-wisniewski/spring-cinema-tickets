@@ -42,7 +42,7 @@
                                     <option value="">Select place</option>
                                     <option th:each="seat : ${freeSeatSeances}"
                                             th:text="${seat.getSeatId()}"
-                                            th:value="${seat.getId()}"></option>
+                                            th:value="${seat.getSeatId()}"></option>
                                 </select></p>
                                 <p>Ticket type
                                     <select class="form-control" name="ticket_type">
@@ -53,11 +53,6 @@
                                     <input type="hidden" id="userId" name="userId" th:value="${userId}">
                                     <input type="hidden" id="price" name="price" th:value="${seance.getPrice()}">
                                     <input type="hidden" id="discount" name="discount" value="0">
-
-
-<!--                                    <input type="hidden" id="price" name="price" th:if="(ticket_type == normal) ? ">-->
-
-
                                 <input type="submit" value="Buy">
                             </form>
                         </div>

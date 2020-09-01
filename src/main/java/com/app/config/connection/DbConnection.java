@@ -41,7 +41,8 @@ public class DbConnection {
                 description varchar(500) not null,
                 content varchar(2500) not null,
                 author varchar(50) not null,
-                date timestamp not null
+                date timestamp not null,
+                img varchar(400) not null
                 );
                 """;
 
@@ -52,7 +53,8 @@ public class DbConnection {
                 genre varchar(50) not null,
                 description varchar(255) not null,
                 date_from timestamp not null,
-                date_to timestamp not null
+                date_to timestamp not null,
+                img varchar(400) not null
                 );
                 """;
 
@@ -71,7 +73,9 @@ public class DbConnection {
         var CITIES = """
                 create table if not exists cities (
                 id integer primary key auto_increment,
-                name varchar (50) not null
+                name varchar (50) not null,
+                img varchar(400) not null
+             
                 );
                 """;
 
@@ -94,7 +98,8 @@ public class DbConnection {
                 date_time timestamp,
                 price decimal not null,
                 foreign key (movie_id) references movies (id) on delete cascade on update cascade,
-                foreign key (cinema_room_id) references cinema_rooms (id) on delete cascade on update cascade
+                foreign key (cinema_room_id) references cinema_rooms (id) on delete cascade on update cascade,
+                img varchar(400) not null
                 );
                 """;
 
@@ -139,7 +144,8 @@ public class DbConnection {
                 id integer primary key auto_increment,
                 name varchar(50) not null,
                 city_id integer not null,
-                foreign key (city_id) references cities(id) on delete cascade on update cascade
+                foreign key (city_id) references cities(id) on delete cascade on update cascade,
+                img varchar(400) not null
                 );
                 """;
 
