@@ -22,8 +22,8 @@ public class SeatSeanceService {
         return seatsSeancesRepository.update(seatsSeance);
     }
 
-    public SeatsSeance getSeatSeancesBySeatId(Integer seatId) {
-        return seatsSeancesRepository.findBySeatId(seatId).orElseThrow(() -> new SeatSeanceException("Failed2"));
+    public SeatsSeance getSeatSeancesBySeatIdAndSeanceId(Integer seatId, Integer seanceId) {
+        return seatsSeancesRepository.findBySeatIdAndSeanceId(seatId, seanceId).orElseThrow(() -> new SeatSeanceException("Failed2"));
     }
 
     public List<SeatsSeance> getSeatsSeancesListBySeanceId(Integer seanceId) {
@@ -60,4 +60,5 @@ public class SeatSeanceService {
     public List<SeatsSeance> findAllBySeanceIdWithFreeStatus(Integer id) {
         return seatsSeancesRepository.findAllFree(id);
     }
+
 }

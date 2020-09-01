@@ -13,7 +13,7 @@ import java.util.Optional;
 @Repository
 public interface SeatsSeancesRepository extends CrudRepository<SeatsSeance, Integer> {
     Integer addAll(List<Seat> seats, Seance seance);
-    Optional<SeatsSeance> findBySeatId(Integer seatId);
+    Optional<SeatsSeance> findBySeatIdAndSeanceId(Integer seatId, Integer seanceId);
     List<SeatsSeance> findBySeanceId(Integer seanceId);
     List<SeatsSeance> addAllBySeanceId (List<Seat> seats, Integer seanceId);
     List<SeatsSeanceWithSeanceDate> isOneOfAPlaceReservedForFutureSeance (List<Seat> seats);

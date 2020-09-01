@@ -60,13 +60,14 @@ public class SeatsSeancesRepositoryImpl extends AbstractCrudRepository<SeatsSean
     }
 
     @Override
-    public Optional<SeatsSeance> findBySeatId(Integer seatId) {
-        var sql = "select * from seats_seances where seat_id = :seat_id";
+    public Optional<SeatsSeance> findBySeatIdAndSeanceId(Integer seatId, Integer seanceId) {
+        var sql = "select * from seats_seances where seat_id = :seat_id and seance_id = :seance_id";
         return dbConnection
                 .getJdbi()
                 .withHandle(handle -> handle
                         .createQuery(sql)
                         .bind("seat_id", seatId)
+                        .bind("seance_id", seanceId)
                         .mapToBean(SeatsSeance.class)
                         .findFirst()
                 );

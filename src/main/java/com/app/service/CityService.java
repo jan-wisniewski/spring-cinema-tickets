@@ -73,8 +73,8 @@ public class CityService {
         City cityToAdd = City
                 .builder()
                 .name(cityDto.getName())
+                .img(cityDto.getImg())
                 .build();
-
 
         return cityRepository.add(cityToAdd).isPresent() ? 1 : 0;
     }

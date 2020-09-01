@@ -30,7 +30,6 @@ public class AdminController {
     private CinemaRoomService cinemaRoomService;
     private CityService cityService;
     private MovieService movieService;
-    private ReservationService reservationService;
     private SeanceService seanceService;
     private SeatService seatService;
     private TicketService ticketService;
@@ -213,7 +212,8 @@ public class AdminController {
 
     @PostMapping("/city/add")
     public String deleteCity(@ModelAttribute City city, Model model) {
-        model.addAttribute("status", (cityService.addCity(new CreateCityDto(city.getName())) == 1) ? "City added!" : "Cant' add city. Duplicate name");
+        var cityDto = CreateCityDto.builder().name(city.getName()).img(city.getImg()).build();
+        model.addAttribute("status", (cityService.addCity(cityDto) == 1) ? "City added!" : "Cant' add city. Duplicate name");
         return "admin_operation";
     }
 

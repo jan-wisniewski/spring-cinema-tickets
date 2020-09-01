@@ -59,8 +59,7 @@ public class TicketService {
                 .add(ticket)
                 .orElseThrow(() -> new UserServiceException("cannot insert ticket to db"));
 
-
-        SeatsSeance currentSeat = seatSeanceService.getSeatSeancesBySeatId(ticket.getSeatId());
+        SeatsSeance currentSeat = seatSeanceService.getSeatSeancesBySeatIdAndSeanceId(ticket.getSeatId(), ticket.getSeanceId());
         currentSeat.setState(SeatState.ORDERED);
         seatSeanceService.editSeatSeance(currentSeat);
         return createdTicket.getId();

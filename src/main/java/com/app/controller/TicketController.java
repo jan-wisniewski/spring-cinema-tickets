@@ -24,7 +24,6 @@ public class TicketController {
     private final MovieService movieService;
     private final CinemaRoomService cinemaRoomService;
     private final SeatSeanceService seatSeanceService;
-    private final ReservationService reservationService;
     private final UserService userService;
 
     @PostMapping("/seance/buy")
@@ -52,6 +51,7 @@ public class TicketController {
                 .img(movieService.findById(seance.getMovieId()).getImg())
                 .build();
         SeatsSeance[][] seats = ticketService.seatsSeancesFromListToArray(seatSeanceService.findAllBySeanceId(id));
+        System.out.println(Arrays.deepToString(seats));
         model.addAttribute("seatSeances",seats);
         model.addAttribute("seance",seanceObj);
         model.addAttribute("freeSeatSeances",seatSeanceService.findAllBySeanceIdWithFreeStatus(seance.getId()));

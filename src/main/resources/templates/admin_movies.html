@@ -20,7 +20,6 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="form-style-1 user-information">
                     <tr th:each="movie: ${movies}">
-
                         <div class="movie-item-style-2">
                             <div class="mv-item-infor">
                                 <h6><span th:text="${movie.getTitle()}"></span> (ID: <span
@@ -54,7 +53,7 @@
                                               placeholder="Enter start date" required></p>
                         <p>Stop date: <input type="datetime-local" th:field="*{dateTo}" placeholder="Enter start date"
                                              required></p>
-                        <p>Poster: <input type="text" maxlength="255" th:field="*{description}" placeholder="Enter link to the image"
+                        <p>Poster: <input type="text" maxlength="255" th:field="*{img}" placeholder="Enter link to the image"
                                                required></p>
                         <p><input th:href="admin_movies.html" type="submit" value="Add new movie"></p>
                     </form>

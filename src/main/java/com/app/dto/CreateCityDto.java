@@ -11,4 +11,5 @@ import lombok.NoArgsConstructor;
 @Data
 public class CreateCityDto {
     private String name;
+    private String img;
 }
