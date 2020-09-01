@@ -91,6 +91,7 @@ public class AdminController {
                                 .id(cinema.getId())
                                 .city(cityService.findCityById(cinema.getCityId()))
                                 .name(cinema.getName())
+                                .img(cinema.getImg())
                                 .build())
                         .collect(Collectors.toList());
         model.addAttribute("cinemas", cinemaWithObjs);
@@ -108,8 +109,9 @@ public class AdminController {
 
     @PostMapping("cinema/add")
     public String addCinema(@ModelAttribute Cinema cinema, Model model) {
-        model.addAttribute("status", (cinemaService.addCinema(new CreateCinemaDto(cinema.getName(), cinema.getCityId())) == 1) ? "Cinema added!" : "Cant' add Cinema. Duplicate name");
-        System.out.println(cinema.toString());
+        var cinemaDto = CreateCinemaDto.builder().name(cinema.getName()).cityId(cinema.getCityId()).img(cinema.getImg()).build();
+        model.addAttribute("status", (cinemaService.addCinema(cinemaDto) == 1) ? "Cinema added!" : "Cant' add Cinema. Duplicate name");
+        System.out.println(cinemaDto);
         return "admin_operation";
     }
 
@@ -166,6 +168,21 @@ public class AdminController {
         model.addAttribute("status", (cinemaRoomService.addCinemaRoom(new CreateCinemaRoomDto(cinemaRoom.getName(), cinemaRoom.getCinemaId(), cinemaRoom.getRowsNumber(), cinemaRoom.getPlaces())) == 1) ? "Cinema room added!" : "Cant' add Cinema room. Duplicate name");
         System.out.println(cinemaRoom.toString());
         return "admin_operation";
+    }
+
+    @PostMapping("cinemaRoom/edit")
+    public String saveEditedCinemaRoom(@ModelAttribute CinemaRoom cinemaRoom, Model model) {
+        model.addAttribute("status", (cinemaRoomService.editCinemaRoom(cinemaRoom).getId().equals(cinemaRoom.getId())) ? "Cinema room edited!" : "Cant' edit cinema room");
+        return "admin_operation";
+    }
+
+    @GetMapping("cinemaRoom/edit/{id}")
+    public String editCinemaRoom(@PathVariable Integer id, Model model) {
+        model.addAttribute("cinemaRoom", cinemaRoomService.findById(id));
+        List<Cinema> cinemas = cinemaService.getAll();
+        model.addAttribute("getAllCinemas", cinemas);
+        model.addAttribute("currentCinema", cinemaRoomService.findById(id).getCinemaId().toString());
+        return "admin_cinema_room_edit";
     }
 
     //--------------[CITY]-----------------------------------

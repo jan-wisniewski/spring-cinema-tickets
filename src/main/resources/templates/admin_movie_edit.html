@@ -33,6 +33,8 @@
                         <p>Description: <input type="text" th:value="${movie.getDescription()}" th:field="*{description}" placeholder="Enter description" required></p>
                         <p>Start date: <input type="datetime-local" th:value="${movie.getDateFrom()}" th:field="*{dateFrom}" placeholder="Enter start date" required></p>
                         <p>Stop date: <input type="datetime-local" th:value="${movie.getDateTo()}" th:field="*{dateTo}" placeholder="Enter start date" required></p>
+                        <p>Poster: <input type="text" maxlength="255" th:value="${movie.getImg()}" th:field="*{img}" placeholder="Enter link to the image"
+                                          required></p>
                         <input type="hidden" th:field="*{id}" th:value="${movie.getId()}">
                         <p><input th:href="admin_movie_edit.html" type="submit" value="Edit movie"></p>
                     </form>

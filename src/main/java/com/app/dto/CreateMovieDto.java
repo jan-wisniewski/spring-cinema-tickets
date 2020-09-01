@@ -19,4 +19,5 @@ public class CreateMovieDto {
     private String description;
     private LocalDateTime dateFrom;
     private LocalDateTime dateTo;
+    private String img;
 }

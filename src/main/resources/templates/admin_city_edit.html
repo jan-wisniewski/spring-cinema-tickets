@@ -13,7 +13,6 @@
         </div>
     </div>
 </div>
-
 <div class="page-single movie_list">
     <div class="container">
         <div class="row ipad-width2">
@@ -21,6 +20,7 @@
                 <div class="form-style-1 user-information">
                     <form th:action="@{/admin/city/edit}" th:object="${city}" method="post">
                         <p>Edit city name: <input type="text" th:field="*{name}" th:placeholder="${city.getName()}"></p>
+                        <p>Edit city image: <input type="text" th:field="*{img}" th:placeholder="${city.getImg()}"></p>
                         <input type="hidden" th:field="*{id}" th:value="${city.getId()}">
                         <p> <input th:href="admin_city_edit.html" type="submit" value="Edit city"></p>
                     </form>

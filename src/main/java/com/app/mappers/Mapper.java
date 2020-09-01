@@ -10,15 +10,6 @@ import java.time.LocalDateTime;
 
 public interface Mapper {
 
-    static Reservation fromCreateTicketDtoToReservation (CreateTicketDto ticketDto){
-        return Reservation
-                .builder()
-                .seanceId(ticketDto.getSeanceId())
-                .seatId(ticketDto.getSeatId())
-                .userId(ticketDto.getUserId())
-                .build();
-    }
-
     static User fromCreateUserDtoToUser(CreateUserDto userDto) {
         return User
                 .builder()
@@ -27,15 +18,6 @@ public interface Mapper {
                 .surname(userDto.getSurname())
                 .email(userDto.getEmail())
                 .password(userDto.getPassword())
-                .build();
-    }
-
-    static Reservation fromCreateReservationDtoToReservation(CreateReservationDto reservationDto) {
-        return Reservation
-                .builder()
-                .seanceId(reservationDto.getSeanceId())
-                .seatId(reservationDto.getSeatId())
-                .userId(reservationDto.getUserId())
                 .build();
     }
 
@@ -118,6 +100,7 @@ public interface Mapper {
                 .dateFrom(movieDto.getDateFrom())
                 .dateTo(movieDto.getDateTo())
                 .title(movieDto.getTitle())
+                .img(movieDto.getImg())
                 .build();
     }
 
@@ -130,6 +113,7 @@ public interface Mapper {
                 .dateFrom(LocalDateTime.parse(movie.getDateFrom()))
                 .dateTo(LocalDateTime.parse(movie.getDateTo()))
                 .genre(movie.getGenre())
+                .img(movie.getImg())
                 .build();
     }
 
@@ -141,6 +125,7 @@ public interface Mapper {
                 .dateFrom(LocalDateTime.parse(movie.getDateFrom()))
                 .dateTo(LocalDateTime.parse(movie.getDateTo()))
                 .genre(movie.getGenre())
+                .img(movie.getImg())
                 .build();
     }
 
@@ -153,6 +138,7 @@ public interface Mapper {
                 .dateFrom(movie.getDateFrom().toString())
                 .dateTo(movie.getDateTo().toString())
                 .genre(movie.getGenre())
+                .img(movie.getImg())
                 .build();
     }
 
@@ -192,6 +178,7 @@ public interface Mapper {
                 .description(newsDto.getDescription())
                 .title(newsDto.getTitle())
                 .date(LocalDateTime.parse(newsDto.getDate()))
+                .img(newsDto.getImg())
                 .build();
     }
 
@@ -204,6 +191,7 @@ public interface Mapper {
                 .description(news.getDescription())
                 .title(news.getTitle())
                 .date(news.getDate().toString())
+                .img(news.getImg())
                 .build();
     }
 
@@ -216,6 +204,7 @@ public interface Mapper {
                 .description(newsLocalDateAsString.getDescription())
                 .title(newsLocalDateAsString.getTitle())
                 .date(LocalDateTime.parse(newsLocalDateAsString.getDate()))
+                .img(newsLocalDateAsString.getImg())
                 .build();
     }
 }

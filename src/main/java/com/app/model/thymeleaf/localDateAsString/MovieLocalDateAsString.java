@@ -17,4 +17,5 @@ public class MovieLocalDateAsString {
     private String description;
     private String dateFrom;
     private String dateTo;
+    private String img;
 }

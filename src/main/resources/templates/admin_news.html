@@ -25,9 +25,10 @@
                             <div class="mv-item-infor">
                                 <h6><span th:text="${news.getTitle()}"></span> (ID: <span
                                         th:text="${news.getId()}"></span>)</h6>
-                                    <p><span th:text="${news.author}"></span>
-                                    <p>Description: <span th:text="${news.getDescription()}"></span>,</p>
-                                    <p>Date: <span th:text="${#temporals.format(news.getDate(), 'dd-MM-yyyy HH:mm:ss')}"></span>
+                                <p><span th:text="${news.author}"></span>
+                                <p>Description: <span th:text="${news.getDescription()}"></span>,</p>
+                                <p>Date: <span
+                                        th:text="${#temporals.format(news.getDate(), 'dd-MM-yyyy HH:mm:ss')}"></span>
                                 <p>
                                     <a href="admin_news_edit.html"
                                        th:href="@{/admin/news/edit/{newsId}(newsId=${news.getId()})}">Edit</a> |
@@ -38,16 +39,15 @@
                         </div>
                     </tr>
                     <form th:action="@{/admin/news/add}" th:object="${news}" method="post">
-                        <p>Add a news: <input type="text" th:field="*{title}"
-                                                   placeholder="Enter title" required></p>
-                        <p>Description: (500) <input type="text" maxlength="500" th:field="*{description}" placeholder="Enter description"
-                                               required></p>
-                        <p>Content: (2500) <textarea  rows = "20" cols = "80" th:field="*{content}" placeholder="Enter news text"
-                                                  required></textarea></p>
-                        <p>Author: <input type="text" th:field="*{author}" placeholder="Enter author"
-                                               required></p>
-                        <p>Date: <input type="datetime-local" th:field="*{date}"
-                                              placeholder="Enter start date" required></p>
+                        <p>Add a news: <input type="text" th:field="*{title}" placeholder="Enter title" required></p>
+                        <p>Description: (500) <input type="text" maxlength="500" th:field="*{description}"
+                                                     placeholder="Enter description" required></p>
+                        <p>Content: (2500) <textarea rows="20" cols="80" th:field="*{content}"
+                                                     placeholder="Enter news text" required></textarea></p>
+                        <p>Author: <input type="text" th:field="*{author}" placeholder="Enter author" required></p>
+                        <p>Date: <input type="datetime-local" th:field="*{date}" placeholder="Enter start date"
+                                        required></p>
+                        <p>Link to image: <input type="text" th:field="*{img}" placeholder="Enter link to the image" required></p>
                         <p><input th:href="admin_news.html" type="submit" value="Add news"></p>
                     </form>
                 </div>

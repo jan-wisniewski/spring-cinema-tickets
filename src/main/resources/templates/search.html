@@ -18,21 +18,24 @@
     <div class="container">
         <div class="row ipad-width2">
             <div class="col-md-8 col-sm-12 col-xs-12">
-                <tr th:each="seance: ${seances}">
+                <div class="form-style-1 user-information">
+                    <tr th:each="seance: ${seances}">
 
-                    <div class="movie-item-style-2">
-                        <img src="../static/images/uploads/mv-it2.jpg" th:src="@{/assets/images/uploads/mv-it2.jpg}">
-                        <div class="mv-item-infor">
-                            <h6><a href=""><span th:text="${seance.movie?.getTitle()}"></span></a></h6>
-                            <p class="describe">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque pulvinar lectus id egestas fermentum. Suspendisse at ultrices odio. Fusce vel ullamcorper ligula. Etiam vitae risus tincidunt, dapibus orci ac, mollis nulla. Pellentesque bibendum risus id lectus hendrerit, vitae sollicitudin purus dapibus. Ut id orci vitae eros scelerisque laoreet in viverra nibh. Quisque vitae scelerisque leo. In id fermentum justo, in bibendum lorem. Praesent elit nibh, viverra ac iaculis vitae, laoreet sed magna. Vestibulum nec justo tellus.</p>
-                            <p>PRICE: <span th:text="${seance.getPrice()}"></span>$</p>
-                            <p>DATE: <span th:text="${seance.getDateTime()}"></span></p>
-                            <p class="rate"><button type="submit">Buy ticket!</button></p>
+                        <div class="movie-item-style-2 seance">
+                            <img src="" th:src="${seance.getImg()}">
+                            <div class="mv-item-infor">
+                                <h6><a href=""><span th:text="${seance.movie?.getTitle()}"></span></a></h6>
+                                <p class="describe"><span th:text="${seance.movie?.getDescription()}"></span></p>
+                                <p>Room: <span th:text="${seance.cinemaRoom?.getName()}"></span></p>
+                                <p>PRICE: <span th:text="${seance.getPrice()}"></span>$</p>
+                                <p>DATE: <span th:text="${#temporals.format(seance.getDateTime(), 'dd-MM-yyyy HH:mm:ss')}"></span></p>
+                                <hr>
+                                <a href="buyticket.html" th:href="@{/ticket/seance/{seanceId}(seanceId=${seance.getId()})}"><input type="submit" value="Buy ticket"></a>
+                            </div>
                         </div>
 
-                    </div>
-
-                </tr>
+                    </tr>
+                </div>
             </div>
         </div>
     </div>

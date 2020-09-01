@@ -13,4 +13,5 @@ public class Cinema {
     private Integer id;
     private String name;
     private Integer cityId;
+    private String img;
 }

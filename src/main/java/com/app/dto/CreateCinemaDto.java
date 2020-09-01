@@ -12,4 +12,5 @@ import lombok.NoArgsConstructor;
 public class CreateCinemaDto {
     private String name;
     private Integer cityId;
+    private String img;
 }

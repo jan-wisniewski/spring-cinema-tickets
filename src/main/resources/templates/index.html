@@ -18,17 +18,14 @@
         <div class="row ipad-width2">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="form-style-1 user-information">
-
                     <tr th:each="news: ${newsAll}">
-
-
                     <div class="row">
                         <div class="blog-item-style-1">
-                            <img src="../static/images/uploads/blog-it1.jpg" th:src="@{/assets/images/uploads/blog-it1.jpg}">
+                            <img src="" th:src="${news.getImg()}">
                             <div class="blog-it-infor">
                                 <h3><span th:text="${news.getTitle()}"></span> </h3>
                                 <span class="time" th:text="${news.getDate()+' by ' +news.getAuthor()}"></span>
-                                <p th:text="${news.getDescription()}"></p>
+                                <p style="font-weight: bold" th:text="${news.getDescription()}"></p>
                                 <p th:text="${news.getContent()}"></p>
                             </div>
                         </div>

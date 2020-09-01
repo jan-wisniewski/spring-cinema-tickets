@@ -18,4 +18,5 @@ import java.time.LocalDateTime;
 public class CityWithObj {
     private Integer id;
     private String name;
+    private String img;
 }

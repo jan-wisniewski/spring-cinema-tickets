@@ -35,6 +35,7 @@ public class SeanceController {
                             .dateTime(s.getDateTime())
                             .movie(movieService.findById(s.getMovieId()))
                             .price(s.getPrice())
+                            .img(movieService.findById(s.getMovieId()).getImg())
                             .build()
             );
         }

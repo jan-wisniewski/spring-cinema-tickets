@@ -49,6 +49,7 @@ public class TicketController {
                 .movie(movieService.findById(seance.getMovieId()))
                 .dateTime(seance.getDateTime())
                 .cinemaRoom(cinemaRoomService.findById(seance.getCinemaRoomId()))
+                .img(movieService.findById(seance.getMovieId()).getImg())
                 .build();
         SeatsSeance[][] seats = ticketService.seatsSeancesFromListToArray(seatSeanceService.findAllBySeanceId(id));
         model.addAttribute("seatSeances",seats);

@@ -20,7 +20,6 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="form-style-1 user-information">
                     <tr th:each="cinema: ${cinemas}">
-
                         <div class="movie-item-style-2">
                             <div class="mv-item-infor">
                                 <h6><span th:text="${cinema.getName()}"></span> (ID: <span
@@ -32,11 +31,6 @@
                                 </p>
                             </div>
                         </div>
-
-
-
-
-
                 </tr>
                 <form th:action="@{cinema/add}" th:object="${newCinema}" method="post">
                     <p>Add a new Cinema: <input type="text" th:field="*{name}"
@@ -48,7 +42,8 @@
                                 th:text="${city.getName()}"
                                 th:value="${city.getId()}"></option>
                     </select></p>
-
+                    <p>Link to image: <input type="text" th:field="*{img}"
+                                             placeholder="Enter link to the image" required></p>
                     <p><input th:href="admin_cinemas.html" type="submit" value="Add new cinema"></p>
 
 

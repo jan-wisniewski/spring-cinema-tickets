@@ -19,4 +19,5 @@ public class Movie {
     private String description;
     private LocalDateTime dateFrom;
     private LocalDateTime dateTo;
+    private String img;
 }

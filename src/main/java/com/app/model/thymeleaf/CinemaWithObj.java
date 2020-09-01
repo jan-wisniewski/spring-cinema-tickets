@@ -19,4 +19,5 @@ public class CinemaWithObj {
     private Integer id;
     private String name;
     private City city;
+    private String img;
 }

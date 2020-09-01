@@ -22,17 +22,8 @@ public class CinemaController {
     private final CinemaService cinemaService;
     private final CityService cityService;
 
-    @GetMapping("/{id}")
-    public String getById(@PathVariable Integer id, Model model) {
-        var cinema = cinemaService.getById(id);
-        model.addAttribute("cinema", cinema);
-        model.addAttribute("city", cityService.findCityById(cinema.getCityId()));
-        return "cinema";
-    }
-
     @GetMapping("/all")
     public String getAll(Model model) {
-
         List<CinemaWithObj> cinemas = new ArrayList<>();
         for (Cinema c : cinemaService.getAll()) {
             cinemas.add(
@@ -41,6 +32,7 @@ public class CinemaController {
                             .id(c.getId())
                             .name(c.getName())
                             .city(cityService.findCityById(c.getCityId()))
+                            .img(c.getImg())
                             .build()
             );
 
@@ -48,4 +40,24 @@ public class CinemaController {
         model.addAttribute("cinemas", cinemas);
         return "cinemas";
     }
+
+    @GetMapping("/all/city/{id}")
+    public String getAllByCityId(@PathVariable Integer id,  Model model) {
+        List<CinemaWithObj> cinemas = new ArrayList<>();
+        for (Cinema c : cinemaService.getAllInCity(cityService.findCityById(id))) {
+            cinemas.add(
+                    CinemaWithObj
+                            .builder()
+                            .id(c.getId())
+                            .name(c.getName())
+                            .city(cityService.findCityById(c.getCityId()))
+                            .img(c.getImg())
+                            .build()
+            );
+        }
+        model.addAttribute("cinemas", cinemas);
+        return "cinemas";
+    }
+
+
 }

@@ -24,8 +24,8 @@ public class CinemaRoomService {
     private final SeatService seatService;
     private final SeanceRepository seanceRepository;
 
-    public Optional<CinemaRoom> editCinemaRoom(CinemaRoom cinemaRoom) {
-        return cinemaRoomRepository.update(cinemaRoom);
+    public CinemaRoom editCinemaRoom(CinemaRoom cinemaRoom) {
+        return cinemaRoomRepository.update(cinemaRoom).orElseThrow();
     }
 
     public Integer deleteCinemaRoom(Integer id) {

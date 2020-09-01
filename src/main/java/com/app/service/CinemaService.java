@@ -82,6 +82,7 @@ public class CinemaService {
                 .builder()
                 .name(cinemaDto.getName())
                 .cityId(cinemaDto.getCityId())
+                .img(cinemaDto.getImg())
                 .build();
 
 

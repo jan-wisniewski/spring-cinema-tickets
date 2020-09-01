@@ -75,7 +75,6 @@ public class DbConnection {
                 id integer primary key auto_increment,
                 name varchar (50) not null,
                 img varchar(400) not null
-             
                 );
                 """;
 
@@ -98,8 +97,7 @@ public class DbConnection {
                 date_time timestamp,
                 price decimal not null,
                 foreign key (movie_id) references movies (id) on delete cascade on update cascade,
-                foreign key (cinema_room_id) references cinema_rooms (id) on delete cascade on update cascade,
-                img varchar(400) not null
+                foreign key (cinema_room_id) references cinema_rooms (id) on delete cascade on update cascade
                 );
                 """;
 
@@ -160,7 +158,6 @@ public class DbConnection {
                 foreign key (seat_id) references seats(id) on delete cascade on update cascade
                 );
                 """;
-
 
         jdbi
                 .useTransaction(handle -> {

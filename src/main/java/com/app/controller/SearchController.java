@@ -44,23 +44,13 @@ public class SearchController {
                                     .movie(movieService.findById(seance.getMovieId()))
                                     .price(seance.getPrice())
                                     .id(seance.getId())
+                                    .img(movieService.findById(seance.getMovieId()).getImg())
                                     .build()
                     );
                 });
         model.addAttribute("seances", seanceWithObjs);
         model.addAttribute("cinema", cinemaService.getById(id));
         return "seancesInCinema";
-    }
-
-    @GetMapping("/city/{id}/cinema")
-    public String showCinemasWithCityId(@PathVariable Integer id, Model model) {
-        Set<Cinema> cinema = cinemaRoomService.getCinemaRoomListByCityId(id)
-                .stream()
-                .map(cr -> cinemaService.getById(cr.getCinemaId()))
-                .collect(Collectors.toSet());
-        model.addAttribute("cinemas", cinema);
-        model.addAttribute("city", cityService.findCityById(id));
-        return "city";
     }
 
     @GetMapping("/{phrase}")

@@ -31,6 +31,7 @@
                     </tr>
                     <form th:action="@{city/add}" th:object="${newCity}" method="post">
                         <p>Add a new city: <input type="text" th:field="*{name}" placeholder="Enter name of new city"></p>
+                        <p>Add city image: <input type="text" th:field="*{img}" placeholder="Enter city image"></p>
                         <p> <input th:href="admin_cities.html" type="submit" value="Add new city"></p>
                     </form>
                 </div>

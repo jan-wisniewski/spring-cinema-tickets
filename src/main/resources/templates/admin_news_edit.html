@@ -30,6 +30,8 @@
                                                required></p>
                         <p>Date: <input type="datetime-local" th:value="${news.getDate()}" th:field="*{date}"
                                               placeholder="Enter start date" required></p>
+                        <p>Link to image: <input type="text" th:value="${news.getImg()}" th:field="*{img}"
+                                        placeholder="Enter link to the image" required></p>
                         <input type="hidden" th:field="*{id}" th:value="${news.getId()}">
                         <p><input th:href="admin_news.html" type="submit" value="Edit news"></p>
                     </form>

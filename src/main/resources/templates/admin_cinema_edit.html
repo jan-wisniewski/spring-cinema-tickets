@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="hero-ct">
-                    <h1>Admin Panel - Edit Cinema: <span th:text="${cinema.getName()}"></span></h1>
+                    <h1>Admin Panel - Edit cinema: <span th:text="${cinema.getId()}"></span></h1>
                 </div>
             </div>
         </div>
@@ -19,17 +19,22 @@
         <div class="row ipad-width2">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="form-style-1 user-information">
-                    <form th:action="@{/admin/cinema/edit}" th:object="${cinema}" method="post">
-                        <p>Edit city name: <input type="text" th:field="*{name}" th:placeholder="${cinema.getName()}"></p>
-                        <input type="hidden" th:field="*{id}" th:value="${cinema.getId()}">
-                        <select class="form-control" id="testOrder"  th:field="*{cityId}"  name="testOrder" >
-                            <option value="">Select City location</option>
-                            <option th:each="city : ${getAllCities}"
-                                    th:text="${city.getName()}"
-                                    th:value="${city.getId()}" th:selected="currentCity"></option>
-                        </select></p>
-                        <p> <input th:href="admin_city_edit.html" type="submit" value="Edit city"></p>
-                    </form>
+                    <div class="movie-item-style-2">
+                            <form th:action="@{/admin/cinema/edit}" th:object="${cinema}" method="post">
+                                <p>Edit cinema name: <input type="text" th:field="*{name}"
+                                                            th:placeholder="${cinema.getName()}"></p>
+                                <p><select class="form-control" id="testOrder" th:field="*{cityId}" name="testOrder">
+                                    <option value="">Select City location</option>
+                                    <option th:each="city : ${getAllCities}"
+                                            th:text="${city.getName()}"
+                                            th:value="${city.getId()}" th:selected="currentCity"></option>
+                                </select></p>
+                                <p>Link to image: <input type="text" th:value="${cinema.getImg()}" th:field="*{img}"
+                                                         placeholder="Enter link to the image" required></p>
+                                <p><input th:href="admin_cinema_edit.html" type="submit" value="Edit cinema"></p>
+                                <input type="hidden" th:field="*{id}" th:value="${cinema.getId()}">
+                            </form>
+                    </div>
                 </div>
             </div>
         </div>
