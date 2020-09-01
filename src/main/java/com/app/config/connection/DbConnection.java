@@ -13,7 +13,7 @@ public class DbConnection {
     public DbConnection() {
         this.username = "root";
         this.password = "root";
-        this.url = "jdbc:mysql://localhost:3306/cinema_pw_test?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Europe/Warsaw";
+        this.url = "jdbc:mysql://localhost:3306/cinema_pw?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Europe/Warsaw";
         this.jdbi = Jdbi.create(url, username, password);
 
 
