@@ -27,7 +27,7 @@
 
                         <span sec:authorize="isAuthenticated()">Hello, <span sec:authentication="name"></span>! |
                         <a href="/profile/edit">Profile</a> | <a href="/profile/tickets">Tickets</a> |
-                        <span sec:authorize="hasAuthority('ADMIN')"><a href="/admin">Panel admina</a> | </span>
+                        <span sec:authorize="hasAuthority('ADMIN')"><a href="/admin">Admin panel</a> | </span>
                         <a href="/logout">Logout</a>
                         </span>
                         <span sec:authorize="!isAuthenticated()">

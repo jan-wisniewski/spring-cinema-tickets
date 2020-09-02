@@ -23,7 +23,7 @@
                         <div class="movie-item-style-2">
                             <img src="" th:src="${city.getImg()}">
                             <div class="mv-item-infor">
-                                <h6><a href=""><span th:text="${city.getName()}"></span></a></h6>
+                                <h6><span th:text="${city.getName()}"></span></h6>
                                 <a href="cinemas.html" th:href="@{/cinema/all/city/{cityId}(cityId=${city.getId()})}"> <input type="submit" value="Show cinemas in this city"></a>
                             </div>
                         </div>
