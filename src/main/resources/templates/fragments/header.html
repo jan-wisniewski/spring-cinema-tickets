@@ -38,7 +38,10 @@
                 </div>
             </nav>
             <div class="top-search">
-                <input type="text" placeholder="Search for a seance, movie that you are looking for">
+                <form th:action="@{/search/{phrase}(phrase=${phrase})}" method="get">
+                <input type="text" th:name="phrase"
+                       placeholder="Search for a seance that you are looking for and press ENTER">
+                </form>
           </div>
         </div>
     </header>

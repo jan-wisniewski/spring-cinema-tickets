@@ -7939,6 +7939,9 @@ header .top-search {
   -moz-border-radius: 3px;
   border-radius: 3px;
 }
+header .top-search form {
+  width: 100%;
+}
 header .top-search select,
 header .top-search input {
   height: 46px;

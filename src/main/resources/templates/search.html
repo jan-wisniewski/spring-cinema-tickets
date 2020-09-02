@@ -7,17 +7,16 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="hero-ct">
-                    <h1>Seances found for phrase '<span th:text="${phrase}"></span>' </h1>
+                    <h1>Seances found for phrase: <span th:text="${phrase}"></span></h1>
                 </div>
             </div>
         </div>
     </div>
-
 </div>
 <div class="page-single movie_list">
     <div class="container">
         <div class="row ipad-width2">
-            <div class="col-md-8 col-sm-12 col-xs-12">
+            <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="form-style-1 user-information">
                     <tr th:each="seance: ${seances}">
 
@@ -26,7 +25,7 @@
                             <div class="mv-item-infor">
                                 <h6><a href=""><span th:text="${seance.movie?.getTitle()}"></span></a></h6>
                                 <p class="describe"><span th:text="${seance.movie?.getDescription()}"></span></p>
-                                <p>Room: <span th:text="${seance.cinemaRoom?.getName()}"></span></p>
+                                <p>Room: <span th:text="${seance.getCityName()+', '+seance.getCinemaName()+' ('+seance.cinemaRoom?.getName()+')'}"></span></p>
                                 <p>PRICE: <span th:text="${seance.getPrice()}"></span>$</p>
                                 <p>DATE: <span th:text="${#temporals.format(seance.getDateTime(), 'dd-MM-yyyy HH:mm:ss')}"></span></p>
                                 <hr>

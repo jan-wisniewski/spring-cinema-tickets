@@ -51,7 +51,6 @@ public class TicketController {
                 .img(movieService.findById(seance.getMovieId()).getImg())
                 .build();
         SeatsSeance[][] seats = ticketService.seatsSeancesFromListToArray(seatSeanceService.findAllBySeanceId(id));
-        System.out.println(Arrays.deepToString(seats));
         model.addAttribute("seatSeances",seats);
         model.addAttribute("seance",seanceObj);
         model.addAttribute("freeSeatSeances",seatSeanceService.findAllBySeanceIdWithFreeStatus(seance.getId()));

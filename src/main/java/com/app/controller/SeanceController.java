@@ -2,9 +2,7 @@ package com.app.controller;
 
 import com.app.model.Seance;
 import com.app.model.thymeleaf.SeanceWithObj;
-import com.app.service.CinemaRoomService;
-import com.app.service.MovieService;
-import com.app.service.SeanceService;
+import com.app.service.*;
 import lombok.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +20,8 @@ public class SeanceController {
     private final SeanceService seanceService;
     private final MovieService movieService;
     private final CinemaRoomService cinemaRoomService;
+    private final CinemaService cinemaService;
+    private final CityService cityService;
 
     @GetMapping("/all")
     public String getAll (Model model){
@@ -36,6 +36,8 @@ public class SeanceController {
                             .movie(movieService.findById(s.getMovieId()))
                             .price(s.getPrice())
                             .img(movieService.findById(s.getMovieId()).getImg())
+                            .cinemaName(cinemaService.findCinemaById(cinemaRoomService.findById(s.getCinemaRoomId()).getCinemaId()).getName())
+                            .cityName(cityService.findCityById(cinemaService.findCinemaById(cinemaRoomService.findById(s.getCinemaRoomId()).getCinemaId()).getCityId()).getName())
                             .build()
             );
         }

@@ -25,7 +25,7 @@
                         <div class="mv-item-infor">
                             <h6><a href=""><span th:text="${seance.movie?.getTitle()}"></span></a></h6>
                             <p class="describe"><span th:text="${seance.movie?.getDescription()}"></span></p>
-                            <p>Room: <span th:text="${seance.cinemaRoom?.getName()}"></span></p>
+                            <p>Room: <span th:text="${seance.getCityName()+', '+seance.getCinemaName()+' ('+seance.cinemaRoom?.getName()+')'}"></span></p>
                             <p>PRICE: <span th:text="${seance.getPrice()}"></span>$</p>
                             <p>DATE: <span th:text="${#temporals.format(seance.getDateTime(), 'dd-MM-yyyy HH:mm:ss')}"></span></p>
                             <hr>

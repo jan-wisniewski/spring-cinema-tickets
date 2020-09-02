@@ -9,10 +9,7 @@ import com.app.service.*;
 import lombok.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -53,8 +50,8 @@ public class SearchController {
         return "seancesInCinema";
     }
 
-    @GetMapping("/{phrase}")
-    public String search(Model model, @PathVariable String phrase) {
+    @GetMapping("")
+    public String search(Model model, @RequestParam String phrase) {
         List<SeanceWithObj> seances = new ArrayList<>();
         for (Seance s : seanceService.findByPhrase(phrase)) {
             seances.add(
@@ -65,10 +62,13 @@ public class SearchController {
                             .dateTime(s.getDateTime())
                             .movie(movieService.findById(s.getMovieId()))
                             .price(s.getPrice())
+                            .img(movieService.findById(s.getMovieId()).getImg())
+                            .cinemaName(cinemaService.findCinemaById(cinemaRoomService.findById(s.getCinemaRoomId()).getCinemaId()).getName())
+                            .cityName(cityService.findCityById(cinemaService.findCinemaById(cinemaRoomService.findById(s.getCinemaRoomId()).getCinemaId()).getCityId()).getName())
                             .build()
             );
         }
-        //model.addAttribute("phrase",phrase);
+        model.addAttribute("phrase",phrase);
         model.addAttribute("seances", seances);
         return "search";
     }

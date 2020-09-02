@@ -21,4 +21,6 @@ public class SeanceWithObj {
     private LocalDateTime dateTime;
     private BigDecimal price;
     private String img;
+    private String cinemaName;
+    private String cityName;
 }
