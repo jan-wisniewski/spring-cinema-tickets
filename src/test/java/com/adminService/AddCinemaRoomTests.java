@@ -17,6 +17,9 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
+import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,13 +33,10 @@ public class AddCinemaRoomTests {
     private String exceptionMessage;
 
     @Mock
-    CinemaRoomRepository cinemaRoomRepository;
-
-    @Mock
-    SeatRepository seatRepository;
+    private CinemaRoomRepository cinemaRoomRepository;
 
     @InjectMocks
-    CinemaRoomService cinemaRoomService;
+    private CinemaRoomService cinemaRoomService;
 
     @Test
     @DisplayName("when cinemaRoomDto is null exception has been thrown")
@@ -146,6 +146,12 @@ public class AddCinemaRoomTests {
         Mockito
                 .when(cinemaRoomRepository.findByNameAndCinemaId("Room1", 5))
                 .thenReturn(Optional.of(cinemasRoomListFromDB.get(0)));
+
+        System.out.println("-------------------------------------------------------");
+        System.out.println(cinemaRoomRepository.findByNameAndCinemaId("Room1",5));
+        System.out.println("-------------------------------------------------------");
+
+
 
         exceptionMessage = "";
         try {

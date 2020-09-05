@@ -27,8 +27,7 @@
                                 <tr th:each="row: ${seatSeances}">
                                     <td th:each="place: ${row}">
                                     <input type="button" style="height:50px; width:100px" th:value="${place.getSeatId()+'. '+place.getState().name()}">
-                                   <!--     <input type="button" style="height:100px; width:100px" th:value="${!place.getState().name().equals('FREE') ? 'NOT FREE' : place.getSeatId()+'. '+place.getState().name()}">
-                                   --> </td>
+</td>
                                 </tr>
                             </table>
 

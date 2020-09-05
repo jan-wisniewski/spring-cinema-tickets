@@ -29,10 +29,10 @@ public class AddCinemaTests {
     private String exceptionMessage;
 
     @InjectMocks
-    CinemaService cinemaService;
+    private CinemaService cinemaService;
 
     @Mock
-    CinemaRepository cinemaRepository;
+    private CinemaRepository cinemaRepository;
 
     @Test
     @DisplayName("when create cinema dto is null exception has been thrown")
