@@ -3,6 +3,9 @@ package com.app.config.connection;
 import org.jdbi.v3.core.Jdbi;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * Class responsible for providing database connection and setting up database scheme at first lunch of the application
+ */
 @Configuration
 public class DbConnection {
     private final String username;
@@ -10,6 +13,10 @@ public class DbConnection {
     private final String url;
     private final Jdbi jdbi;
 
+    /***
+     * DbConnection constructor which creates the connection with database
+     * setup of tables is initiated in the constructor
+     */
     public DbConnection() {
         this.username = "root";
         this.password = "root";
@@ -28,10 +35,17 @@ public class DbConnection {
         setUpTables();
     }
 
+    /***
+     * getter of database connection
+     * @return
+     */
     public Jdbi getJdbi() {
         return jdbi;
     }
 
+    /***
+     * setting up of tables in database if they dont exists
+     */
     public void setUpTables() {
 
         var NEWS = """
